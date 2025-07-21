@@ -1,5 +1,5 @@
 @extends('layouts.user.main')
-@section('title', 'Blog - Sentuh Digital Teknologi')
+@section('title', 'Blog - Fortu Digital Teknologi')
 @section('content')
 
     <div class="container mx-auto px-4 max-w-4xl">
@@ -33,7 +33,7 @@
                 </button>
             </div>
             <h1 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
-                PT Sentuh Digital Teknologi Berkontribusi dalam Event Pengenalan Toko Daring Bela Pengadaan dan
+                PT Fortu Digital Teknologi Berkontribusi dalam Event Pengenalan Toko Daring Bela Pengadaan dan
                 E-Katalog V6 untuk Memajukan Pengadaan Barang dan Jasa di Pemerintahan
             </h1>
         </div>
@@ -53,7 +53,7 @@
             </div>
             <p>
                 Dalam upaya mendukung digitalisasi dan efisiensi dalam pengadaan barang dan jasa di pemerintahan, PT
-                Sentuh Digital Teknologi dengan bangga turut berpartisipasi dalam event Pengenalan Toko Daring Bela
+                Fortu Digital Teknologi dengan bangga turut berpartisipasi dalam event Pengenalan Toko Daring Bela
                 Pengadaan dan E-Katalog V6, yang diselenggarakan pada 10 September 2024 di Hotel Yuan Pasar Baru. Acara
                 ini diorganisir oleh Bappenas (Badan Perencanaan Pembangunan Nasional) dan Indotrading, serta melibatkan
                 berbagai instansi penting dalam pengadaan barang dan jasa di Indonesia, termasuk PPK (Panitia Pembuat
@@ -169,7 +169,7 @@
                     </a>
                     <div class="py-4">
                         <h3 class="font-bold text-md mb-3 h-16">
-                            <a href="#" class="hover:text-purple-700">Perkuat Brand Teknologi Lokal, Sentuh
+                            <a href="#" class="hover:text-purple-700">Perkuat Brand Teknologi Lokal, Fortu
                                 berpartisipasi dalam...</a>
                         </h3>
                         <div class="flex justify-between items-center text-xs text-gray-500">
