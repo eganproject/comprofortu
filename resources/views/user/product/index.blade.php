@@ -1,5 +1,5 @@
         @extends('layouts.user.main')
-        @section('title', 'Product - Sentuh Digital Teknologi')
+        @section('title', 'Product - Fortu Digital Teknologi')
         
         @push('cssOnPage')
             <style>
@@ -68,7 +68,7 @@
                 </div>
             </section>
 
-            <!-- Sentuh Smart Board Section -->
+            <!-- Fortu Smart Board Section -->
             <section class="py-12">
                 <div class="container mx-auto px-4">
                     <!-- Tambahkan class 'scroll-animate-icon' untuk target JS -->
@@ -78,14 +78,14 @@
                             <div class="w-5 h-5 rounded-full bg-purple-500 -ml-2 icon-circle icon-circle-2"></div>
                             <div class="w-5 h-5 rounded-full bg-purple-400 -ml-2 icon-circle icon-circle-3"></div>
                         </div>
-                        <h2 class="text-2xl font-bold">Sentuh Smart Board</h2>
+                        <h2 class="text-2xl font-bold">Fortu Smart Board</h2>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <!-- Product Card 1 -->
                         <div class="bg-slate-50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
                             <img src="https://placehold.co/400x250/FFFFFF/000000?text=Produk+Smart+Board"
-                                alt="Sentuh Smart Board" class="w-full h-auto object-contain mb-4 rounded-lg">
-                            <h3 class="font-bold text-lg mb-2">Sentuh Smart Board</h3>
+                                alt="Fortu Smart Board" class="w-full h-auto object-contain mb-4 rounded-lg">
+                            <h3 class="font-bold text-lg mb-2">Fortu Smart Board</h3>
                             <div class="flex justify-center space-x-2 mb-3">
                                 <span class="bg-gray-800 text-white text-xs font-semibold px-3 py-1 rounded">55</span>
                                 <span class="bg-gray-800 text-white text-xs font-semibold px-3 py-1 rounded">65</span>
@@ -102,8 +102,8 @@
                         <!-- Product Card 2 -->
                         <div class="bg-slate-50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
                             <img src="https://placehold.co/400x250/FFFFFF/000000?text=Produk+Smart+Board"
-                                alt="Sentuh Smart Board" class="w-full h-auto object-contain mb-4 rounded-lg">
-                            <h3 class="font-bold text-lg mb-2">Sentuh Smart Board</h3>
+                                alt="Fortu Smart Board" class="w-full h-auto object-contain mb-4 rounded-lg">
+                            <h3 class="font-bold text-lg mb-2">Fortu Smart Board</h3>
                             <div class="flex justify-center space-x-2 mb-3">
                                 <span class="bg-gray-800 text-white text-xs font-semibold px-3 py-1 rounded">43</span>
                                 <span class="bg-gray-800 text-white text-xs font-semibold px-3 py-1 rounded">49</span>

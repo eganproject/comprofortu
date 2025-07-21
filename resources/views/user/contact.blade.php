@@ -1,5 +1,5 @@
 @extends('layouts.user.main')
-@section('title', 'Contact Us - Sentuh Digital Teknologi')
+@section('title', 'Contact Us - Fortu Digital Teknologi')
 @push('cssOnPage')
     <style>
         body {

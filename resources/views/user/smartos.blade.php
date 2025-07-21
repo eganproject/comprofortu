@@ -1,10 +1,10 @@
 @extends('layouts.user.main')
-@section('title', 'Smart Office Solution - Sentuh Digital Teknologi')
+@section('title', 'Smart Office Solution - Fortu Digital Teknologi')
 @section('content')
     <!-- Hero Section -->
     <section class="bg-purple-800 text-white py-20">
         <div class="container mx-auto px-4 text-center">
-            <p class="text-purple-300">Sentuh</p>
+            <p class="text-purple-300">Fortu</p>
             <h1 class="text-4xl lg:text-5xl font-bold my-4">Smart Office Solution</h1>
             <div class="flex justify-center space-x-12 mt-8">
                 <div>

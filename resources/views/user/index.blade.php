@@ -2,7 +2,7 @@
 @extends('layouts.user.main')
 
 {{-- Mengatur judul spesifik untuk halaman ini --}}
-@section('title', 'Beranda - Sentuh Digital')
+@section('title', 'Beranda - Fortu Digital')
 
 @push('cssOnPage')
     <style>
@@ -41,10 +41,10 @@
             <div id="interactive-carousel" class="carousel-container">
                 <div class="carousel-slide active">
                     <div class="relative">
-                        <img src="https://placehold.co/1200x600/DDD6FE/4C1D95?text=Sentuh+Video+Wall"
-                            alt="Sentuh Video Wall" class="w-full rounded-lg">
+                        <img src="https://placehold.co/1200x600/DDD6FE/4C1D95?text=Fortu+Video+Wall"
+                            alt="Fortu Video Wall" class="w-full rounded-lg">
                         <div class="absolute top-8 left-8 bg-black bg-opacity-50 text-white p-6 rounded-lg max-w-xs">
-                            <h3 class="text-2xl font-bold">Sentuh Video Wall</h3>
+                            <h3 class="text-2xl font-bold">Fortu Video Wall</h3>
                             <a href="#" class="inline-block mt-4 font-semibold text-purple-300 hover:text-white">Read
                                 More &gt;</a>
                         </div>
@@ -111,7 +111,7 @@
                     <h2 class="text-2xl font-bold">TKDN</h2>
                     <p class="text-purple-300">Tingkat Komponen Dalam Negeri</p>
                     <p class="mt-4 text-sm max-w-md">
-                        PT. Sentuh Digital Teknologi adalah perusahaan yang sudah besertifikasi TKDN >40% untuk
+                        PT. Fortu Digital Teknologi adalah perusahaan yang sudah besertifikasi TKDN >40% untuk
                         produk-produknya. Kami yakin dengan tingkat komponen dalam negeri yang ada pada produk kami
                         menjadikan produk kami dapat bersaing dengan produk lokal maupun global.
                     </p>
@@ -206,7 +206,7 @@
                     <div class="p-4">
                         <img src="https://placehold.co/100x40/E5E7EB/6B7280?text=Logo+Klien" alt="Logo Klien"
                             class="h-8 mb-2">
-                        <p class="font-semibold text-sm">Sentuh Digital Signage</p>
+                        <p class="font-semibold text-sm">Fortu Digital Signage</p>
                         <p class="text-xs text-gray-500">Lorem ipsum dolor sit amet consectetur.</p>
                     </div>
                 </div>
@@ -216,7 +216,7 @@
                     <div class="p-4">
                         <img src="https://placehold.co/100x40/E5E7EB/6B7280?text=Logo+Klien" alt="Logo Klien"
                             class="h-8 mb-2">
-                        <p class="font-semibold text-sm">Sentuh Smart Board</p>
+                        <p class="font-semibold text-sm">Fortu Smart Board</p>
                         <p class="text-xs text-gray-500">Lorem ipsum dolor sit amet consectetur.</p>
                     </div>
                 </div>
@@ -236,7 +236,7 @@
                     <div class="p-4">
                         <img src="https://placehold.co/100x40/E5E7EB/6B7280?text=Logo+Klien" alt="Logo Klien"
                             class="h-8 mb-2">
-                        <p class="font-semibold text-sm">Sentuh Digital Signage</p>
+                        <p class="font-semibold text-sm">Fortu Digital Signage</p>
                         <p class="text-xs text-gray-500">Lorem ipsum dolor sit amet consectetur.</p>
                     </div>
                 </div>
@@ -246,7 +246,7 @@
                     <div class="p-4">
                         <img src="https://placehold.co/100x40/E5E7EB/6B7280?text=Logo+Klien" alt="Logo Klien"
                             class="h-8 mb-2">
-                        <p class="font-semibold text-sm">Sentuh Smart Board</p>
+                        <p class="font-semibold text-sm">Fortu Smart Board</p>
                         <p class="text-xs text-gray-500">Lorem ipsum dolor sit amet consectetur.</p>
                     </div>
                 </div>
@@ -285,7 +285,7 @@
                     </button>
                 </div>
                 <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white text-lg font-semibold">
-                    SENTUH Presentation Board
+                    Fortu Presentation Board
                 </div>
             </div>
         </div>

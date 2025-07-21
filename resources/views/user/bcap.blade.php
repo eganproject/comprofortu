@@ -1,5 +1,5 @@
 @extends('layouts.user.main')
-@section('title', 'Become a Partner - Sentuh Digital Teknologi')
+@section('title', 'Become a Partner - Fortu Digital Teknologi')
 @section('content')
     <!-- Hero Image Section -->
     <section>

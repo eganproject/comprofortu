@@ -1,6 +1,6 @@
       @extends('layouts.user.main')
 
-      @section('title', 'About Us - Sentuh Digital Teknologi')
+      @section('title', 'About Us - Fortu Digital Teknologi')
       <!-- Hero Section -->
       @section('content')
           <section class="bg-purple-900 text-white">
@@ -25,10 +25,10 @@
           <section class="py-16 lg:py-24">
               <div class="container mx-auto px-4 max-w-4xl">
                   <div class="text-center md:text-left">
-                      <h2 class="text-3xl font-bold mb-6">Sentuh Digital Teknologi</h2>
+                      <h2 class="text-3xl font-bold mb-6">Fortu Digital Teknologi</h2>
                       <div class="space-y-4 text-gray-600 leading-relaxed">
                           <p>
-                              Sentuh berdiri di tahun 2017, bergerak dalam bidang teknologi layar informasi dan komunikasi,
+                              Fortu berdiri di tahun 2017, bergerak dalam bidang teknologi layar informasi dan komunikasi,
                               hadir sebagai prinsipal produk teknologi Indonesia yang telah terdaftar sebagai merek dalam
                               negeri untuk mendukung program industri teknologi Indonesia mencapai solusi global.
                           </p>
@@ -40,7 +40,7 @@
                           </p>
                           <p>
                               Dengan semangat pengembangan kami berupaya menciptakan produk yang sesuai dengan kebutuhan
-                              pasar Indonesia. Kami yakin Sentuh dapat menjadi produk kebanggaan dalam negeri.
+                              pasar Indonesia. Kami yakin Fortu dapat menjadi produk kebanggaan dalam negeri.
                           </p>
                       </div>
                   </div>

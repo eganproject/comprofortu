@@ -1,5 +1,5 @@
 @extends('layouts.user.main')
-@section('title', 'Product - Sentuh Digital Teknologi')
+@section('title', 'Product - Fortu Digital Teknologi')
 @section('content')
     <!-- Hero Section - Digital Signage -->
     <section class="hero-gradient py-16 lg:py-20">
@@ -119,7 +119,7 @@
                     </div>
                     <div class="md:w-1/2">
                         <h3 class="text-xl font-bold mb-2 text-gray-900">Media Advertising & Information Center</h3>
-                        <p class="text-gray-700 leading-relaxed">Sentuh Digital Signage dapat memberikan pengalaman visual
+                        <p class="text-gray-700 leading-relaxed">Fortu Digital Signage dapat memberikan pengalaman visual
                             yang kaya dengan menampilkan beragam konten, seperti gambar, video, grafis, animasi, suara, baik
                             yang bersifat interaktif maupun non-interaktif.</p>
                     </div>
@@ -132,10 +132,10 @@
                     </div>
                     <div class="md:w-1/2">
                         <h3 class="text-xl font-bold mb-2 text-gray-900">Centralized Content, Schedule & System updates</h3>
-                        <p class="text-gray-700 leading-relaxed">Sentuh Digital Signage dapat dikelola secara tersentral.
+                        <p class="text-gray-700 leading-relaxed">Fortu Digital Signage dapat dikelola secara tersentral.
                             Jadi pengguna dapat melakukan pembaruan konten, menghidupkan/mematikan alat, penjadwalan konten,
                             campaign area, menyetujui/menolak konten yang akan ditayangkan, serta monitoring banyaknya dan
-                            durasi konten yang ditayangkan hingga pembaruan sistem Sentuh Digital Signage, secara mudah dan
+                            durasi konten yang ditayangkan hingga pembaruan sistem Fortu Digital Signage, secara mudah dan
                             terpusat.</p>
                     </div>
                 </div>
@@ -147,7 +147,7 @@
                     </div>
                     <div class="md:w-1/2">
                         <h3 class="text-xl font-bold mb-2 text-gray-900">Realtime Active Website</h3>
-                        <p class="text-gray-700 leading-relaxed">Sentuh Digital Signage dapat menampilkan informasi atau
+                        <p class="text-gray-700 leading-relaxed">Fortu Digital Signage dapat menampilkan informasi atau
                             konten secara realtime, website berjalan secara aktif dan dapat dinavigasi dengan teknologi
                             touchscreen.</p>
                     </div>
@@ -163,7 +163,7 @@
                 class="max-w-5xl mx-auto bg-gray-800 text-white rounded-3xl p-8 flex flex-col md:flex-row justify-between items-center">
                 <div>
                     <h2 class="text-3xl font-bold">Spesifikasi</h2>
-                    <p class="text-gray-300 mt-1">Silahkan Download Brochure untuk mendapatkan spesifikasi produk Sentuh
+                    <p class="text-gray-300 mt-1">Silahkan Download Brochure untuk mendapatkan spesifikasi produk Fortu
                         Smart Teller Machine</p>
                 </div>
                 <div class="mt-6 md:mt-0">

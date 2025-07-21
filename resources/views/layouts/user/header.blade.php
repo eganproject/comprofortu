@@ -39,14 +39,14 @@
     </nav>
     <div id="mobile-menu" class="hidden md:hidden">
         {{-- Ukuran font mobile juga diubah menjadi text-xs --}}
-        <a href="/about" class="block py-2 px-4 text-xs text-gray-700 hover:bg-gray-200">About us</a>
-        <a href="/service" class="block py-2 px-4 text-xs text-gray-700 hover:bg-gray-200">Service</a>
-        <a href="/smartos" class="block py-2 px-4 text-xs text-gray-700 hover:bg-gray-200">Smart Office Solution</a>
-        <a href="/product" class="block py-2 px-4 text-xs text-gray-700 hover:bg-gray-200">Product</a>
-        <a href="/blog" class="block py-2 px-4 text-xs text-gray-700 hover:bg-gray-200">Blog</a>
-        <a href="/contact" class="block py-2 px-4 text-xs text-gray-700 hover:bg-gray-200">Contact</a>
-        <a href="/bcap" class="block py-2 px-4 text-xs text-gray-700 hover:bg-gray-200">Become a Partner</a>
-        <a href="/career" class="block py-2 px-4 text-xs text-gray-700 hover:bg-gray-200">Career</a>
+        <a href="/about" class="block py-2 px-4  {{ request()->is('about') ? 'text-sm text-purple-600' : 'text-xs text-gray-700' }} hover:bg-gray-200">About us</a>
+        <a href="/service" class="block py-2 px-4 {{ request()->is('service') ? 'text-sm text-purple-600' : 'text-xs text-gray-700' }} hover:bg-gray-200">Service</a>
+        <a href="/smartos" class="block py-2 px-4 {{ request()->is('smartos') ? 'text-sm text-purple-600' : 'text-xs text-gray-700' }} hover:bg-gray-200">Smart Office Solution</a>
+        <a href="/product" class="block py-2 px-4 {{ request()->is('product') ? 'text-sm text-purple-600' : 'text-xs text-gray-700' }} hover:bg-gray-200">Product</a>
+        <a href="/blog" class="block py-2 px-4 {{ request()->is('blog') ? 'text-sm text-purple-600' : 'text-xs text-gray-700' }} hover:bg-gray-200">Blog</a>
+        <a href="/contact" class="block py-2 px-4 {{ request()->is('contact') ? 'text-sm text-purple-600' : 'text-xs text-gray-700' }} hover:bg-gray-200">Contact</a>
+        <a href="/bcap" class="block py-2 px-4 {{ request()->is('bcap') ? 'text-sm text-purple-600' : 'text-xs text-gray-700' }} hover:bg-gray-200">Become a Partner</a>
+        <a href="/career" class="block py-2 px-4 {{ request()->is('career') ? 'text-sm text-purple-600' : 'text-xs text-gray-700' }} hover:bg-gray-200">Career</a>
     </div>
 </header>
 

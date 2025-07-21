@@ -1,6 +1,6 @@
         @extends('layouts.user.main')
 
-        @section('title', 'Service - Sentuh Digital Teknologi')
+        @section('title', 'Service - Fortu Digital Teknologi')
 
         @section('content')
             <!-- Hero Section -->
@@ -91,7 +91,7 @@
                                 <p class="text-purple-300 font-semibold mb-4">Pemenuhan Persyaratan Kualitas</p>
                                 <div class="space-y-3 text-sm text-purple-200 leading-relaxed">
                                     <p>
-                                        Sentuh berkomitmen untuk memastikan bahwa kualitas produk atau layanan yang
+                                        Fortu berkomitmen untuk memastikan bahwa kualitas produk atau layanan yang
                                         diberikan telah memenuhi persyaratan & standar yang ditetapkan dengan ketat.
                                     </p>
                                     <p>

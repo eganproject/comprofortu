@@ -1,5 +1,5 @@
 @extends('layouts.user.main')
-@section('title', 'Career - Sentuh Digital Teknologi')
+@section('title', 'Career - Fortu Digital Teknologi')
 @section('content')
     <!-- Hero Image Section -->
     <section>
@@ -14,7 +14,7 @@
         <div class="container mx-auto px-4">
             <div class="text-center text-white mb-12">
                 <h1 class="text-3xl font-bold">Our team is growing fast.</h1>
-                <p class="text-lg text-purple-200 mt-2">We'd love your help in making SENTUH truly special.</p>
+                <p class="text-lg text-purple-200 mt-2">We'd love your help in making Fortu truly special.</p>
             </div>
 
             <!-- Form Card -->
