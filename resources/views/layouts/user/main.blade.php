@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,35 +14,43 @@
         body {
             font-family: 'Inter', sans-serif;
         }
+
         .carousel-container {
             position: relative;
         }
+
         .carousel-slide {
             display: none;
         }
+
         .carousel-slide.active {
             display: block;
         }
     </style>
     @stack('cssOnPage')
 </head>
+
 <body class="bg-white text-gray-800">
 
     {{-- Memanggil Header --}}
-    @include('layouts.user.header')
+        @include('layouts.user.header')
 
-    <main>
+    <main class="">
         {{-- Area konten utama yang akan diisi oleh halaman lain --}}
         @yield('content')
     </main>
 
     {{-- Memanggil Footer --}}
-    @include('layouts.user.footer')
+    <section class="">
 
-    
+        @include('layouts.user.footer')
+    </section>
+
+
     {{-- JavaScript Global --}}
 
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
         // JavaScript untuk menu mobile
         document.addEventListener("DOMContentLoaded", () => {
@@ -60,4 +69,5 @@
 
     @stack('jsOnPage')
 </body>
+
 </html>
