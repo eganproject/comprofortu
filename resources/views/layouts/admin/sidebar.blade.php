@@ -12,7 +12,6 @@
             <h1 class="text-xl font-bold text-white">AdminPanel</h1>
         </div>
     </div>
-
     <div class="flex flex-col flex-1 overflow-y-auto">
         <nav class="px-4 py-6 space-y-2">
             <a href="#"
@@ -20,25 +19,59 @@
                 <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
                 <span class="font-medium">Dashboard</span>
             </a>
-            <a href="#"
-                class="flex items-center gap-3 px-4 py-2.5 text-gray-300 hover:bg-purple-500/20 hover:text-white rounded-lg transition-colors text-sm">
-                <i data-lucide="shopping-cart" class="w-5 h-5"></i>
-                <span>Pesanan</span>
-            </a>
-            <a href="#"
-                class="flex items-center gap-3 px-4 py-2.5 text-gray-300 hover:bg-purple-500/20 hover:text-white rounded-lg transition-colors text-sm">
-                <i data-lucide="package" class="w-5 h-5"></i>
-                <span>Produk</span>
-            </a>
+
+            <div x-data="{ isOpen: false }" class="space-y-2">
+                <button @click="isOpen = !isOpen" type="button"
+                    class="w-full flex items-center justify-between gap-3 px-4 py-2.5 text-gray-300 hover:bg-purple-500/20 hover:text-white rounded-lg transition-colors text-sm">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="chevrons-left-right-ellipsis" class="w-5 h-5"></i>
+                        <span>Web Preference</span>
+                    </div>
+                    <i data-lucide="chevron-down" class="w-4 h-4 transition-transform"
+                        :class="{ 'rotate-180': isOpen }"></i>
+                </button>
+                <div x-show="isOpen" x-transition class="pl-7 space-y-2">
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 text-gray-400 hover:text-white text-xs rounded-lg transition-colors">
+                        <i data-lucide="tv" class="w-5 h-5"></i>
+                        <span>Hero</span>
+                    </a>
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 text-gray-400 hover:text-white text-xs rounded-lg transition-colors">
+                        <i data-lucide="equal-approximately" class="w-5 h-5"></i>
+                        <span>About Us</span>
+                    </a>
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 text-gray-400 hover:text-white text-xs rounded-lg transition-colors">
+                        <i data-lucide="hand-platter" class="w-5 h-5"></i>
+                        <span>Service</span>
+                    </a>
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 text-gray-400 hover:text-white text-xs rounded-lg transition-colors">
+                        <i data-lucide="rss" class="w-5 h-5"></i>
+                        <span>Blog</span>
+                    </a>                                    
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 text-gray-400 hover:text-white text-xs rounded-lg transition-colors">
+                        <i data-lucide="tag" class="w-4 h-4"></i>
+                        <span>Kategori</span>
+                    </a>
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 text-gray-400 hover:text-white text-xs rounded-lg transition-colors">
+                        <i data-lucide="list" class="w-4 h-4"></i>
+                        <span>Daftar Produk</span>
+                    </a>                    
+                </div>
+            </div>
             <a href="#"
                 class="flex items-center gap-3 px-4 py-2.5 text-gray-300 hover:bg-purple-500/20 hover:text-white rounded-lg transition-colors text-sm">
                 <i data-lucide="users" class="w-5 h-5"></i>
-                <span>Pelanggan</span>
+                <span>User Management</span>
             </a>
             <a href="#"
                 class="flex items-center gap-3 px-4 py-2.5 text-gray-300 hover:bg-purple-500/20 hover:text-white rounded-lg transition-colors text-sm">
                 <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
-                <span>Analitik</span>
+                <span>Analytic</span>
             </a>
         </nav>
 
@@ -49,8 +82,7 @@
                 <span>Pengaturan</span>
             </a>
             <a href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                 class="flex items-center gap-3 px-4 py-2.5 text-gray-300 hover:bg-purple-500/20 hover:text-white rounded-lg transition-colors text-sm">
                 <i data-lucide="log-out" class="w-5 h-5"></i>
                 <span>Keluar</span>
@@ -58,3 +90,7 @@
         </div>
     </div>
 </aside>
+
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>

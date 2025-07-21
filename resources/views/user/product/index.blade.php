@@ -1,5 +1,56 @@
         @extends('layouts.user.main')
         @section('title', 'Product - Sentuh Digital Teknologi')
+        
+        @push('cssOnPage')
+            <style>
+            .card-glow {
+            position: relative;
+            overflow: hidden;
+        }
+        .card-glow::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(15deg);
+            transition: transform 0.5s;
+        }
+        .card-glow:hover::before {
+            transform: rotate(30deg) scale(1.1);
+        }
+
+        /* CSS untuk Animasi Scroll pada Ikon */
+        .scroll-animate-icon .icon-circle {
+            opacity: 0;
+            /* Atur transisi untuk semua properti transform dan opacity */
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease-out;
+        }
+
+        /* Posisi Awal Lingkaran (sebelum terlihat) */
+        .scroll-animate-icon .icon-circle-1 {
+            transform: translateX(-25px) scale(0.5);
+            transition-delay: 0s;
+        }
+        .scroll-animate-icon .icon-circle-2 {
+            transform: translateX(-25px) scale(0.5);
+            transition-delay: 0.1s;
+        }
+        .scroll-animate-icon .icon-circle-3 {
+            transform: translateX(-25px) scale(0.5);
+            transition-delay: 0.2s;
+        }
+
+        /* Posisi Akhir Lingkaran (setelah terlihat) */
+        .scroll-animate-icon.is-visible .icon-circle {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+            </style>
+        @endpush
+        
         @section('content')
             <!-- Hero Section -->
             <section class="w-full py-8">
@@ -208,6 +259,7 @@
 
         @push('jsOnPage')
             <script>
+   
                 const animatedElements = document.querySelectorAll('.scroll-animate-icon');
 
                 if (animatedElements.length > 0) {

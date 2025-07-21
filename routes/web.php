@@ -2,48 +2,27 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('/user/index');
+Route::view('/', 'user.index')->name('home');
+Route::view('/about', 'user.about')->name('about');
+Route::view('/service', 'user.service')->name('service');
+Route::view('/smartos', 'user.smartos')->name('smartos');
+Route::view('/contact', 'user.contact')->name('contact');
+Route::view('/bcap', 'user.bcap')->name('bcap');
+Route::view('/career', 'user.career')->name('career');
+
+Route::prefix('product')->name('product.')->group(function () {
+    Route::view('/', 'user.product.index')->name('index'); 
+    Route::view('/show', 'user.product.show')->name('show'); 
 });
-Route::get('/about', function () {
-    return view('/user/about');
-})->name('about');
-Route::get('/service', function () {
-    return view('/user/service');
-})->name('service');
-Route::get('/smartos', function () {
-    return view('/user/smartos');
-})->name('smartos');
-Route::get('/product', function () {
-    return view('/user/product/index');
-})->name('product');
-Route::get('/product/show', function () {
-    return view('/user/product/show');
-})->name('product');
-Route::get('/blog', function () {
-    return view('/user/blog/index');
-})->name('blog');
-Route::get('/blog/show', function () {
-    return view('/user/blog/show');
-})->name('blog');
-Route::get('/contact', function () {
-    return view('/user/contact');
-})->name('contact');
-Route::get('/bcap', function () {
-    return view('/user/bcap');
-})->name('bcap');
-Route::get('/career', function () {
-    return view('/user/career');
-})->name('career');
+
+Route::prefix('blog')->name('blog.')->group(function () {
+    Route::view('/', 'user.blog.index')->name('index'); 
+    Route::view('/show', 'user.blog.show')->name('show'); 
+});
 
 Route::get('/admin', function () {
     return view('/admin/dashboard/index');
-})->name('dashboard');
+})->name('dashboard')->middleware('auth');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

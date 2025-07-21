@@ -4,6 +4,21 @@
 {{-- Mengatur judul spesifik untuk halaman ini --}}
 @section('title', 'Beranda - Sentuh Digital')
 
+@push('cssOnPage')
+    <style>
+        .carousel-container {
+            position: relative;
+        }
+
+        .carousel-slide {
+            display: none;
+        }
+
+        .carousel-slide.active {
+            display: block;
+        }
+    </style>
+@endpush
 {{-- Mendefinisikan konten untuk bagian 'content' di layout utama --}}
 @section('content')
 
