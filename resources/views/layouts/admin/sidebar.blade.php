@@ -14,14 +14,14 @@
     </div>
     <div class="flex flex-col flex-1 overflow-y-auto">
         <nav class="px-4 py-6 space-y-2">
-            <a href="#"
-                class="flex items-center gap-3 px-4 py-2.5 bg-purple-600/30 text-white rounded-lg shadow-lg text-sm">
+            <a href="/admin"
+                class="flex items-center gap-3 px-4 py-2.5 {{ Route::is('admin.dashboard') ? 'bg-purple-600/30 text-white rounded-lg shadow-lg text-sm' : 'text-gray-300 hover:bg-purple-500/20 hover:text-white rounded-lg transition-colors text-sm' }}">
                 <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
                 <span class="font-medium">Dashboard</span>
             </a>
 
             <div x-data="{ isOpen: false }" class="space-y-2">
-                <button @click="isOpen = !isOpen" type="button"
+                <button @click="isOpen = !isOpen" type="button"  x-init="isOpen = {{ Route::is('admin.web_preferences.hero') ? 'true' : 'false' }}"
                     class="w-full flex items-center justify-between gap-3 px-4 py-2.5 text-gray-300 hover:bg-purple-500/20 hover:text-white rounded-lg transition-colors text-sm">
                     <div class="flex items-center gap-3">
                         <i data-lucide="chevrons-left-right-ellipsis" class="w-5 h-5"></i>
@@ -31,8 +31,8 @@
                         :class="{ 'rotate-180': isOpen }"></i>
                 </button>
                 <div x-show="isOpen" x-transition class="pl-7 space-y-2">
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-2.5 text-gray-400 hover:text-white text-xs rounded-lg transition-colors">
+                    <a href="/admin/web-preferences/hero"
+                        class="flex items-center gap-3 px-4 py-2.5 {{ Route::is('admin.web_preferences.hero') ? 'bg-purple-600/30 text-white rounded-lg shadow-lg text-sm' : '  text-gray-400 hover:text-white text-xs rounded-lg transition-colors' }}">
                         <i data-lucide="tv" class="w-5 h-5"></i>
                         <span>Hero</span>
                     </a>
@@ -50,7 +50,7 @@
                         class="flex items-center gap-3 px-4 py-2.5 text-gray-400 hover:text-white text-xs rounded-lg transition-colors">
                         <i data-lucide="rss" class="w-5 h-5"></i>
                         <span>Blog</span>
-                    </a>                                    
+                    </a>
                     <a href="#"
                         class="flex items-center gap-3 px-4 py-2.5 text-gray-400 hover:text-white text-xs rounded-lg transition-colors">
                         <i data-lucide="tag" class="w-4 h-4"></i>
@@ -60,7 +60,7 @@
                         class="flex items-center gap-3 px-4 py-2.5 text-gray-400 hover:text-white text-xs rounded-lg transition-colors">
                         <i data-lucide="list" class="w-4 h-4"></i>
                         <span>Daftar Produk</span>
-                    </a>                    
+                    </a>
                 </div>
             </div>
             <a href="#"
