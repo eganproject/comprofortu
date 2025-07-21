@@ -2,90 +2,96 @@
 
 @section('title', 'Edit Hero Image - AdminPanel')
 
-@section('content')
-    <h2 class="text-2xl font-bold text-white mb-6">Edit Hero Image: {{ $heroImage->modul }}</h2>
+@push('cssOnPage')
+    {{-- CSS untuk Quill Editor --}}
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+    <style>
+        /* Menyesuaikan Quill Editor dengan tema terang */
+        .ql-toolbar {
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+            border-color: #cbd5e1 !important; /* slate-300 */
+        }
+        .ql-container {
+            border-bottom-left-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+            border-color: #cbd5e1 !important; /* slate-300 */
+            background-color: #ffffff;
+            color: #1e293b; /* slate-800 */
+            min-height: 250px;
+        }
+        .ql-editor {
+            font-family: 'Inter', sans-serif;
+        }
+        .ql-editor.ql-blank::before{
+            color: #94a3b8; /* slate-400 */
+            font-style: normal;
+        }
+    </style>
+@endpush
 
-    {{-- 
-    Inisialisasi x-data. 
-    - image1Preview dimulai dengan path gambar yang sudah ada.
-    - image2Preview juga dimulai dengan path yang ada, atau null jika tidak ada.
---}}
+@section('content')
+    <h2 class="text-2xl font-bold text-slate-800 mb-6">Edit Hero Image: {{ $heroImage->modul }}</h2>
+
     <div x-data="{
         image1Preview: '{{ asset('storage/' . $heroImage->image_1) }}',
         image2Preview: '{{ $heroImage->image_2 ? asset('storage/' . $heroImage->image_2) : null }}'
-    }" class="bg-white/10 backdrop-blur-md p-6 md:p-8 rounded-xl border border-white/10 shadow-lg">
-        <form action="/admin/web-preferences/hero/update" method="POST" enctype="multipart/form-data"
-            class="space-y-6">
+    }" class="bg-white/70 backdrop-blur-lg p-6 md:p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.1)]">
+        
+        <form action="/admin/web-preferences/hero/update" method="POST" enctype="multipart/form-data" class="space-y-6" id="article-form">
             @csrf
             @method('POST')
-            <input type="hidden" name="id" value="{{$heroImage->id}}" /> 
-            <!-- Modul Dropdown -->
+
             <div>
-                <label for="modul" class="block mb-2 text-sm font-medium text-gray-300">Pilih Modul</label>
+                <label for="modul" class="block mb-2 text-sm font-medium text-slate-700">Pilih Modul</label>
                 <select id="modul" name="modul"
-                    class="bg-white/5 border border-white/20 text-white text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5"
+                    class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     required>
-                    <option value="index" {{ old('modul', $heroImage->modul) == 'index' ? 'selected' : '' }}
-                        class="bg-gray-800 text-white">Index / Beranda</option>
-                    <option value="about" {{ old('modul', $heroImage->modul) == 'about' ? 'selected' : '' }}
-                        class="bg-gray-800 text-white">About Us</option>
-                    <option value="service" {{ old('modul', $heroImage->modul) == 'service' ? 'selected' : '' }}
-                        class="bg-gray-800 text-white">Service</option>
-                    <option value="blog" {{ old('modul', $heroImage->modul) == 'blog' ? 'selected' : '' }}
-                        class="bg-gray-800 text-white">Blog</option>
+                    <option value="index" {{ old('modul', $heroImage->modul) == 'index' ? 'selected' : '' }}>Index / Beranda</option>
+                    <option value="about" {{ old('modul', $heroImage->modul) == 'about' ? 'selected' : '' }}>About Us</option>
+                    <option value="service" {{ old('modul', $heroImage->modul) == 'service' ? 'selected' : '' }}>Service</option>
+                    <option value="blog" {{ old('modul', $heroImage->modul) == 'blog' ? 'selected' : '' }}>Blog</option>
                 </select>
                 @error('modul')
-                    <p class="mt-2 text-sm text-red-400">{{ $message }}</p>
+                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>
 
-            <!-- Text Input -->
             <div>
-                <label for="text" class="block mb-2 text-sm font-medium text-gray-300">Teks Deskripsi</label>
-                <textarea id="text" name="text" rows="4"
-                    class="bg-white/5 border border-white/20 text-white text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5"
-                    placeholder="Tulis deskripsi singkat di sini...">{{ old('text', $heroImage->text) }}</textarea>
+                <label for="text-input" class="block mb-2 text-sm font-medium text-slate-700">Teks Deskripsi</label>
+                <input type="hidden" name="text" id="text-input">
+                <div id="editor-container">
+                    {{-- Mengisi editor dengan data lama, gunakan {!! !!} untuk render HTML --}}
+                    {!! old('text', $heroImage->text) !!} 
+                </div>
                 @error('text')
-                    <p class="mt-2 text-sm text-red-400">{{ $message }}</p>
+                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>
 
-            <!-- Image 1 Input with Preview -->
             <div>
-                <label for="image_1_edit" class="block mb-2 text-sm font-medium text-gray-300">Ganti Gambar Latar</label>
-                <!-- Preview Container -->
-                <div
-                    class="mt-2 w-full max-w-sm h-40 rounded-lg border-2 border-dashed border-white/20 flex items-center justify-center bg-white/5 overflow-hidden">
-                    <template x-if="!image1Preview">
-                        <div class="text-center text-gray-400">
-                            <i data-lucide="image" class="w-10 h-10 mx-auto mb-2 opacity-50"></i>
-                            <p>Pratinjau Gambar Latar</p>
-                        </div>
-                    </template>
+                <label for="image_1_edit" class="block mb-2 text-sm font-medium text-slate-700">Ganti Gambar Latar</label>
+                <div class="mt-2 w-full max-w-sm h-40 rounded-lg border-2 border-dashed border-slate-300 flex items-center justify-center bg-slate-50 overflow-hidden">
                     <template x-if="image1Preview">
                         <img :src="image1Preview" alt="Pratinjau Gambar Latar" class="w-full h-full object-cover">
                     </template>
                 </div>
                 <input type="file" id="image_1_edit" name="image_1"
-                    class="mt-4 block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-600/50 file:text-purple-200 hover:file:bg-purple-600/70"
+                    class="mt-4 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200"
                     @change="image1Preview = URL.createObjectURL($event.target.files[0])">
-                <p class="mt-1 text-xs text-gray-400">Kosongkan jika tidak ingin mengubah gambar.</p>
+                <p class="mt-1 text-xs text-slate-500">Kosongkan jika tidak ingin mengubah gambar.</p>
                 @error('image_1')
-                    <p class="mt-2 text-sm text-red-400">{{ $message }}</p>
+                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>
 
-            <!-- Image 2 Input with Preview -->
             <div>
-                <label for="image_2_edit" class="block mb-2 text-sm font-medium text-gray-300">Ganti Gambar
-                    Isometrik</label>
-                <!-- Preview Container -->
-                <div
-                    class="mt-2 w-full max-w-sm h-40 rounded-lg border-2 border-dashed border-white/20 flex items-center justify-center bg-white/5 overflow-hidden">
-                    <template x-if="!image2Preview">
-                        <div class="text-center text-gray-400">
+                <label for="image_2_edit" class="block mb-2 text-sm font-medium text-slate-700">Ganti Gambar Isometrik</label>
+                <div class="mt-2 w-full max-w-sm h-40 rounded-lg border-2 border-dashed border-slate-300 flex items-center justify-center bg-slate-50 overflow-hidden">
+                     <template x-if="!image2Preview">
+                        <div class="text-center text-slate-500">
                             <i data-lucide="image" class="w-10 h-10 mx-auto mb-2 opacity-50"></i>
-                            <p>Pratinjau Gambar Isometrik</p>
+                            <p>Tidak ada gambar isometrik.</p>
                         </div>
                     </template>
                     <template x-if="image2Preview">
@@ -93,37 +99,62 @@
                     </template>
                 </div>
                 <input type="file" id="image_2_edit" name="image_2"
-                    class="mt-4 block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-600/50 file:text-purple-200 hover:file:bg-purple-600/70"
+                    class="mt-4 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200"
                     @change="image2Preview = URL.createObjectURL($event.target.files[0])">
-                <p class="mt-1 text-xs text-gray-400">Kosongkan jika tidak ingin mengubah gambar.</p>
+                <p class="mt-1 text-xs text-slate-500">Kosongkan jika tidak ingin mengubah gambar.</p>
                 @error('image_2')
-                    <p class="mt-2 text-sm text-red-400">{{ $message }}</p>
+                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>
 
-            <!-- Action Buttons -->
             <div class="flex items-center gap-4 pt-4">
                 <button type="submit"
-                    class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-5 rounded-lg transition-all duration-300">
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-lg transition-all duration-300">
                     Update
                 </button>
                 <a href="/admin/web-preferences/hero"
-                    class="bg-gray-600/50 hover:bg-gray-600/80 text-gray-200 font-medium py-2 px-5 rounded-lg transition-all duration-300">
+                    class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium py-2 px-5 rounded-lg transition-all duration-300">
                     Batal
                 </a>
             </div>
-
         </form>
     </div>
 @endsection
 
-@push('scripts')
-    {{-- Pastikan Alpine.js dan Lucide Icons sudah di-load di layout utama Anda --}}
+@push('jsOnPage')
+    {{-- JS untuk Quill --}}
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
+            // Inisialisasi Quill Editor
+            const quill = new Quill('#editor-container', {
+                theme: 'snow',
+                placeholder: 'Tulis deskripsi atau konten di sini...',
+                modules: {
+                    toolbar: [
+                        [{ 'header': [1, 2, 3, false] }],
+                        [{ 'font': [] }],
+                        ['bold', 'italic', 'underline'],
+                        [{'list': 'ordered'}, {'list': 'bullet'}],
+                        [{ 'align': [] }],
+                        ['link', 'image', 'video'],
+                        ['clean']
+                    ]
+                }
+            });
+
+            // Menghubungkan Quill dengan Form
+            const form = document.querySelector('#article-form');
+            const textInput = document.querySelector('#text-input');
+
+            form.addEventListener('submit', function(e) {
+                const htmlContent = quill.root.innerHTML;
+                if (htmlContent === '<p><br></p>') {
+                    textInput.value = '';
+                } else {
+                    textInput.value = htmlContent;
+                }
+            });
         });
     </script>
 @endpush

@@ -1,4 +1,4 @@
-@extends('layouts.admin.main')
+@extends('layouts.admin.main') {{-- Pastikan ini menunjuk ke layout utama yang benar --}}
 
 @section('title', 'Manajemen Hero Image - AdminPanel')
 
@@ -11,69 +11,69 @@
     }" x-init="setTimeout(() => showSuccessModal = false, 5000)">
 
         <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold text-white">Manajemen Hero Image</h2>
+            <h2 class="text-2xl font-bold text-slate-800">Manajemen Hero Image</h2>
             <a href="/admin/web-preferences/hero/create"
-                class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 flex items-center gap-2 shadow-lg shadow-purple-500/20">
+                class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 flex items-center gap-2 shadow-md">
                 <i data-lucide="plus" class="w-5 h-5"></i>
                 <span>Tambah Baru</span>
             </a>
         </div>
 
         {{-- Main Content Table --}}
-        <div class="bg-white/10 backdrop-blur-md p-6 rounded-xl border border-white/10 shadow-lg">
-            <div class="overflow-x-auto">
+        <div class="bg-white/70 backdrop-blur-lg rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.1)] overflow-hidden">
+             <div class="overflow-x-auto">
                 <table class="w-full text-sm text-left">
-                    <thead class="border-b border-purple-800/50">
+                    <thead class="text-xs text-slate-700 uppercase bg-slate-50/50">
                         <tr>
-                            <th class="p-3 font-semibold text-gray-300">Modul</th>
-                            <th class="p-3 font-semibold text-gray-300">Teks</th>
-                            <th class="p-3 font-semibold text-gray-300">Gambar Latar</th>
-                            <th class="p-3 font-semibold text-gray-300">Gambar Isometrik</th>
-                            <th class="p-3 font-semibold text-gray-300 text-center">Aksi</th>
+                            <th scope="col" class="px-6 py-3">Modul</th>
+                            <th scope="col" class="px-6 py-3">Teks</th>
+                            <th scope="col" class="px-6 py-3">Gambar Latar</th>
+                            <th scope="col" class="px-6 py-3">Gambar Isometrik</th>
+                            <th scope="col" class="px-6 py-3 text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($heroImages as $image)
-                            <tr class="border-b border-purple-900/30 hover:bg-purple-500/10 transition-colors duration-300">
-                                <td class="p-3 font-medium text-white">{{ $image->modul }}</td>
-                                <td class="p-3 text-gray-300">{{ Str::limit($image->text, 50) }}</td>
-                                <td class="p-3">
+                            <tr class="bg-transparent border-b border-slate-200/80 hover:bg-slate-50/50 transition-colors">
+                                <td class="px-6 py-4 font-medium text-slate-900">{{ $image->modul }}</td>
+                                <td class="px-6 py-4 text-slate-600">{{ Str::limit($image->text, 50) }}</td>
+                                <td class="px-6 py-4">
                                     <img src="{{ asset('storage/' . $image->image_1) }}"
                                         alt="Image 1 for {{ $image->modul }}"
-                                        class="w-24 h-12 object-cover rounded-md border border-white/10">
+                                        class="w-24 h-12 object-cover rounded-md border border-slate-200">
                                 </td>
-                                <td class="p-3">
+                                <td class="px-6 py-4">
                                     @if ($image->image_2)
                                         <img src="{{ asset('storage/' . $image->image_2) }}"
                                             alt="Image 2 for {{ $image->modul }}"
-                                            class="w-24 h-12 object-cover rounded-md border border-white/10">
+                                            class="w-24 h-12 object-cover rounded-md border border-slate-200">
                                     @else
-                                        <span class="text-gray-500">-</span>
+                                        <span class="text-slate-400">-</span>
                                     @endif
                                 </td>
-                                <td class="p-3 text-center">
-                                    <div class="flex justify-center items-center gap-2">
+                                <td class="px-6 py-4 text-center">
+                                    <div class="flex justify-center items-center gap-4">
                                         <a href="/admin/web-preferences/hero/{{ $image->id }}"
-                                            class="text-blue-400 hover:text-blue-300 transition-colors" title="Edit">
+                                            class="font-medium text-blue-600 hover:text-blue-800 transition-colors" title="Edit">
                                             <i data-lucide="edit" class="w-5 h-5"></i>
                                         </a>
+                                        <button type="button"
+                                            @click.prevent="deleteFormAction = '/admin/web-preferences/hero/{{ $image->id }}'; showDeleteModal = true"
+                                            class="font-medium text-red-500 hover:text-red-700 transition-colors" title="Hapus">
+                                            <i data-lucide="trash-2" class="w-5 h-5"></i>
+                                        </button>
+                                        {{-- Form dihapus dari sini untuk UI yang lebih bersih, logikanya ditangani oleh AlpineJS --}}
                                         <form id="delete-form-{{ $image->id }}"
-                                            action="/admin/web-preferences/hero/{{ $image->id }}" method="POST"
-                                            class="inline">
+                                            action="/admin/web-preferences/hero/{{ $image->id }}" method="POST" class="hidden">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button"
-                                                @click.prevent="deleteFormAction = '/admin/web-preferences/hero/{{ $image->id }}'; showDeleteModal = true"
-                                                class="text-red-500 hover:text-red-400 transition-colors" title="Hapus">
-                                                <i data-lucide="trash-2" class="w-5 h-5"></i>
-                                            </button>
                                         </form>
                                     </div>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="text-center p-6 text-gray-400">
+                                <td colspan="5" class="text-center p-6 text-slate-500">
                                     Belum ada data hero image.
                                 </td>
                             </tr>
@@ -83,21 +83,19 @@
             </div>
         </div>
 
-        <!-- Success Modal -->
-        <div x-show="showSuccessModal" x-transition:enter="transition ease-in-out duration-300"
+        <div x-show="showSuccessModal" x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100"
-            x-transition:leave="transition ease-in-out duration-200"
+            x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-95"
-            class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50"
+            class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
             style="display: none;">
             <div @click.away="showSuccessModal = false"
-                class="bg-gradient-to-br from-gray-800 to-gray-900 border border-green-500/50 rounded-xl shadow-2xl shadow-green-500/20 w-full max-w-md mx-4 p-6 text-center">
-                <div
-                    class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-500/20 border-2 border-green-500/50 mb-4">
-                    <i data-lucide="check" class="w-8 h-8 text-green-400"></i>
+                class="bg-white rounded-xl shadow-xl w-full max-w-md mx-4 p-6 text-center">
+                <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
+                    <i data-lucide="check" class="w-8 h-8 text-green-600"></i>
                 </div>
-                <h3 class="text-2xl font-bold text-white mb-2">Berhasil!</h3>
-                <p class="text-gray-300">{{ session('success') }}</p>
+                <h3 class="text-2xl font-bold text-slate-800 mb-2">Berhasil!</h3>
+                <p class="text-slate-600">{{ session('success') }}</p>
                 <button @click="showSuccessModal = false"
                     class="mt-6 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 w-full">
                     Tutup
@@ -105,39 +103,31 @@
             </div>
         </div>
 
-        <!-- Delete Confirmation Modal -->
-        <div x-show="showDeleteModal" x-transition:enter="transition ease-in-out duration-200"
+        <div x-show="showDeleteModal" x-transition:enter="transition ease-out duration-200"
             x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100"
-            x-transition:leave="transition ease-in-out duration-200"
+            x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-95"
-            class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50"
+            class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
             style="display: none;">
             <div @click.away="showDeleteModal = false"
-                class="bg-gradient-to-br from-gray-800 to-gray-900 border border-red-500/50 rounded-xl shadow-2xl shadow-red-500/20 w-full max-w-md mx-4 p-6 text-center">
-                <div
-                    class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-500/20 border-2 border-red-500/50 mb-4">
-                    <i data-lucide="alert-triangle" class="w-8 h-8 text-red-400"></i>
+                class="bg-white rounded-xl shadow-xl w-full max-w-md mx-4 p-6 text-center">
+                <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-4">
+                    <i data-lucide="alert-triangle" class="w-8 h-8 text-red-600"></i>
                 </div>
-                <h3 class="text-2xl font-bold text-white mb-2">Anda Yakin?</h3>
-                <p class="text-gray-300">Data yang telah dihapus tidak dapat dikembalikan lagi. Lanjutkan untuk menghapus
-                    data ini secara permanen.</p>
+                <h3 class="text-2xl font-bold text-slate-800 mb-2">Anda Yakin?</h3>
+                <p class="text-slate-600">Data yang telah dihapus tidak dapat dikembalikan lagi. Lanjutkan untuk menghapus data ini secara permanen.</p>
                 <div class="mt-6 flex justify-center gap-4">
-                    <button @click="document.querySelector(`form[action='${deleteFormAction}']`).submit()"
+                     <button @click="document.querySelector(`form[action='${deleteFormAction}']`).submit()"
                         class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 w-1/2">
                         Ya, Hapus
                     </button>
                     <button @click="showDeleteModal = false"
-                        class="bg-gray-600/50 hover:bg-gray-600/80 text-gray-200 font-medium py-2 px-6 rounded-lg transition-all duration-300 w-1/2">
+                        class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium py-2 px-6 rounded-lg transition-all duration-300 w-1/2">
                         Batal
                     </button>
-
                 </div>
             </div>
         </div>
 
     </div>
 @endsection
-
-@push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-@endpush

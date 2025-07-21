@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'AdminPanel')</title>
+    <title>Admin Panel Elegan</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -11,98 +12,89 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <script src="https://unpkg.com/lucide@latest"></script>
-
     <style>
-        /* Menggunakan font Inter sebagai default */
         body {
             font-family: 'Inter', sans-serif;
+            font-size: 14px;
         }
-        /* Style untuk scrollbar agar lebih estetik */
+
+        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
+            height: 8px;
         }
+
         ::-webkit-scrollbar-track {
-            background: #1e1b4b; /* a dark indigo */
+            background: #f1f5f9;
         }
+
         ::-webkit-scrollbar-thumb {
-            background: #4c1d95; /* a deep violet */
+            background: #cbd5e1;
             border-radius: 10px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
-            background: #5b21b6; /* a brighter violet */
+            background: #94a3b8;
+        }
+
+        .dropdown-menu {
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+        }
+
+        [x-cloak] {
+            display: none !important;
         }
     </style>
     @stack('cssOnPage')
 </head>
-<body class="bg-gradient-to-br from-gray-900 via-purple-950 to-indigo-900 text-gray-200">
 
-    <div class="flex min-h-screen">
+<body x-data="{ desktopSidebarOpen: true }" class="bg-gradient-to-br from-slate-100 to-slate-300">
+
+    <button @click="desktopSidebarOpen = true" x-show="!desktopSidebarOpen"
+        x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150"
+        x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+        class="hidden md:block fixed top-5 left-4 z-40 p-2 bg-white/80 backdrop-blur-lg rounded-full shadow-lg text-slate-600 hover:text-slate-900"
+        x-cloak>
+        <i data-lucide="panel-right-open"></i>
+    </button>
+
+    <div class="flex h-screen bg-white md:bg-transparent">
+
         @include('layouts.admin.sidebar')
-        <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-40 hidden lg:hidden"></div>
 
-        <div class="flex-1 flex flex-col">
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black opacity-50 hidden z-20" onclick="toggleSidebar()"></div>
+
+        <div class="flex-1 flex flex-col overflow-hidden">
 
             @include('layouts.admin.navbar')
 
-            <main class="flex-1 p-6 lg:p-8">
+            <main class="flex-1 overflow-x-hidden overflow-y-auto p-4 md:p-6 lg:p-8">
                 @yield('content')
+                @include('layouts.admin.footer')
             </main>
 
-            @include('layouts.admin.footer')
-
         </div>
-        </div>
+    </div>
 
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script>
-        // Inisialisasi Lucide Icons
+        // Render Lucide Icons
         lucide.createIcons();
 
-        // Logika untuk Sidebar Mobile
-        const menuButton = document.getElementById('menu-button');
-        const sidebar = document.getElementById('sidebar');
-        const sidebarOverlay = document.getElementById('sidebar-overlay');
-
+        // JavaScript untuk toggle sidebar di tampilan mobile
         function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
             sidebar.classList.toggle('-translate-x-full');
-            sidebarOverlay.classList.toggle('hidden');
+            overlay.classList.toggle('hidden');
         }
-
-        if (menuButton) menuButton.addEventListener('click', toggleSidebar);
-        if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebar);
-
-        // Logika untuk Dropdown
-        const userMenuButton = document.getElementById('user-menu-button');
-        const userMenuDropdown = document.getElementById('user-menu-dropdown');
-        const notificationButton = document.getElementById('notification-button');
-        const notificationDropdown = document.getElementById('notification-dropdown');
-
-        if (userMenuButton) {
-            userMenuButton.addEventListener('click', () => {
-                userMenuDropdown.classList.toggle('hidden');
-                notificationDropdown.classList.add('hidden'); // Tutup notifikasi saat buka menu user
-            });
-        }
-        
-        if (notificationButton) {
-            notificationButton.addEventListener('click', () => {
-                notificationDropdown.classList.toggle('hidden');
-                userMenuDropdown.classList.add('hidden'); // Tutup menu user saat buka notifikasi
-            });
-        }
-
-        window.addEventListener('click', function(e) {
-            // Tutup dropdown user jika klik di luar
-            if (userMenuButton && userMenuDropdown && !userMenuButton.contains(e.target) && !userMenuDropdown.contains(e.target)) {
-                userMenuDropdown.classList.add('hidden');
-            }
-            // Tutup dropdown notifikasi jika klik di luar
-            if (notificationButton && notificationDropdown && !notificationButton.contains(e.target) && !notificationDropdown.contains(e.target)) {
-                notificationDropdown.classList.add('hidden');
-            }
-        });
     </script>
 
     @stack('jsOnPage')
 </body>
+
 </html>

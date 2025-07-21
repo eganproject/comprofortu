@@ -35,7 +35,6 @@ class HeroImagesController extends Controller
     public function store(Request $request)
     {
 
-        dd($request);
         $request->validate([
             'modul' => 'required|string|max:255|unique:hero_images,modul',
             'text' => 'nullable|string',
