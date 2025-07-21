@@ -3,7 +3,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
             <div class="lg:col-span-1">
                 {{-- Ganti dengan path logo yang benar via asset() helper --}}
-                <img src="/image/sentuh.png" alt="Sentuh Logo" class="h-8 w-auto mb-4">
+                <img src="/image/fortu.png" alt="Fortu Logo" class="h-8 w-auto mb-4">
                 <ul class="space-y-2">
                     <li><a href="#" class="hover:text-purple-600 font-medium">Become a Partner</a></li>
                     <li><a href="#" class="hover:text-purple-600 font-medium">Career</a></li>
