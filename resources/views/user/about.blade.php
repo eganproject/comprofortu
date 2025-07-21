@@ -3,7 +3,14 @@
       @section('title', 'About Us - Fortu Digital Teknologi')
       <!-- Hero Section -->
       @section('content')
-          <section class="bg-purple-900 text-white">
+          <style>
+              .hero-bg {
+                  background-image: url('/image/fortu.png');
+                  background-size: cover;
+                  background-position: center;
+              }
+          </style>
+          <section class="bg-purple-900 hero-bg text-white">
               <div class="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center">
                   <!-- Text Content -->
                   <div class="md:w-1/2 mb-10 md:mb-0 text-center md:text-left">

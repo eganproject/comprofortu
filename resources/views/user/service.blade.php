@@ -4,6 +4,13 @@
 
         @section('content')
             <!-- Hero Section -->
+            <style>
+                .hero-bg {
+                    background-image: url('/image/fortu.png');
+                    background-size: cover;
+                    background-position: center;
+                }
+            </style>
             <section class="relative hero-bg text-white">
                 <div class="absolute inset-0 bg-purple-800 bg-opacity-80"></div>
                 <div class="relative container mx-auto px-4 py-24 lg:py-32 flex flex-col md:flex-row items-center">
@@ -227,4 +234,4 @@
                 </div>
             </section>
         @endsection
-            <!-- End of content section -->
+        <!-- End of content section -->
