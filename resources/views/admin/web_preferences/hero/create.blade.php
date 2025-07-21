@@ -1,12 +1,14 @@
 @extends('layouts.admin.main')
 
 @section('title', 'Tambah Hero Image - AdminPanel')
-
+@push('cssOnPage')
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+@endpush
 @section('content')
     <h2 class="text-2xl font-bold text-white mb-6">Tambah Hero Image Baru</h2>
 
-    <div class="bg-white/10 backdrop-blur-md p-6 md:p-8 rounded-xl border border-white/10 shadow-lg">
-        <form action="/admin/web-preferences/hero" method="POST" enctype="multipart/form-data" class="space-y-6">
+    <div x-data="{ image1Preview: null, image2Preview: null }" class="bg-white/10 backdrop-blur-md p-6 md:p-8 rounded-xl border border-white/10 shadow-lg">
+        <form action="/admin/web-preferences/hero" method="POST" enctype="multipart/form-data" class="space-y-6" id="article-form">
             @csrf
 
             <!-- Modul Input -->
@@ -31,11 +33,19 @@
                 @enderror
             </div>
             <!-- Text Input -->
+             <div class="form-group">
+                    <label for="content">Konten Artikel</label>
+                    {{-- Input tersembunyi ini akan diisi oleh Quill secara otomatis --}}
+                    <input type="hidden" name="content" id="content">
+                    {{-- Elemen div ini akan diubah menjadi Quill Editor --}}
+                    <div id="editor-container" style="height: 300px;"></div>
+                </div>
             <div>
                 <label for="text" class="block mb-2 text-sm font-medium text-gray-300">Teks Deskripsi</label>
-                <textarea id="text" name="text" rows="4"
+               
+                {{-- <textarea id="text" name="text" rows="4"
                     class="bg-white/5 border border-white/20 text-white text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5"
-                    placeholder="Tulis deskripsi singkat di sini...">{{ old('text') }}</textarea>
+                    placeholder="Tulis deskripsi singkat di sini...">{{ old('text') }}</textarea> --}}
                 @error('text')
                     <p class="mt-2 text-sm text-red-400">{{ $message }}</p>
                 @enderror
@@ -107,3 +117,53 @@
         </form>
     </div>
 @endsection
+
+@push('jsOnPage')
+    {{-- JS untuk Quill --}}
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+
+    <script>
+        // Inisialisasi Quill Editor
+        const quill = new Quill('#editor-container', {
+            theme: 'snow', // 'snow' adalah tema standar dengan toolbar
+            modules: {
+                toolbar: [
+                    [{
+                        'header': [1, 2, 3, false]
+                    }],
+                    [{
+                        'font': []
+                    }],
+                    [{
+                        'size': ['small', false, 'large', 'huge']
+                    }], // Dropdown ukuran font
+                    ['bold', 'italic', 'underline'],
+                    [{
+                        'list': 'ordered'
+                    }, {
+                        'list': 'bullet'
+                    }],
+                    [{
+                        'align': []
+                    }],
+                    ['link', 'image'],
+                    ['clean'] // Tombol untuk menghapus format
+                ]
+            }
+        });
+
+        // Menghubungkan Quill dengan Form
+        const form = document.querySelector('#article-form');
+        const contentInput = document.querySelector('#content');
+
+        form.addEventListener('submit', function(event) {
+            // Saat form disubmit, ambil konten HTML dari Quill...
+            const htmlContent = quill.root.innerHTML;
+
+            // ...lalu masukkan ke dalam input 'content' yang tersembunyi.
+            contentInput.value = htmlContent;
+
+            // Lanjutkan proses submit form
+        });
+    </script>
+@endpush

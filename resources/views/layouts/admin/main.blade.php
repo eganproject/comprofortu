@@ -33,6 +33,7 @@
             background: #5b21b6; /* a brighter violet */
         }
     </style>
+    @stack('cssOnPage')
 </head>
 <body class="bg-gradient-to-br from-gray-900 via-purple-950 to-indigo-900 text-gray-200">
 
@@ -101,5 +102,7 @@
             }
         });
     </script>
+
+    @stack('jsOnPage')
 </body>
 </html>
