@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\WebPreferences\AboutUsController;
+use App\Http\Controllers\Admin\WebPreferences\BlogArticleController;
 use App\Http\Controllers\Admin\WebPreferences\HeroImagesController;
 use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Route;
@@ -15,18 +16,18 @@ Route::view('/contact', 'user.contact')->name('contact');
 Route::view('/bcap', 'user.bcap')->name('bcap');
 Route::view('/career', 'user.career')->name('career');
 
-Route::controller(LandingPageController::class)->group(function(){
+Route::controller(LandingPageController::class)->group(function () {
     Route::get('/about', 'about')->name('about');
 });
 
 Route::prefix('product')->name('product.')->group(function () {
-    Route::view('/', 'user.product.index')->name('index'); 
-    Route::view('/show', 'user.product.show')->name('show'); 
+    Route::view('/', 'user.product.index')->name('index');
+    Route::view('/show', 'user.product.show')->name('show');
 });
 
 Route::prefix('blog')->name('blog.')->group(function () {
-    Route::view('/', 'user.blog.index')->name('index'); 
-    Route::view('/show', 'user.blog.show')->name('show'); 
+    Route::view('/', 'user.blog.index')->name('index');
+    Route::view('/show', 'user.blog.show')->name('show');
 });
 
 Route::get('/admin', function () {
@@ -34,12 +35,12 @@ Route::get('/admin', function () {
 })->name('dashboard')->middleware('auth');
 
 // Start  Dashboard
-Route::middleware('auth')->controller(DashboardController::class)->group(function(){
+Route::middleware('auth')->controller(DashboardController::class)->group(function () {
     Route::get('admin', 'index')->name('admin.dashboard');
 });
 // End Dashboard
 // Start Hero
-Route::middleware('auth')->controller(HeroImagesController::class)->group(function(){
+Route::middleware('auth')->controller(HeroImagesController::class)->group(function () {
     Route::get('admin/web-preferences/hero', 'index')->name('admin.web_preferences.hero');
     Route::post('admin/web-preferences/hero', 'store');
     Route::get('admin/web-preferences/hero/create', 'create')->name('admin.web_preferences.hero');
@@ -48,10 +49,22 @@ Route::middleware('auth')->controller(HeroImagesController::class)->group(functi
     Route::delete('admin/web-preferences/hero/{id}', 'destroy');
 });
 
-Route::middleware('auth')->controller(AboutUsController::class)->group(function(){
+// Start About
+Route::middleware('auth')->controller(AboutUsController::class)->group(function () {
     Route::get('admin/web-preferences/about', 'index')->name('admin.web_preferences.about');
     Route::post('admin/web-preferences/about', 'store');
 });
 
-Auth::routes();
 
+// Start Blog
+Route::middleware('auth')->controller(BlogArticleController::class)->group(function () {
+    Route::get('admin/web-preferences/blog', 'index')->name('admin.web_preferences.blog');
+    Route::post('admin/web-preferences/blog', 'store');
+    Route::post('admin/web-preferences/blog/lists', 'lists');
+    Route::get('admin/web-preferences/blog/create', 'create')->name('admin.web_preferences.blog');
+    Route::get('admin/web-preferences/blog/{id}', 'edit')->name('admin.web_preferences.blog');
+    Route::put('admin/web-preferences/blog/{id}', 'update');
+    Route::delete('admin/web-preferences/blog/{id}', 'destroy');
+});
+
+Auth::routes();

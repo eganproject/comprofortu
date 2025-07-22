@@ -20,7 +20,7 @@
         </div>
 
         {{-- Main Content Table --}}
-        <div class="bg-white/70 backdrop-blur-lg rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.1)] overflow-hidden">
+        <div class="bg-white/70 backdrop-blur-lg rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.1)] overflow-hidden min-h-[500px]">
              <div class="overflow-x-auto">
                 <table class="w-full text-sm text-left">
                     <thead class="text-xs text-slate-700 uppercase bg-slate-50/50">

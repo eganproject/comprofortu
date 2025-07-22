@@ -82,10 +82,10 @@ class HeroImagesController extends Controller
 
             // Hapus file yang sudah terlanjur di-upload untuk mencegah file sampah
             if ($uploadedImage1Path) {
-                Storage::delete($uploadedImage1Path);
+                Storage::disk('public')->delete($uploadedImage1Path);
             }
             if ($uploadedImage2Path) {
-                Storage::delete($uploadedImage2Path);
+                Storage::disk('public')->delete($uploadedImage2Path);
             }
 
             // Catat error untuk debugging

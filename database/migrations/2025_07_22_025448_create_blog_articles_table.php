@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('blog_articles', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('title');
-            $table->string('hero_image');
+            $table->string('image');
             $table->mediumText('text');
             $table->dateTime('tanggal');
-            $table->string('user_uuid');
-            $table->integer('likes');
-            $table->integer('views');
-            $table->integer('comments');
+            $table->string('uuid_writer');
+            $table->integer('likes')->default(0);
+            $table->integer('views')->default(0);
+            $table->integer('comments')->default(0);
             $table->timestamps();
         });
     }
