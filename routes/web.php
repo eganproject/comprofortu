@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\WebPreferences\AboutUsController;
 use App\Http\Controllers\Admin\WebPreferences\HeroImagesController;
 use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,11 @@ Route::middleware('auth')->controller(HeroImagesController::class)->group(functi
     Route::post('admin/web-preferences/hero/update', 'update');
     Route::get('admin/web-preferences/hero/{id}', 'edit');
     Route::delete('admin/web-preferences/hero/{id}', 'destroy');
+});
+
+Route::middleware('auth')->controller(AboutUsController::class)->group(function(){
+    Route::get('admin/web-preferences/about', 'index')->name('admin.web_preferences.about');
+    Route::post('admin/web-preferences/about', 'store');
 });
 
 Auth::routes();
