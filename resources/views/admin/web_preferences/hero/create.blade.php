@@ -10,21 +10,28 @@
         .ql-toolbar {
             border-top-left-radius: 0.5rem;
             border-top-right-radius: 0.5rem;
-            border-color: #cbd5e1 !important; /* slate-300 */
+            border-color: #cbd5e1 !important;
+            /* slate-300 */
         }
+
         .ql-container {
             border-bottom-left-radius: 0.5rem;
             border-bottom-right-radius: 0.5rem;
-            border-color: #cbd5e1 !important; /* slate-300 */
+            border-color: #cbd5e1 !important;
+            /* slate-300 */
             background-color: #ffffff;
-            color: #1e293b; /* slate-800 */
+            color: #1e293b;
+            /* slate-800 */
             min-height: 250px;
         }
+
         .ql-editor {
             font-family: 'Inter', sans-serif;
         }
-        .ql-editor.ql-blank::before{
-            color: #94a3b8; /* slate-400 */
+
+        .ql-editor.ql-blank::before {
+            color: #94a3b8;
+            /* slate-400 */
             font-style: normal;
         }
     </style>
@@ -33,8 +40,10 @@
 @section('content')
     <h2 class="text-2xl font-bold text-slate-800 mb-6">Tambah Hero Image Baru</h2>
 
-    <div x-data="{ image1Preview: null, image2Preview: null }" class="bg-white/70 backdrop-blur-lg p-6 md:p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.1)]">
-        <form action="/admin/web-preferences/hero" method="POST" enctype="multipart/form-data" class="space-y-6" id="article-form">
+    <div x-data="{ image1Preview: null, image2Preview: null }"
+        class="bg-white/70 backdrop-blur-lg p-6 md:p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.1)]">
+        <form action="/admin/web-preferences/hero" method="POST" enctype="multipart/form-data" class="space-y-6"
+            id="article-form">
             @csrf
 
             <div>
@@ -57,7 +66,16 @@
                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>
-            
+            <div>
+                <label for="modul" class="block mb-2 text-sm font-medium text-slate-700">Judul</label>
+                <input
+                    class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    type="text" name="title" id="title" placeholder="Masukkan Judul (Opsional)"
+                    value="{{ old('title') }}" />
+                @error('title')
+                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
             <div>
                 <label for="text" class="block mb-2 text-sm font-medium text-slate-700">Teks Deskripsi</label>
                 <input type="hidden" name="text" id="text-input">
@@ -69,9 +87,11 @@
                 @enderror
             </div>
 
+
             <div>
                 <label for="image_1" class="block mb-2 text-sm font-medium text-slate-700">Gambar Latar (Wajib)</label>
-                <div class="mt-2 w-full max-w-sm h-40 rounded-lg border-2 border-dashed border-slate-300 flex items-center justify-center bg-slate-50 overflow-hidden">
+                <div
+                    class="mt-2 w-full max-w-sm h-40 rounded-lg border-2 border-dashed border-slate-300 flex items-center justify-center bg-slate-50 overflow-hidden">
                     <template x-if="!image1Preview">
                         <div class="text-center text-slate-500">
                             <i data-lucide="image" class="w-10 h-10 mx-auto mb-2 opacity-50"></i>
@@ -92,8 +112,10 @@
             </div>
 
             <div>
-                <label for="image_2" class="block mb-2 text-sm font-medium text-slate-700">Gambar Isometrik (Opsional)</label>
-                <div class="mt-2 w-full max-w-sm h-40 rounded-lg border-2 border-dashed border-slate-300 flex items-center justify-center bg-slate-50 overflow-hidden">
+                <label for="image_2" class="block mb-2 text-sm font-medium text-slate-700">Gambar Isometrik
+                    (Opsional)</label>
+                <div
+                    class="mt-2 w-full max-w-sm h-40 rounded-lg border-2 border-dashed border-slate-300 flex items-center justify-center bg-slate-50 overflow-hidden">
                     <template x-if="!image2Preview">
                         <div class="text-center text-slate-500">
                             <i data-lucide="image" class="w-10 h-10 mx-auto mb-2 opacity-50"></i>
@@ -138,11 +160,21 @@
             placeholder: 'Tulis deskripsi atau konten di sini...',
             modules: {
                 toolbar: [
-                    [{ 'header': [1, 2, 3, false] }],
-                    [{ 'font': [] }],
+                    [{
+                        'header': [1, 2, 3, false]
+                    }],
+                    [{
+                        'font': []
+                    }],
                     ['bold', 'italic', 'underline'],
-                    [{'list': 'ordered'}, {'list': 'bullet'}],
-                    [{ 'align': [] }],
+                    [{
+                        'list': 'ordered'
+                    }, {
+                        'list': 'bullet'
+                    }],
+                    [{
+                        'align': []
+                    }],
                     ['link', 'image', 'video'],
                     ['clean']
                 ]
@@ -156,7 +188,7 @@
         form.addEventListener('submit', function(e) {
             // Saat form disubmit, ambil konten HTML dari Quill...
             const htmlContent = quill.root.innerHTML;
-            
+
             // Periksa jika kontennya default (kosong), maka set nilainya jadi string kosong
             if (htmlContent === '<p><br></p>') {
                 textInput.value = '';

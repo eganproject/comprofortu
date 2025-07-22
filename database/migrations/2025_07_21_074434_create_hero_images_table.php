@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('modul');
             $table->string('image_1');
             $table->string('image_2')->nullable();
+            $table->string('title')->nullable();
             $table->mediumText('text')->nullable();
             $table->timestamps();
         });

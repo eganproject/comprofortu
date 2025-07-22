@@ -10,21 +10,28 @@
         .ql-toolbar {
             border-top-left-radius: 0.5rem;
             border-top-right-radius: 0.5rem;
-            border-color: #cbd5e1 !important; /* slate-300 */
+            border-color: #cbd5e1 !important;
+            /* slate-300 */
         }
+
         .ql-container {
             border-bottom-left-radius: 0.5rem;
             border-bottom-right-radius: 0.5rem;
-            border-color: #cbd5e1 !important; /* slate-300 */
+            border-color: #cbd5e1 !important;
+            /* slate-300 */
             background-color: #ffffff;
-            color: #1e293b; /* slate-800 */
+            color: #1e293b;
+            /* slate-800 */
             min-height: 250px;
         }
+
         .ql-editor {
             font-family: 'Inter', sans-serif;
         }
-        .ql-editor.ql-blank::before{
-            color: #94a3b8; /* slate-400 */
+
+        .ql-editor.ql-blank::before {
+            color: #94a3b8;
+            /* slate-400 */
             font-style: normal;
         }
     </style>
@@ -36,33 +43,49 @@
     <div x-data="{
         image1Preview: '{{ asset('storage/' . $heroImage->image_1) }}',
         image2Preview: '{{ $heroImage->image_2 ? asset('storage/' . $heroImage->image_2) : null }}'
-    }" class="bg-white/70 backdrop-blur-lg p-6 md:p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.1)]">
-        
-        <form action="/admin/web-preferences/hero/update" method="POST" enctype="multipart/form-data" class="space-y-6" id="article-form">
+    }"
+        class="bg-white/70 backdrop-blur-lg p-6 md:p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.1)]">
+
+        <form action="/admin/web-preferences/hero/update" method="POST" enctype="multipart/form-data" class="space-y-6"
+            id="article-form">
             @csrf
             @method('POST')
 
             <div>
+                <input type="hidden" name="id" id="id-input" value="{{ $heroImage->id }}">
+
                 <label for="modul" class="block mb-2 text-sm font-medium text-slate-700">Pilih Modul</label>
                 <select id="modul" name="modul"
                     class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     required>
-                    <option value="index" {{ old('modul', $heroImage->modul) == 'index' ? 'selected' : '' }}>Index / Beranda</option>
-                    <option value="about" {{ old('modul', $heroImage->modul) == 'about' ? 'selected' : '' }}>About Us</option>
-                    <option value="service" {{ old('modul', $heroImage->modul) == 'service' ? 'selected' : '' }}>Service</option>
+                    <option value="index" {{ old('modul', $heroImage->modul) == 'index' ? 'selected' : '' }}>Index /
+                        Beranda</option>
+                    <option value="about" {{ old('modul', $heroImage->modul) == 'about' ? 'selected' : '' }}>About Us
+                    </option>
+                    <option value="service" {{ old('modul', $heroImage->modul) == 'service' ? 'selected' : '' }}>Service
+                    </option>
                     <option value="blog" {{ old('modul', $heroImage->modul) == 'blog' ? 'selected' : '' }}>Blog</option>
                 </select>
                 @error('modul')
                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>
-
+            <div>
+                <label for="modul" class="block mb-2 text-sm font-medium text-slate-700">Judul</label>
+                <input
+                    class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    type="text" name="title" id="title" placeholder="Masukkan Judul (Opsional)"
+                    value="{{ old('title', $heroImage->title) }}" />
+                @error('title')
+                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
             <div>
                 <label for="text-input" class="block mb-2 text-sm font-medium text-slate-700">Teks Deskripsi</label>
                 <input type="hidden" name="text" id="text-input">
                 <div id="editor-container">
                     {{-- Mengisi editor dengan data lama, gunakan {!! !!} untuk render HTML --}}
-                    {!! old('text', $heroImage->text) !!} 
+                    {!! old('text', $heroImage->text) !!}
                 </div>
                 @error('text')
                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
@@ -71,7 +94,8 @@
 
             <div>
                 <label for="image_1_edit" class="block mb-2 text-sm font-medium text-slate-700">Ganti Gambar Latar</label>
-                <div class="mt-2 w-full max-w-sm h-40 rounded-lg border-2 border-dashed border-slate-300 flex items-center justify-center bg-slate-50 overflow-hidden">
+                <div
+                    class="mt-2 w-full max-w-sm h-40 rounded-lg border-2 border-dashed border-slate-300 flex items-center justify-center bg-slate-50 overflow-hidden">
                     <template x-if="image1Preview">
                         <img :src="image1Preview" alt="Pratinjau Gambar Latar" class="w-full h-full object-cover">
                     </template>
@@ -86,9 +110,11 @@
             </div>
 
             <div>
-                <label for="image_2_edit" class="block mb-2 text-sm font-medium text-slate-700">Ganti Gambar Isometrik</label>
-                <div class="mt-2 w-full max-w-sm h-40 rounded-lg border-2 border-dashed border-slate-300 flex items-center justify-center bg-slate-50 overflow-hidden">
-                     <template x-if="!image2Preview">
+                <label for="image_2_edit" class="block mb-2 text-sm font-medium text-slate-700">Ganti Gambar
+                    Isometrik</label>
+                <div
+                    class="mt-2 w-full max-w-sm h-40 rounded-lg border-2 border-dashed border-slate-300 flex items-center justify-center bg-slate-50 overflow-hidden">
+                    <template x-if="!image2Preview">
                         <div class="text-center text-slate-500">
                             <i data-lucide="image" class="w-10 h-10 mx-auto mb-2 opacity-50"></i>
                             <p>Tidak ada gambar isometrik.</p>
@@ -132,11 +158,21 @@
                 placeholder: 'Tulis deskripsi atau konten di sini...',
                 modules: {
                     toolbar: [
-                        [{ 'header': [1, 2, 3, false] }],
-                        [{ 'font': [] }],
+                        [{
+                            'header': [1, 2, 3, false]
+                        }],
+                        [{
+                            'font': []
+                        }],
                         ['bold', 'italic', 'underline'],
-                        [{'list': 'ordered'}, {'list': 'bullet'}],
-                        [{ 'align': [] }],
+                        [{
+                            'list': 'ordered'
+                        }, {
+                            'list': 'bullet'
+                        }],
+                        [{
+                            'align': []
+                        }],
                         ['link', 'image', 'video'],
                         ['clean']
                     ]

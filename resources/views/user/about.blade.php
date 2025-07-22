@@ -5,7 +5,7 @@
       @section('content')
           <style>
               .hero-bg {
-                  background-image: url('/image/fortu.png');
+                  background-image: url('{{ asset('storage/' . $hero?->image_1) }}');
                   background-size: cover;
                   background-position: center;
               }
@@ -14,16 +14,15 @@
               <div class="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center">
                   <!-- Text Content -->
                   <div class="md:w-1/2 mb-10 md:mb-0 text-center md:text-left">
-                      <h1 class="text-4xl lg:text-5xl font-bold mb-4">Satu Platform, Multi Solusi</h1>
-                      <p class="text-lg text-purple-200 max-w-lg">
-                          Capaian berbagai macam bentuk Solusi membentuk kemudahan operasi infrastruktur digital, dikemas
-                          dalam Satu Platform sentral aplikasi online & on-premise.
-                      </p>
+                      <h1 class="text-4xl lg:text-5xl font-bold mb-4">{{$hero?->title}}</h1>
+                      <div class="text-lg text-purple-200 max-w-lg">
+                         {!!$hero?->text!!}
+                      </div>
                   </div>
                   <!-- Image Content -->
                   <div class="md:w-1/2 flex justify-center">
-                      <img src="https://placehold.co/450x300/FFFFFF/8B5CF6?text=Isometric+Graphic"
-                          alt="Grafik Isometrik Platform" class="w-full max-w-md">
+                      <img src="{{ asset('storage/' . $hero?->image_2) }}"
+                          alt="Grafik Isometric" class="w-full max-w-md">
                   </div>
               </div>
           </section>

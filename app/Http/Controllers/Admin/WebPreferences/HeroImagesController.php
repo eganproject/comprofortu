@@ -49,7 +49,7 @@ class HeroImagesController extends Controller
         $uploadedImage2Path = null;
 
         try {
-            $data = $request->only(['modul', 'text']);
+            $data = $request->only(['title', 'modul', 'text']);
 
             // Handle Image 1 upload
             if ($request->hasFile('image_1')) {
@@ -123,12 +123,13 @@ class HeroImagesController extends Controller
         // Disarankan untuk menambahkan transaksi di sini juga
         $request->validate([
             'modul' => 'required|string|max:255',
+            'title' => 'nullable|string',
             'text' => 'nullable|string',
             'image_1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'image_2' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
-        $data = $request->only(['modul', 'text']);
+        $data = $request->only(['title','modul', 'text']);
 
         if ($request->hasFile('image_1')) {
             if ($heroImage->image_1) {
