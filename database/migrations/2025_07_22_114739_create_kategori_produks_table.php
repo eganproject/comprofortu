@@ -11,17 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('blog_articles', function (Blueprint $table) {
+        Schema::create('kategori_produks', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('title');
+            $table->string('nama_kategori');
             $table->string('slug')->unique();
-            $table->string('image');
-            $table->mediumText('text');
-            $table->dateTime('tanggal');
-            $table->string('uuid_writer');
-            $table->integer('likes')->default(0);
-            $table->integer('views')->default(0);
-            $table->integer('comments')->default(0);
+            $table->integer('layout')->default(2);
             $table->timestamps();
         });
     }
@@ -31,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('blog_articles');
+        Schema::dropIfExists('kategori_produks');
     }
 };
