@@ -13,7 +13,7 @@
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold text-slate-800">Manajemen Hero Image</h2>
             <a href="/admin/web-preferences/hero/create"
-                class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 flex items-center gap-2 shadow-md">
+                class="bg-black hover:bg-gray-800 hover:border hover:border-white text-white hover:text-gray-100 font-bold py-2 px-4 rounded-lg transition-all duration-300 flex items-center gap-2 shadow-md">
                 <i data-lucide="plus" class="w-5 h-5"></i>
                 <span>Tambah Baru</span>
             </a>
