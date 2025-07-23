@@ -35,6 +35,7 @@
                         <tr>
                             <th scope="col" class="px-6 py-3">No</th>
                             <th scope="col" class="px-6 py-3">Nama Kategori</th>
+                            <th scope="col" class="px-6 py-3">Deskripsi</th>
                             <th scope="col" class="px-6 py-3">Layout</th>
                             <th scope="col" class="px-6 py-3 text-center">Aksi</th>
                         </tr>
@@ -130,6 +131,13 @@
                     }, // Kolom nomor
                     {
                         "data": "nama_kategori",
+                        "className": "px-6 py-4 font-medium text-slate-900"
+                    },
+                     {
+                        "data": "deskripsi",
+                        "render": function(data) {
+                            return data.substring(0, 50) + '...'; // Pangkas artikel
+                        },
                         "className": "px-6 py-4 font-medium text-slate-900"
                     },
                     {

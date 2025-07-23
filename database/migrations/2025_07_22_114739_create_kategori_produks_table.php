@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('nama_kategori');
             $table->string('slug')->unique();
+            $table->mediumText('deskripsi')->nullable();
             $table->integer('layout')->default(2);
             $table->timestamps();
         });

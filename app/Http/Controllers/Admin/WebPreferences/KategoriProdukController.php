@@ -67,6 +67,7 @@ class KategoriProdukController extends Controller
             $data[] = [
                 'no' => $no++,
                 'nama_kategori' => $kategori->nama_kategori,
+                'deskripsi' => $kategori->deskripsi,
                 'layout' => $kategori->layout . " Layout",
                 'aksi' => $kategori->id
             ];
