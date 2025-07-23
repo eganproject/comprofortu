@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\WebPreferences\AboutUsController;
 use App\Http\Controllers\Admin\WebPreferences\BlogArticleController;
 use App\Http\Controllers\Admin\WebPreferences\HeroImagesController;
 use App\Http\Controllers\Admin\WebPreferences\KategoriProdukController;
+use App\Http\Controllers\Admin\WebPreferences\ProdukController;
 use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -77,6 +78,17 @@ Route::middleware('auth')->controller(KategoriProdukController::class)->group(fu
     Route::get('admin/web-preferences/kategori/{id}', 'edit')->name('admin.web_preferences.kategori');
     Route::put('admin/web-preferences/kategori/{id}', 'update');
     Route::delete('admin/web-preferences/kategori/{id}', 'destroy');
+});
+
+// Start Produk
+Route::middleware('auth')->controller(ProdukController::class)->group(function () {
+    Route::get('admin/web-preferences/produk', 'index')->name('admin.web_preferences.produk');
+    Route::post('admin/web-preferences/produk', 'store');
+    Route::post('admin/web-preferences/produk/lists', 'lists');
+    Route::get('admin/web-preferences/produk/create', 'create')->name('admin.web_preferences.produk');
+    Route::get('admin/web-preferences/produk/{id}', 'edit')->name('admin.web_preferences.produk');
+    Route::put('admin/web-preferences/produk/{id}', 'update');
+    Route::delete('admin/web-preferences/produk/{id}', 'destroy');
 });
 
 Auth::routes();

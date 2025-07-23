@@ -49,7 +49,7 @@
                     <span>Service</span>
                 </a>
                 <a href="/admin/web-preferences/blog"
-                    class="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg transition-colors text-xs text-slate-500 hover:text-slate-800 {{ Route::is('admin.web_preferences.blog') ? 'bg-slate-200/60 text-slate-900 font-semibold' : 'text-slate-500 hover:text-slate-800' }}">
+                    class="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg transition-colors text-xs {{ Route::is('admin.web_preferences.blog') ? 'bg-slate-200/60 text-slate-900 font-semibold' : 'text-slate-500 hover:text-slate-800' }}">
                     <i data-lucide="rss" class="w-5 h-5"></i>
                     <span>Blog</span>
                 </a>
@@ -58,8 +58,8 @@
                     <i data-lucide="tag" class="w-4 h-4"></i>
                     <span>Kategori Produk</span>
                 </a>
-                <a href="#"
-                    class="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg transition-colors text-xs text-slate-500 hover:text-slate-800">
+                <a href="/admin/web-preferences/produk"
+                    class="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg transition-colors text-xs {{ Route::is('admin.web_preferences.produk') ? 'bg-slate-200/60 text-slate-900 font-semibold' : 'text-slate-500 hover:text-slate-800' }}">
                     <i data-lucide="list" class="w-4 h-4"></i>
                     <span>Daftar Produk</span>
                 </a>
