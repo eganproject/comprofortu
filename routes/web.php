@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\WebPreferences\AboutUsController;
 use App\Http\Controllers\Admin\WebPreferences\BlogArticleController;
 use App\Http\Controllers\Admin\WebPreferences\HeroImagesController;
+use App\Http\Controllers\Admin\WebPreferences\KategoriProdukController;
 use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -65,6 +66,17 @@ Route::middleware('auth')->controller(BlogArticleController::class)->group(funct
     Route::get('admin/web-preferences/blog/{id}', 'edit')->name('admin.web_preferences.blog');
     Route::put('admin/web-preferences/blog/{id}', 'update');
     Route::delete('admin/web-preferences/blog/{id}', 'destroy');
+});
+
+// Start Kategori Produk
+Route::middleware('auth')->controller(KategoriProdukController::class)->group(function () {
+    Route::get('admin/web-preferences/kategori', 'index')->name('admin.web_preferences.kategori');
+    Route::post('admin/web-preferences/kategori', 'store');
+    Route::post('admin/web-preferences/kategori/lists', 'lists');
+    Route::get('admin/web-preferences/kategori/create', 'create')->name('admin.web_preferences.kategori');
+    Route::get('admin/web-preferences/kategori/{id}', 'edit')->name('admin.web_preferences.kategori');
+    Route::put('admin/web-preferences/kategori/{id}', 'update');
+    Route::delete('admin/web-preferences/kategori/{id}', 'destroy');
 });
 
 Auth::routes();
