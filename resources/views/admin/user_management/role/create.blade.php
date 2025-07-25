@@ -74,7 +74,7 @@
                     class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-lg transition-all duration-300">
                     Simpan
                 </button>
-                <a href="/admin/web-preferences/blog"
+                <a href="/admin/user-management/role"
                     class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium py-2 px-5 rounded-lg transition-all duration-300">
                     Batal
                 </a>

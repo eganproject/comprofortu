@@ -18,7 +18,7 @@
             class="bg-white/70 backdrop-blur-lg rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.1)] overflow-hidden min-h-[500px]">
             <div class="flex justify-between items-center p-6">
                 <h2 class="text-2xl font-bold text-slate-800">Manajemen Pengguna</h2>
-                <a href="/admin/web-preferences/produk/create"
+                <a href="/admin/user-management/users/create"
                     class="bg-black hover:bg-gray-800 hover:border hover:border-white text-white hover:text-gray-100 font-bold py-2 px-4 rounded-lg transition-all duration-300 flex items-center gap-2 shadow-md">
                     <i data-lucide="plus" class="w-5 h-5"></i>
                     <span>Tambah Baru</span>
@@ -33,9 +33,9 @@
                     <thead class="text-xs text-slate-700 uppercase bg-slate-50/50">
                         <tr>
                             <th scope="col" class="px-6 py-3">No</th>
-                            <th scope="col" class="px-6 py-3">Nama Produk</th>
-                            <th scope="col" class="px-6 py-3">Kategori</th>
-                            <th scope="col" class="px-6 py-3">Deskripsi</th>
+                            <th scope="col" class="px-6 py-3">Nama</th>
+                            <th scope="col" class="px-6 py-3">Email</th>
+                            <th scope="col" class="px-6 py-3">Role</th>
                             <th scope="col" class="px-6 py-3 text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -63,7 +63,7 @@
                 "processing": true, // Menampilkan indikator "processing"
                 "serverSide": true, // Mengaktifkan mode server-side
                 "ajax": {
-                    "url": "/admin/web-preferences/produk/lists", // URL endpoint API Anda untuk mengambil data
+                    "url": "/admin/user-management/users/lists", // URL endpoint API Anda untuk mengambil data
                     "type": "POST", // atau 'GET', sesuaikan dengan backend Anda
                     "data": function(d) {
                         d._token = '{{ csrf_token() }}';
@@ -83,18 +83,15 @@
                         "className": "px-6 py-4 font-medium text-slate-900"
                     }, // Kolom nomor
                     {
-                        "data": "nama_produk",
+                        "data": "name",
                         "className": "px-6 py-4 font-medium text-slate-900"
                     },
                     {
-                        "data": "kategori",
+                        "data": "email",
                         "className": "px-6 py-4 font-medium text-slate-900"
                     },
                     {
-                        "data": "deskripsi",
-                        "render": function(data) {
-                            return data.substring(0, 50) + '...'; // Pangkas artikel
-                        },
+                        "data": "role",
                         "className": "px-6 py-4 font-medium text-slate-900"
                     },
                     {
@@ -104,17 +101,17 @@
                         "render": function(data) {
                             return `
                                 <div class="flex justify-center items-center gap-4">
-                                    <a href="/admin/web-preferences/kategori/${data}" 
+                                    <a href="/admin/user-management/users/${data}" 
                                         class="font-medium text-blue-600 hover:text-blue-800 transition-colors" title="Edit">
                                         <i data-lucide="edit" class="w-5 h-5"></i>
                                     </a>
                                     <button type="button"
-                                        @click.prevent="deleteFormAction = '/admin/web-preferences/kategori/${data}'; showDeleteModal = true"
+                                        @click.prevent="deleteFormAction = '/admin/user-management/users/${data}'; showDeleteModal = true"
                                         class="font-medium text-red-500 hover:text-red-700 transition-colors" title="Hapus">
                                         <i data-lucide="trash-2" class="w-5 h-5"></i>
                                     </button>
                                     <form id="delete-form-${data}"
-                                        action="/admin/web-preferences/kategori/${data}" method="POST" class="hidden">
+                                        action="/admin/user-management/users/${data}" method="POST" class="hidden">
                                         @csrf
                                         @method('DELETE')
                                     </form>
