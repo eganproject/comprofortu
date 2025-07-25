@@ -15,7 +15,7 @@
             <div class="lg:col-span-1">
                 <h3 class="font-bold mb-3 text-gray-800">OFFICE I</h3>
                 <p class="leading-relaxed">
-                    PT. Sentuh Digital Teknologi<br>
+                    PT. Fortu Media Kreasi<br>
                     Cyber Building I, 6th-floor<br>
                     Jl. Kuningan Barat Raya No. 8<br>
                     Jakarta Selatan - 12710<br>
@@ -28,7 +28,7 @@
             <div class="lg:col-span-1">
                 <h3 class="font-bold mb-3 text-gray-800">OFFICE II</h3>
                 <p class="leading-relaxed">
-                    PT. Sentuh Digital Teknologi<br>
+                    PT. Fortu Media Kreasi<br>
                     Grand Slipi Tower, 48th-floor<br>
                     Jl. Letjend S Parman Kav. 22-24<br>
                     Jakarta Barat - 11410<br>
@@ -39,7 +39,7 @@
             <div class="lg:col-span-1">
                 <h3 class="font-bold mb-3 text-gray-800">MANUFACTURE</h3>
                     <p class="leading-relaxed">
-                    PT. Sentuh Digital Teknologi<br>
+                    PT. Fortu Media Kreasi<br>
                     BSD<br>
                     Jl. Lengkong Gudang Timur IV No. 51<br>
                     Lengkong Gudang Timur, Kec. Serpong<br>
@@ -74,7 +74,7 @@
                 </a>
             </div>
             <div class="text-center sm:text-right">
-                <p>&copy;2019 by PT Sentuh Digital Teknologi. All Rights Reserved</p>
+                <p>&copy;2019 by PT Fortu Media Kreasi. All Rights Reserved</p>
             </div>
         </div>
     </div>

@@ -23,17 +23,16 @@
 @section('content')
 
     <section class="h-[60vh] md:h-[90vh] bg-gray-200">
-        <img src="https://placehold.co/1920x1080/E9D5FF/3B0764?text=Lobi+Kantor+Modern"
-            alt="Lobi kantor modern dengan berbagai produk digital signage" class="w-full h-full object-cover">
+        <img src="{{ asset('storage/' . $hero->image_1) }}" alt="Main Hero" class="w-full h-full object-cover">
     </section>
 
     <section class="py-16 lg:py-24">
         <div class="container mx-auto px-4">
             <div class="flex items-center mb-8">
                 <div class="flex items-center mr-3">
-                    <div class="w-5 h-5 rounded-full bg-purple-600"></div>
-                    <div class="w-5 h-5 rounded-full bg-purple-500 -ml-2"></div>
-                    <div class="w-5 h-5 rounded-full bg-purple-400 -ml-2"></div>
+                    <div class="w-5 h-5 rounded-full bg-gray-400"></div>
+                    <div class="w-5 h-5 rounded-full bg-gray-500 -ml-2"></div>
+                    <div class="w-5 h-5 rounded-full bg-gray-600 -ml-2"></div>
                 </div>
                 <h2 class="text-2xl font-bold">Interactive Display Canggih Buatan Anak Bangsa</h2>
             </div>
@@ -41,18 +40,14 @@
             <div id="interactive-carousel" class="carousel-container">
                 <div class="carousel-slide active">
                     <div class="relative">
-                        <img src="https://placehold.co/1200x600/DDD6FE/4C1D95?text=Fortu+Video+Wall"
-                            alt="Fortu Video Wall" class="w-full rounded-lg">
+                        <img src="https://placehold.co/1200x600/DDD6FE/4C1D95?text=Fortu+Video+Wall" alt="Fortu Video Wall"
+                            class="w-full rounded-lg">
                         <div class="absolute top-8 left-8 bg-black bg-opacity-50 text-white p-6 rounded-lg max-w-xs">
                             <h3 class="text-2xl font-bold">Fortu Video Wall</h3>
-                            <a href="#" class="inline-block mt-4 font-semibold text-purple-300 hover:text-white">Read
+                            <a href="#" class="inline-block mt-4 font-semibold text-gray-300 hover:text-white">Read
                                 More &gt;</a>
                         </div>
-                        <div
-                            class="absolute top-8 right-8 bg-white text-red-600 text-center rounded-full p-3 w-24 h-24 flex flex-col justify-center shadow-lg">
-                            <span class="font-semibold text-sm">TKDN</span>
-                            <span class="font-bold text-3xl">&gt;40%</span>
-                        </div>
+
                     </div>
                 </div>
                 <div class="carousel-slide">
@@ -96,11 +91,11 @@
         </div>
     </section>
 
-    <section class="bg-purple-800 text-white py-16">
+    <section class="bg-gray-700 text-white py-16">
         <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="md:w-1/2 flex items-start gap-4">
                 <div class="bg-white p-2 rounded-md">
-                    <svg class="w-8 h-8 text-green-500" fill="currentColor" viewBox="0 0 20 20"
+                    <svg class="w-8 h-8 text-gray-700" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
                             d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -109,7 +104,7 @@
                 </div>
                 <div>
                     <h2 class="text-2xl font-bold">TKDN</h2>
-                    <p class="text-purple-300">Tingkat Komponen Dalam Negeri</p>
+                    <p class="text-gray-300">Tingkat Komponen Dalam Negeri</p>
                     <p class="mt-4 text-sm max-w-md">
                         PT. Fortu Digital Teknologi adalah perusahaan yang sudah besertifikasi TKDN >40% untuk
                         produk-produknya. Kami yakin dengan tingkat komponen dalam negeri yang ada pada produk kami
@@ -118,9 +113,9 @@
                 </div>
             </div>
             <div class="md:w-1/2 flex flex-col items-center md:items-end">
-                <p class="text-7xl font-bold text-green-400">>40%</p>
+                <p class="text-7xl font-bold text-white">>40%</p>
                 <a href="#"
-                    class="mt-4 inline-block px-6 py-2 border border-green-400 text-green-400 font-semibold rounded-full hover:bg-green-400 hover:text-purple-900 transition-colors">
+                    class="mt-4 inline-block px-6 py-2 border border-white text-white font-semibold rounded-full hover:bg-white hover:text-gray-600 transition-colors">
                     Visit P3DN Kemenperin
                 </a>
             </div>
@@ -130,27 +125,27 @@
     <section class="py-20">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
-                <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="bg-gradient-to-t from-gray-300 to-white p-6 rounded-lg shadow-lg">
                     <p class="text-gray-500 text-sm">Found & Started</p>
                     <p class="text-5xl font-bold text-gray-800 my-2">2017</p>
                     <img src="https://placehold.co/80x80/E9D5FF/3B0764?text=Robot" alt="Robot icon" class="mx-auto">
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="bg-gradient-to-t from-gray-300 to-white p-6 rounded-lg shadow-lg">
                     <p class="text-gray-500 text-sm">Products Hardware & Software</p>
                     <p class="text-5xl font-bold text-gray-800 my-2">30</p>
                     <img src="https://placehold.co/120x80/E9D5FF/3B0764?text=Produk" alt="Products icon" class="mx-auto">
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="bg-gradient-to-t from-gray-300 to-white p-6 rounded-lg shadow-lg">
                     <p class="text-gray-500 text-sm">Vertical Market Solution</p>
                     <p class="text-5xl font-bold text-gray-800 my-2">+10</p>
                     <img src="https://placehold.co/80x80/E9D5FF/3B0764?text=Toko" alt="Market icon" class="mx-auto">
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="bg-gradient-to-t from-gray-300 to-white p-6 rounded-lg shadow-lg">
                     <p class="text-gray-500 text-sm">Clients From Any Sector</p>
-                    <p class="text-5xl font-bold text-gray-800 my-2">+100</p>
+                    <p class="text-5xl font-bold text-gray-800 my-2">+300</p>
                     <img src="https://placehold.co/80x80/E9D5FF/3B0764?text=Klien" alt="Clients icon" class="mx-auto">
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="bg-gradient-to-t from-gray-300 to-white p-6 rounded-lg shadow-lg">
                     <p class="text-gray-500 text-sm">Solds & Used in any Business Sector</p>
                     <p class="text-5xl font-bold text-gray-800 my-2">+1000</p>
                     <img src="https://placehold.co/80x80/E9D5FF/3B0764?text=Terjual" alt="Solds icon" class="mx-auto">
@@ -163,9 +158,9 @@
         <div class="container mx-auto px-4">
             <div class="flex items-center mb-8">
                 <div class="flex items-center mr-3">
-                    <div class="w-5 h-5 rounded-full bg-purple-600"></div>
-                    <div class="w-5 h-5 rounded-full bg-purple-500 -ml-2"></div>
-                    <div class="w-5 h-5 rounded-full bg-purple-400 -ml-2"></div>
+                    <div class="w-5 h-5 rounded-full bg-gray-400"></div>
+                    <div class="w-5 h-5 rounded-full bg-gray-500 -ml-2"></div>
+                    <div class="w-5 h-5 rounded-full bg-gray-600 -ml-2"></div>
                 </div>
                 <h2 class="text-2xl font-bold">Client Experience</h2>
             </div>
@@ -253,7 +248,7 @@
             </div>
             <div class="text-center mt-12">
                 <a href="#"
-                    class="inline-block bg-purple-700 text-white font-bold py-3 px-8 rounded-lg hover:bg-purple-800 transition-colors">
+                    class="inline-block bg-black text-white font-bold py-3 px-8 rounded-lg hover:bg-gray-800 transition-colors duration-300">
                     See More
                 </a>
             </div>
@@ -264,9 +259,9 @@
         <div class="container mx-auto px-4">
             <div class="flex items-center mb-8">
                 <div class="flex items-center mr-3">
-                    <div class="w-5 h-5 rounded-full bg-purple-600"></div>
-                    <div class="w-5 h-5 rounded-full bg-purple-500 -ml-2"></div>
-                    <div class="w-5 h-5 rounded-full bg-purple-400 -ml-2"></div>
+                    <div class="w-5 h-5 rounded-full bg-gray-400"></div>
+                    <div class="w-5 h-5 rounded-full bg-gray-500 -ml-2"></div>
+                    <div class="w-5 h-5 rounded-full bg-gray-600 -ml-2"></div>
                 </div>
                 <h2 class="text-2xl font-bold">Smart Device for Smart Collaboration</h2>
             </div>

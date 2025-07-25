@@ -12,7 +12,7 @@ use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::view('/', 'user.index')->name('home');
+
 // Route::view('/about', 'user.about')->name('about');
 Route::view('/service', 'user.service')->name('service');
 Route::view('/smartos', 'user.smartos')->name('smartos');
@@ -21,7 +21,9 @@ Route::view('/bcap', 'user.bcap')->name('bcap');
 Route::view('/career', 'user.career')->name('career');
 
 Route::controller(LandingPageController::class)->group(function () {
+    Route::get('/', 'index')->name('home');
     Route::get('/about', 'about')->name('about');
+
 });
 
 Route::prefix('product')->name('product.')->group(function () {

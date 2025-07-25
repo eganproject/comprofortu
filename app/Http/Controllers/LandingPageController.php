@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
 {
+
+    public function index(){
+        $hero = HeroImages::where('modul', 'index')->first();
+        return view('user.index', compact('hero'));
+    }
     public function about(){
         $hero = HeroImages::where('modul', 'about')->first();
         $about = AboutUs::first();
