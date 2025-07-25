@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserManagement\RoleController;
 use App\Http\Controllers\Admin\WebPreferences\AboutUsController;
 use App\Http\Controllers\Admin\WebPreferences\BlogArticleController;
+use App\Http\Controllers\Admin\WebPreferences\ClientExperienceController;
 use App\Http\Controllers\Admin\WebPreferences\HeroImagesController;
 use App\Http\Controllers\Admin\WebPreferences\KategoriProdukController;
 use App\Http\Controllers\Admin\WebPreferences\ProdukController;
@@ -82,6 +83,16 @@ Route::middleware('auth')->controller(KategoriProdukController::class)->group(fu
     Route::get('admin/web-preferences/kategori/{id}', 'edit')->name('admin.web_preferences.kategori');
     Route::put('admin/web-preferences/kategori/{id}', 'update');
     Route::delete('admin/web-preferences/kategori/{id}', 'destroy');
+});
+
+Route::middleware('auth')->controller(ClientExperienceController::class)->group(function () {
+    Route::get('admin/web-preferences/client-experience', 'index')->name('admin.web_preferences.client-experience');
+    Route::post('admin/web-preferences/client-experience', 'store');
+    Route::post('admin/web-preferences/client-experience/lists', 'lists');
+    Route::get('admin/web-preferences/client-experience/create', 'create')->name('admin.web_preferences.client-experience');
+    Route::get('admin/web-preferences/client-experience/{id}', 'edit')->name('admin.web_preferences.client-experience');
+    Route::put('admin/web-preferences/client-experience/{id}', 'update');
+    Route::delete('admin/web-preferences/client-experience/{id}', 'destroy');
 });
 
 // Start Produk

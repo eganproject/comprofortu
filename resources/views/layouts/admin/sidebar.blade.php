@@ -38,6 +38,11 @@
                     <i data-lucide="tv" class="w-5 h-5"></i>
                     <span>Hero</span>
                 </a>
+                <a href="/admin/web-preferences/client-experience"
+                    class="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg transition-colors text-xs {{ Route::is('admin.web_preferences.client-experience') ? 'bg-slate-200/60 text-slate-900 font-semibold' : 'text-slate-500 hover:text-slate-800' }}">
+                    <i data-lucide="flame" class="w-5 h-5"></i>
+                    <span>Client Expreience</span>
+                </a>
                 <a href="/admin/web-preferences/about"
                     class="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg transition-colors text-xs {{ Route::is('admin.web_preferences.about') ? 'bg-slate-200/60 text-slate-900 font-semibold' : 'text-slate-500 hover:text-slate-800' }}">
                     <i data-lucide="info" class="w-5 h-5"></i>
@@ -47,6 +52,11 @@
                     class="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg transition-colors text-xs text-slate-500 hover:text-slate-800">
                     <i data-lucide="hand-platter" class="w-5 h-5"></i>
                     <span>Service</span>
+                </a>
+                <a href="/admin/web-preferences/footer"
+                    class="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg transition-colors text-xs {{ Route::is('admin.web_preferences.blog') ? 'bg-slate-200/60 text-slate-900 font-semibold' : 'text-slate-500 hover:text-slate-800' }}">
+                    <i data-lucide="ruler-dimension-line" class="w-5 h-5"></i>
+                    <span>Footer</span>
                 </a>
                 <a href="/admin/web-preferences/blog"
                     class="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg transition-colors text-xs {{ Route::is('admin.web_preferences.blog') ? 'bg-slate-200/60 text-slate-900 font-semibold' : 'text-slate-500 hover:text-slate-800' }}">
