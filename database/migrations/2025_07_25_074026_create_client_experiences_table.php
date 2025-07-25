@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('client_experiences', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->string('logo')->nullable();
+            $table->string('image')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

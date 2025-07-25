@@ -23,10 +23,10 @@
 @section('content')
 
     <section class="h-[60vh] md:h-[90vh] bg-gray-200">
-        <img src="{{ asset('storage/' . $hero->image_1) }}" alt="Main Hero" class="w-full h-full object-cover">
+        <img src="{{ asset('storage/' . $hero?->image_1) }}" alt="Main Hero" class="w-full h-full object-cover">
     </section>
 
-    <section class="py-16 lg:py-24">
+    <section class="py-16 lg:py-24 px-4">
         <div class="container mx-auto px-4">
             <div class="flex items-center mb-8">
                 <div class="flex items-center mr-3">
@@ -91,7 +91,7 @@
         </div>
     </section>
 
-    <section class="bg-gray-700 text-white py-16">
+    <section class="bg-gray-700 text-white py-16 px-4">
         <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="md:w-1/2 flex items-start gap-4">
                 <div class="bg-white p-2 rounded-md">
@@ -122,7 +122,7 @@
         </div>
     </section>
 
-    <section class="py-20">
+    <section class="py-20 px-4">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
                 <div class="bg-gradient-to-t from-gray-300 to-white p-6 rounded-lg shadow-lg">
@@ -154,7 +154,7 @@
         </div>
     </section>
 
-    <section class="py-16 lg:py-24 bg-gray-50">
+    <section class="py-16 lg:py-24 bg-gray-50 px-4">
         <div class="container mx-auto px-4">
             <div class="flex items-center mb-8">
                 <div class="flex items-center mr-3">
@@ -255,7 +255,7 @@
         </div>
     </section>
 
-    <section class="py-16 lg:py-24">
+    <section class="py-16 lg:py-24 px-4">
         <div class="container mx-auto px-4">
             <div class="flex items-center mb-8">
                 <div class="flex items-center mr-3">

@@ -7,6 +7,7 @@ use App\Models\UserActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ClientExperienceController extends Controller
 {
@@ -18,15 +19,15 @@ class ClientExperienceController extends Controller
 
     public function lists(Request $request)
     {
-        $query = ClientExperience::select('kategori_produks.*');
-
+        $query = ClientExperience::select('client_experiences.*');
 
         // --- PENCARIAN (SEARCHING) ---
         if ($request->filled('search.value')) {
             $searchValue = $request->input('search.value');
 
             $query->where(function ($q) use ($searchValue) {
-                $q->where('nama_kategori', 'like', "%{$searchValue}%");
+                $q->where('title', 'like', "%{$searchValue}%")
+                  ->orWhere('description', 'like', "%{$searchValue}%");
             });
         }
 
@@ -39,8 +40,8 @@ class ClientExperienceController extends Controller
 
             // Mapping nama kolom dari DataTables ke nama kolom database
             $columnMap = [
-                'nama_kategori' => 'nama_kategori',
-                'layout' => 'layout',
+                'title' => 'title',
+                'slug' => 'slug',
             ];
 
             if (isset($columnMap[$orderColumnName])) {
@@ -58,18 +59,19 @@ class ClientExperienceController extends Controller
                 ->take($request->input('length'));
         }
 
-        $kategoris = $query->get();
+        $clientExperiences = $query->get();
 
         // --- FORMATTING DATA ---
         $data = [];
         $no = $request->input('start', 0) + 1;
-        foreach ($kategoris as $kategori) {
+        foreach ($clientExperiences as $clientExperience) {
             $data[] = [
                 'no' => $no++,
-                'nama_kategori' => $kategori->nama_kategori,
-                'deskripsi' => $kategori->deskripsi,
-                'layout' => $kategori->layout . " Layout",
-                'aksi' => $kategori->id
+                'title' => $clientExperience->title,
+                'description' => $clientExperience->description,
+                'logo' => $clientExperience->logo,
+                'image' => $clientExperience->image,
+                'aksi' => $clientExperience->id
             ];
         }
 
@@ -79,5 +81,154 @@ class ClientExperienceController extends Controller
             'recordsFiltered' => $filteredRecords,
             'data' => $data,
         ]);
+    }
+
+    public function create()
+    {
+        return view('admin.web_preferences.clientexperience.create');
+    }
+
+    public function store(Request $request)
+    {
+
+        DB::beginTransaction();
+        $uploadedLogoPath = null;
+        $uploadedImagePath = null;
+        try {
+            $data = $request->only(['title', 'description']);
+
+            // Handle Logo
+            if ($request->hasFile('logo')) {
+                $logo = $request->file('logo');
+                $logoName = Str::slug($request->title) . '-1-' . time() . '.' . $logo->getClientOriginalExtension();
+                // Simpan file dan catat path-nya untuk kemungkinan rollback
+                $uploadedLogoPath = $logo->storeAs('clientexperience', $logoName, 'public');
+                $data['logo'] = 'clientexperience/' . $logoName;
+            }
+
+            // Handle Image 2 upload
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $imageName = Str::slug($request->modul) . '-2-' . time() . '.' . $image->getClientOriginalExtension();
+                // Simpan file dan catat path-nya untuk kemungkinan rollback
+                $uploadedImagePath = $image->storeAs('clientexperience', $imageName, 'public');
+                $data['image'] = 'clientexperience/' . $imageName;
+            }
+
+            // Membuat record di database
+            ClientExperience::create($data);
+            UserActivity::create([
+                'user_id' => auth()->user()->id,
+                'modul' => 'Client Experience',
+                'aksi' => 'Tambah',
+                'deskripsi' => 'Menambah Client Experience : ' . $request->title,
+                'ip_address' => request()->ip()
+            ]);
+            DB::commit();
+            return redirect('admin/web-preferences/client-experience')->with('success', 'Data berhasil disimpan.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            if ($uploadedLogoPath) {
+                Storage::disk('public')->delete($uploadedLogoPath);
+            }
+            if ($uploadedImagePath) {
+                Storage::disk('public')->delete($uploadedImagePath);
+            }
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
+public function edit($id)
+    {
+        $clientExperience = ClientExperience::findOrFail($id);
+        return view('admin.web_preferences.clientexperience.edit', compact('clientExperience'));
+    }
+
+     public function update(Request $request, $id)
+    {
+        DB::beginTransaction();
+        $uploadedLogoPath = null;
+        $uploadedImagePath = null;
+        try {
+            $clientExperience = ClientExperience::findOrFail($id);
+            $data = $request->only(['title', 'description']);
+
+            // Handle Logo
+            if ($request->hasFile('logo')) {
+                $logo = $request->file('logo');
+                $logoName = Str::slug($request->title) . '-1-' . time() . '.' . $logo->getClientOriginalExtension();
+                // Simpan file dan catat path-nya untuk kemungkinan rollback
+                $uploadedLogoPath = $logo->storeAs('clientexperience', $logoName, 'public');
+                $data['logo'] = 'clientexperience/' . $logoName;
+                // Delete old logo if exists
+                if ($clientExperience->logo) {
+                    Storage::disk('public')->delete($clientExperience->logo);
+                }
+            }
+
+            // Handle Image upload
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $imageName = Str::slug($request->title) . '-2-' . time() . '.' . $image->getClientOriginalExtension();
+                // Simpan file dan catat path-nya untuk kemungkinan rollback
+                $uploadedImagePath = $image->storeAs('clientexperience', $imageName, 'public');
+                $data['image'] = 'clientexperience/' . $imageName;
+                // Delete old image if exists
+                if ($clientExperience->image) {
+                    Storage::disk('public')->delete($clientExperience->image);
+                }
+            }
+
+            // Update record in database
+            $clientExperience->update($data);
+            UserActivity::create([
+                'user_id' => auth()->user()->id,
+                'modul' => 'Client Experience',
+                'aksi' => 'Ubah',
+                'deskripsi' => 'Mengubah Client Experience : ' . $request->title,
+                'ip_address' => request()->ip()
+            ]);
+            DB::commit();
+            return redirect('admin/web-preferences/client-experience')->with('success', 'Data berhasil diubah.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            if ($uploadedLogoPath) {
+                Storage::disk('public')->delete($uploadedLogoPath);
+            }
+            if ($uploadedImagePath) {
+                Storage::disk('public')->delete($uploadedImagePath);
+            }
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
+
+    public function destroy($id)
+    {
+        DB::beginTransaction();
+        try {
+            $clientExperience = ClientExperience::findOrFail($id);
+            // Delete logo and image if they exist
+            if ($clientExperience->logo) {
+                Storage::disk('public')->delete($clientExperience->logo);
+            }
+            if ($clientExperience->image) {
+                Storage::disk('public')->delete($clientExperience->image);
+            }
+            $clientExperience->delete();
+
+            UserActivity::create([
+                'user_id' => auth()->user()->id,
+                'modul' => 'Client Experience',
+                'aksi' => 'Hapus',
+                'deskripsi' => 'Menghapus Client Experience : ' . $clientExperience->title,
+                'ip_address' => request()->ip()
+            ]);
+            DB::commit();
+            return redirect('admin/web-preferences/client-experience')->with('success', 'Data berhasil dihapus.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
     }
 }

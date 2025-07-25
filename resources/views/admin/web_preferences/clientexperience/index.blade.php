@@ -65,7 +65,7 @@
                 "processing": true, // Menampilkan indikator "processing"
                 "serverSide": true, // Mengaktifkan mode server-side
                 "ajax": {
-                    "url": "/admin/web-preferences/kategori/lists", // URL endpoint API Anda untuk mengambil data
+                    "url": "/admin/web-preferences/client-experience/lists", // URL endpoint API Anda untuk mengambil data
                     "type": "POST", // atau 'GET', sesuaikan dengan backend Anda
                     "data": function(d) {
                         d._token = '{{ csrf_token() }}';
@@ -85,15 +85,25 @@
                         "className": "px-6 py-4 font-medium text-slate-900"
                     }, // Kolom nomor
                     {
-                        "data": "nama_kategori",
+                        "data": "title",
                         "className": "px-6 py-4 font-medium text-slate-900"
                     },
                     {
-                        "data": "deskripsi",
+                        "data": "description",
                         "className": "px-6 py-4 font-medium text-slate-900"
                     },
                     {
-                        "data": "layout",
+                        "data": "logo",
+                        "render": function(data) {
+                            return `<img src="/storage/${data}" alt="logo" class="h-10 w-16 object-cover rounded">`;
+                        },
+                        "className": "px-6 py-4 font-medium text-slate-900"
+                    },
+                    {
+                        "data": "image",
+                        "render": function(data) {
+                            return `<img src="/storage/${data}" alt="image" class="h-10 w-16 object-cover rounded">`;
+                        },
                         "className": "px-6 py-4 font-medium text-slate-900"
                     },
                     {
@@ -103,17 +113,17 @@
                         "render": function(data) {
                             return `
                                 <div class="flex justify-center items-center gap-4">
-                                    <a href="/admin/web-preferences/kategori/${data}" 
+                                    <a href="/admin/web-preferences/client-experience/${data}" 
                                         class="font-medium text-blue-600 hover:text-blue-800 transition-colors" title="Edit">
                                         <i data-lucide="edit" class="w-5 h-5"></i>
                                     </a>
                                     <button type="button"
-                                        @click.prevent="deleteFormAction = '/admin/web-preferences/kategori/${data}'; showDeleteModal = true"
+                                        @click.prevent="deleteFormAction = '/admin/web-preferences/client-experience/${data}'; showDeleteModal = true"
                                         class="font-medium text-red-500 hover:text-red-700 transition-colors" title="Hapus">
                                         <i data-lucide="trash-2" class="w-5 h-5"></i>
                                     </button>
                                     <form id="delete-form-${data}"
-                                        action="/admin/web-preferences/kategori/${data}" method="POST" class="hidden">
+                                        action="/admin/web-preferences/client-experience/${data}" method="POST" class="hidden">
                                         @csrf
                                         @method('DELETE')
                                     </form>
