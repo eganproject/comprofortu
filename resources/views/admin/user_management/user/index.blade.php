@@ -1,6 +1,6 @@
 @extends('layouts.admin.main') {{-- Pastikan ini menunjuk ke layout utama yang benar --}}
 
-@section('title', 'Manajemen Hero Image - AdminPanel')
+@section('title', 'Manajemen Produk - AdminPanel')
 @push('cssOnPage')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @endpush
@@ -13,16 +13,12 @@
         deleteFormAction: ''
     }" x-init="setTimeout(() => showSuccessModal = false, 5000)">
 
-
-
-
         {{-- Main Content Table --}}
-
         <div
             class="bg-white/70 backdrop-blur-lg rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.1)] overflow-hidden min-h-[500px]">
             <div class="flex justify-between items-center p-6">
-                <h2 class="text-2xl font-bold text-slate-800">Manajemen Blog</h2>
-                <a href="/admin/web-preferences/blog/create"
+                <h2 class="text-2xl font-bold text-slate-800">Manajemen Pengguna</h2>
+                <a href="/admin/web-preferences/produk/create"
                     class="bg-black hover:bg-gray-800 hover:border hover:border-white text-white hover:text-gray-100 font-bold py-2 px-4 rounded-lg transition-all duration-300 flex items-center gap-2 shadow-md">
                     <i data-lucide="plus" class="w-5 h-5"></i>
                     <span>Tambah Baru</span>
@@ -31,20 +27,15 @@
             <div class="p-4 flex justify-between items-center">
                 <input type="text" id="customSearch" placeholder="Cari..."
                     class="border border-slate-300 rounded-lg p-2 text-sm">
-                <input type="text" placeholder="Cari Tanggal" id="tanggal"
-                    class="border border-slate-300 rounded-lg p-2 text-sm">
             </div>
             <div class="overflow-x-auto">
-                <table class="w-full text-sm text-left" id="blogTable">
+                <table class="w-full text-sm text-left" id="indexTable">
                     <thead class="text-xs text-slate-700 uppercase bg-slate-50/50">
                         <tr>
                             <th scope="col" class="px-6 py-3">No</th>
-                            <th scope="col" class="px-6 py-3">Tanggal</th>
-                            <th scope="col" class="px-6 py-3">Judul</th>
-                            <th scope="col" class="px-6 py-3">Gambar</th>
-                            <th scope="col" class="px-6 py-3">Artikel</th>
-                            <th scope="col" class="px-6 py-3">Penulis</th>
-                            <th scope="col" class="px-6 py-3">Status</th>
+                            <th scope="col" class="px-6 py-3">Nama Produk</th>
+                            <th scope="col" class="px-6 py-3">Kategori</th>
+                            <th scope="col" class="px-6 py-3">Deskripsi</th>
                             <th scope="col" class="px-6 py-3 text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -54,7 +45,7 @@
             </div>
         </div>
 
-        @include('admin.modalNotif')
+       @include('admin.modalNotif')
 
     </div>
 @endsection
@@ -65,19 +56,14 @@
 
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
     <script>
-        flatpickr("#tanggal", {
-            dateFormat: "Y-m-d", // Format untuk database (YYYY-MM-DD)
-        })
-
-
         $(document).ready(function() {
             // Inisialisasi DataTable
-            var table = $('#blogTable').DataTable({
+            var table = $('#indexTable').DataTable({
                 // AKTIFKAN SERVER-SIDE
                 "processing": true, // Menampilkan indikator "processing"
                 "serverSide": true, // Mengaktifkan mode server-side
                 "ajax": {
-                    "url": "/admin/web-preferences/blog/lists", // URL endpoint API Anda untuk mengambil data
+                    "url": "/admin/web-preferences/produk/lists", // URL endpoint API Anda untuk mengambil data
                     "type": "POST", // atau 'GET', sesuaikan dengan backend Anda
                     "data": function(d) {
                         d._token = '{{ csrf_token() }}';
@@ -97,33 +83,18 @@
                         "className": "px-6 py-4 font-medium text-slate-900"
                     }, // Kolom nomor
                     {
-                        "data": "tanggal",
+                        "data": "nama_produk",
                         "className": "px-6 py-4 font-medium text-slate-900"
                     },
                     {
-                        "data": "judul",
+                        "data": "kategori",
                         "className": "px-6 py-4 font-medium text-slate-900"
                     },
                     {
-                        "data": "gambar",
-                        "render": function(data) {
-                            return `<img src="${data}" alt="gambar" class="h-10 w-16 object-cover rounded">`;
-                        },
-                        "className": "px-6 py-4 font-medium text-slate-900"
-                    },
-                    {
-                        "data": "artikel",
+                        "data": "deskripsi",
                         "render": function(data) {
                             return data.substring(0, 50) + '...'; // Pangkas artikel
                         },
-                        "className": "px-6 py-4 font-medium text-slate-900"
-                    },
-                    {
-                        "data": "penulis",
-                        "className": "px-6 py-4 font-medium text-slate-900"
-                    },
-                    {
-                        "data": "status",
                         "className": "px-6 py-4 font-medium text-slate-900"
                     },
                     {
@@ -133,17 +104,17 @@
                         "render": function(data) {
                             return `
                                 <div class="flex justify-center items-center gap-4">
-                                    <a href="/admin/web-preferences/blog/${data}" 
+                                    <a href="/admin/web-preferences/kategori/${data}" 
                                         class="font-medium text-blue-600 hover:text-blue-800 transition-colors" title="Edit">
                                         <i data-lucide="edit" class="w-5 h-5"></i>
                                     </a>
                                     <button type="button"
-                                        @click.prevent="deleteFormAction = '/admin/web-preferences/blog/${data}'; showDeleteModal = true"
+                                        @click.prevent="deleteFormAction = '/admin/web-preferences/kategori/${data}'; showDeleteModal = true"
                                         class="font-medium text-red-500 hover:text-red-700 transition-colors" title="Hapus">
                                         <i data-lucide="trash-2" class="w-5 h-5"></i>
                                     </button>
                                     <form id="delete-form-${data}"
-                                        action="/admin/web-preferences/blog/${data}" method="POST" class="hidden">
+                                        action="/admin/web-preferences/kategori/${data}" method="POST" class="hidden">
                                         @csrf
                                         @method('DELETE')
                                     </form>
@@ -207,9 +178,7 @@
                 table.search(this.value).draw();
             });
 
-            $('#tanggal').on('change', function() {
-                table.search(this.value).draw();
-            });
+
         });
     </script>
 @endpush

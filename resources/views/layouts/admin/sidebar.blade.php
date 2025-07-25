@@ -1,6 +1,6 @@
-<aside id="sidebar" 
-       class="w-64 bg-white/80 backdrop-blur-lg shadow-xl fixed inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition-all duration-300 ease-in-out z-30 overflow-hidden"
-       :class="desktopSidebarOpen ? 'md:w-64' : 'md:w-0'">
+<aside id="sidebar"
+    class="w-64 bg-white/80 backdrop-blur-lg shadow-xl fixed inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition-all duration-300 ease-in-out z-30 overflow-hidden"
+    :class="desktopSidebarOpen ? 'md:w-64' : 'md:w-0'">
     <div class="flex items-center justify-between p-6 border-b border-slate-200/80 h-20">
         <div class="flex items-center">
             <i data-lucide="gem" class="w-8 h-8 text-blue-600"></i>
@@ -13,7 +13,7 @@
 
     {{-- Navigasi baru disesuaikan di sini --}}
     <nav class="flex-1 mt-4 px-4 space-y-1">
-        
+
         {{-- Dashboard --}}
         <a href="/admin"
             class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm {{ Route::is('admin.dashboard') ? 'bg-slate-200/60 text-slate-900 font-semibold' : 'text-slate-600 hover:bg-slate-200/60' }}">
@@ -67,12 +67,29 @@
         </div>
 
         {{-- User Management --}}
-        <a href="#"
-            class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm text-slate-600 hover:bg-slate-200/60">
-            <i data-lucide="users" class="w-5 h-5"></i>
-            <span>User Management</span>
-        </a>
-        
+        <div x-data="{ isOpen: false }" class="space-y-1">
+            <button @click="isOpen = !isOpen" type="button" x-init="isOpen = {{ Route::is('admin.user-management.*') ? 'true' : 'false' }}"
+                class="w-full flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm text-slate-600 hover:bg-slate-200/60">
+                <div class="flex items-center gap-3">
+                    <i data-lucide="shield-user" class="w-5 h-5"></i>
+                    <span>User Management</span>
+                </div>
+                <i data-lucide="chevron-down" class="w-4 h-4 transition-transform"
+                    :class="{ 'rotate-180': isOpen }"></i>
+            </button>
+            <div x-show="isOpen" x-transition class="pl-7 space-y-1">
+                <a href="/admin/user-management/role"
+                    class="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg transition-colors text-xs {{ Route::is('admin.user-management.role') ? 'bg-slate-200/60 text-slate-900 font-semibold' : 'text-slate-500 hover:text-slate-800' }}">
+                    <i data-lucide="user-pen" class="w-5 h-5"></i>
+                    <span>Role</span>
+                </a>
+                <a href="/admin/user-management/users"
+                    class="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg transition-colors text-xs {{ Route::is('admin.user-management.users') ? 'bg-slate-200/60 text-slate-900 font-semibold' : 'text-slate-500 hover:text-slate-800' }}">
+                    <i data-lucide="users" class="w-5 h-5"></i>
+                    <span>Users</span>
+                </a>
+            </div>
+        </div>
         {{-- Analytic --}}
         <a href="#"
             class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm text-slate-600 hover:bg-slate-200/60">

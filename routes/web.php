@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserManagement\RoleController;
 use App\Http\Controllers\Admin\WebPreferences\AboutUsController;
 use App\Http\Controllers\Admin\WebPreferences\BlogArticleController;
 use App\Http\Controllers\Admin\WebPreferences\HeroImagesController;
 use App\Http\Controllers\Admin\WebPreferences\KategoriProdukController;
 use App\Http\Controllers\Admin\WebPreferences\ProdukController;
+use App\Http\Controllers\Admin\UserManagement\UserManagementController;
 use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -91,4 +93,27 @@ Route::middleware('auth')->controller(ProdukController::class)->group(function (
     Route::delete('admin/web-preferences/produk/{id}', 'destroy');
 });
 
+
+
+
+// Start Users
+Route::middleware('auth')->controller(UserManagementController::class)->group(function () {
+    Route::get('admin/user-management/users', 'index')->name('admin.user-management.users');
+    Route::post('admin/user-management/users', 'store');
+    Route::post('admin/user-management/users/lists', 'lists');
+    Route::get('admin/user-management/users/create', 'create')->name('admin.user-management.users');
+    Route::get('admin/user-management/users/{id}', 'edit')->name('admin.user-management.users');
+    Route::put('admin/user-management/users/{id}', 'update');
+    Route::delete('admin/user-management/users/{id}', 'destroy');
+});
+
+// Start Role
+Route::middleware('auth')->controller(RoleController::class)->group(function () {
+    Route::get('admin/user-management/role', 'index')->name('admin.user-management.role');
+    Route::post('admin/user-management/role', 'store');
+    Route::get('admin/user-management/role/create', 'create')->name('admin.user-management.role');
+    Route::get('admin/user-management/role/{id}', 'edit')->name('admin.user-management.role');
+    Route::put('admin/user-management/role/{id}', 'update');
+    Route::delete('admin/user-management/role/{id}', 'destroy');
+});
 Auth::routes();
