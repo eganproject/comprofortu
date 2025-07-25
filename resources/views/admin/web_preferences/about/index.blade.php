@@ -42,50 +42,53 @@
         showSuccessModal: {{ session('success') ? 'true' : 'false' }},
         showErrorModal: {{ session('error') ? 'true' : 'false' }},
     }" x-init="setTimeout(() => showSuccessModal = false, 5000)">
-        <h2 class="text-2xl font-bold text-slate-800 mb-6">About Us</h2>
 
-        <div x-data="{ image1Preview: null, image2Preview: null }"
-            class="bg-white/70 backdrop-blur-lg p-6 md:p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.1)]">
-            <form action="/admin/web-preferences/about" method="POST" enctype="multipart/form-data" class="space-y-6"
-                id="article-form">
-                @csrf
+        <div x-data="{ image1Preview: null, image2Preview: null }" class="bg-white/70 backdrop-blur-lg rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.1)]">
 
-                <div>
-                    <label for="text" class="block mb-2 text-sm font-medium text-slate-700">Teks Deskripsi</label>
-                    <input type="hidden" name="text" id="text-input">
-                    <div id="editor-container">
-                        {!! old('text', $aboutUs?->text) !!} {{-- Mengisi editor dengan data lama jika ada --}}
+            <h2 class="p-6 text-2xl font-bold text-slate-800">About Us</h2>
+            <div class="md:px-8">
+
+                <form action="/admin/web-preferences/about" method="POST" enctype="multipart/form-data" class="space-y-6"
+                    id="article-form">
+                    @csrf
+
+                    <div>
+                        <label for="text" class="block mb-2 text-sm font-medium text-slate-700">Teks Deskripsi</label>
+                        <input type="hidden" name="text" id="text-input">
+                        <div id="editor-container">
+                            {!! old('text', $aboutUs?->text) !!} {{-- Mengisi editor dengan data lama jika ada --}}
+                        </div>
+                        @error('text')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
                     </div>
-                    @error('text')
-                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
-                {{-- Menampilkan Informasi pengubah dan terakhir diubah --}}
-                <div class="flex items-center gap-4">
-                    <div class="flex items-center gap-2">
-                        <i data-lucide="user" class="w-5 h-5 text-slate-500"></i>
-                        <span class="text-xs text-slate-500">
-                            {{ $aboutUs?->user->email }}
-                        </span>
+                    {{-- Menampilkan Informasi pengubah dan terakhir diubah --}}
+                    <div class="flex items-center gap-4">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="user" class="w-5 h-5 text-slate-500"></i>
+                            <span class="text-xs text-slate-500">
+                                {{ $aboutUs?->user->email }}
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="clock" class="w-5 h-5 text-slate-500"></i>
+                            <span class="text-xs text-slate-500">
+                                {{ $aboutUs?->updated_at->diffForHumans() }}
+                            </span>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <i data-lucide="clock" class="w-5 h-5 text-slate-500"></i>
-                        <span class="text-xs text-slate-500">
-                            {{ $aboutUs?->updated_at->diffForHumans() }}
-                        </span>
+                    <div class="flex items-center gap-4 pt-4 pb-8">
+                        <button type="submit"
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-lg transition-all duration-300">
+                            Simpan
+                        </button>
+                        <a href="/admin/web-preferences/hero"
+                            class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium py-2 px-5 rounded-lg transition-all duration-300">
+                            Batal
+                        </a>
                     </div>
-                </div>
-                <div class="flex items-center gap-4 pt-4">
-                    <button type="submit"
-                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-lg transition-all duration-300">
-                        Simpan
-                    </button>
-                    <a href="/admin/web-preferences/hero"
-                        class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium py-2 px-5 rounded-lg transition-all duration-300">
-                        Batal
-                    </a>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
         <div x-show="showSuccessModal" x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100"

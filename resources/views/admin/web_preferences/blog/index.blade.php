@@ -12,19 +12,21 @@
         deleteFormAction: ''
     }" x-init="setTimeout(() => showSuccessModal = false, 5000)">
 
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold text-slate-800">Manajemen Blog</h2>
-            <a href="/admin/web-preferences/blog/create"
-                class="bg-black hover:bg-gray-800 hover:border hover:border-white text-white hover:text-gray-100 font-bold py-2 px-4 rounded-lg transition-all duration-300 flex items-center gap-2 shadow-md">
-                <i data-lucide="plus" class="w-5 h-5"></i>
-                <span>Tambah Baru</span>
-            </a>
-        </div>
+
+
 
         {{-- Main Content Table --}}
 
         <div
             class="bg-white/70 backdrop-blur-lg rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.1)] overflow-hidden min-h-[500px]">
+            <div class="flex justify-between items-center p-6">
+                <h2 class="text-2xl font-bold text-slate-800">Manajemen Blog</h2>
+                <a href="/admin/web-preferences/blog/create"
+                    class="bg-black hover:bg-gray-800 hover:border hover:border-white text-white hover:text-gray-100 font-bold py-2 px-4 rounded-lg transition-all duration-300 flex items-center gap-2 shadow-md">
+                    <i data-lucide="plus" class="w-5 h-5"></i>
+                    <span>Tambah Baru</span>
+                </a>
+            </div>
             <div class="p-4 flex justify-between items-center">
                 <input type="text" id="customSearch" placeholder="Cari..."
                     class="border border-slate-300 rounded-lg p-2 text-sm">

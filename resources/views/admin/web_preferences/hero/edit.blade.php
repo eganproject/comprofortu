@@ -70,7 +70,7 @@
                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>
-            <div>
+            <div id="titleContainer">
                 <label for="modul" class="block mb-2 text-sm font-medium text-slate-700">Judul</label>
                 <input
                     class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -80,7 +80,7 @@
                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>
-            <div>
+            <div id="descContainer">
                 <label for="text-input" class="block mb-2 text-sm font-medium text-slate-700">Teks Deskripsi</label>
                 <input type="hidden" name="text" id="text-input">
                 <div id="editor-container">
@@ -109,7 +109,7 @@
                 @enderror
             </div>
 
-            <div>
+            <div id="image2Container">
                 <label for="image_2_edit" class="block mb-2 text-sm font-medium text-slate-700">Ganti Gambar
                     Isometrik</label>
                 <div
@@ -133,7 +133,7 @@
                 @enderror
             </div>
 
-            <div class="flex items-center gap-4 pt-4">
+            <div class="flex items-center gap-4 pt-4 pb-8">
                 <button type="submit"
                     class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-lg transition-all duration-300">
                     Update
@@ -189,6 +189,33 @@
                     textInput.value = '';
                 } else {
                     textInput.value = htmlContent;
+                }
+            });
+
+            const image2Container = document.querySelector('#image2Container');
+            const titleContainer = document.querySelector('#titleContainer');
+            const descContainer = document.querySelector('#descContainer');
+            const modul = document.querySelector('#modul');
+            if (modul.value === 'about' || modul.value === 'service' || modul.value === 'blog') {
+                image2Container.classList.remove('hidden');
+                descContainer.classList.remove('hidden');
+                titleContainer.classList.remove('hidden');
+            } else {
+                image2Container.classList.add('hidden');
+                descContainer.classList.add('hidden');
+                titleContainer.classList.add('hidden');
+            }
+
+
+            modul.addEventListener('change', function() {
+                if (modul.value === 'about' || modul.value === 'service' || modul.value === 'blog') {
+                    image2Container.classList.remove('hidden');
+                    descContainer.classList.remove('hidden');
+                    titleContainer.classList.remove('hidden');
+                } else {
+                    image2Container.classList.add('hidden');
+                    descContainer.classList.add('hidden');
+                    titleContainer.classList.add('hidden');
                 }
             });
         });

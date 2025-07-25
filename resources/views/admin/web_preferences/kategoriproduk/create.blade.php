@@ -38,10 +38,11 @@
 @endpush
 
 @section('content')
-    <h2 class="text-2xl font-bold text-slate-800 mb-6">Tambah Kategori Baru</h2>
 
     <div x-data="{ image1Preview: null, image2Preview: null }"
-        class="bg-white/70 backdrop-blur-lg p-6 md:p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.1)]">
+        class="bg-white/70 backdrop-blur-lg p-6 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.1)]">
+    <h2 class="text-2xl font-bold text-slate-800">Tambah Kategori Baru</h2>
+    <div class="md:p-8">
         <form action="/admin/web-preferences/kategori" method="POST" class="space-y-6" id="category-form">
             @csrf
             <div>
@@ -83,7 +84,7 @@
 
 
 
-            <div class="flex items-center gap-4 pt-4">
+            <div class="flex items-center gap-4 pt-4 pb-8">
                 <button type="submit"
                     class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-lg transition-all duration-300">
                     Simpan
@@ -95,6 +96,7 @@
             </div>
 
         </form>
+    </div>
     </div>
 @endsection
 
