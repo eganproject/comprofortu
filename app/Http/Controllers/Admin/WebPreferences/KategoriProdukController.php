@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\KategoriProduk;
+use App\Models\UserActivity;
 use Illuminate\Support\Facades\DB;
 
 class KategoriProdukController extends Controller
@@ -16,15 +17,15 @@ class KategoriProdukController extends Controller
         return view('admin.web_preferences.kategoriproduk.index');
     }
 
-     public function lists(Request $request)
+    public function lists(Request $request)
     {
         $query = KategoriProduk::select('kategori_produks.*');
 
-       
+
         // --- PENCARIAN (SEARCHING) ---
         if ($request->filled('search.value')) {
             $searchValue = $request->input('search.value');
-            
+
             $query->where(function ($q) use ($searchValue) {
                 $q->where('nama_kategori', 'like', "%{$searchValue}%");
             });
@@ -101,7 +102,13 @@ class KategoriProdukController extends Controller
 
             // Create the category
             KategoriProduk::create($request->all());
-
+            UserActivity::create([
+                'user_id' => auth()->user()->id,
+                'modul' => 'Kategori Produk',
+                'aksi' => 'Tambah',
+                'deskripsi' => 'Menambah Kategori Produk : ' . $request->nama_kategori,
+                'ip_address' => request()->ip()
+            ]);
             DB::commit();
 
             return redirect('/admin/web-preferences/kategori')->with('success', 'Kategori Produk berhasil dibuat.');
@@ -131,7 +138,13 @@ class KategoriProdukController extends Controller
 
             // Update the category
             KategoriProduk::findOrFail($id)->update($request->all());
-
+            UserActivity::create([
+                'user_id' => auth()->user()->id,
+                'modul' => 'Kategori Produk',
+                'aksi' => 'Ubah',
+                'deskripsi' => 'Mengubah Kategori Produk : ' . $request->nama_kategori,
+                'ip_address' => request()->ip()
+            ]);
             DB::commit();
 
             return redirect('/admin/web-preferences/kategori')->with('success', 'Kategori Produk berhasil diperbarui.');
@@ -148,6 +161,13 @@ class KategoriProdukController extends Controller
             DB::beginTransaction();
 
             $kategori = KategoriProduk::findOrFail($id);
+            UserActivity::create([
+                'user_id' => auth()->user()->id,
+                'modul' => 'Kategori Produk',
+                'aksi' => 'Hapus',
+                'deskripsi' => 'Menghapus Kategori Produk : ' . $kategori->nama_kategori,
+                'ip_address' => request()->ip()
+            ]);
             $kategori->delete();
 
             DB::commit();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\WebPreferences;
 
 use App\Http\Controllers\Controller;
 use App\Models\BlogArticle;
+use App\Models\UserActivity;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,11 +22,11 @@ class BlogArticleController extends Controller
     {
         $query = BlogArticle::with('user')->select('blog_articles.*');
 
-       
+
         // --- PENCARIAN (SEARCHING) ---
         if ($request->filled('search.value')) {
             $searchValue = $request->input('search.value');
-            
+
             $query->where(function ($q) use ($searchValue) {
                 $q->where('blog_articles.title', 'like', "%{$searchValue}%")
                     ->orWhere('blog_articles.text', 'like', "%{$searchValue}%")
@@ -127,6 +128,14 @@ class BlogArticleController extends Controller
             }
 
             BlogArticle::create($data);
+
+            UserActivity::create([
+                'user_id' => auth()->user()->id,
+                'modul' => 'Blog',
+                'aksi' => 'Tambah',
+                'deskripsi' => 'Menambah Post Blog : ' . $request->title,
+                'ip_address' => request()->ip()
+            ]);
             DB::commit();
             return redirect('admin/web-preferences/blog')->with('success', 'Data berhasil disimpan.');
         } catch (\Exception $e) {
@@ -145,68 +154,82 @@ class BlogArticleController extends Controller
         return view('admin.web_preferences.blog.edit', compact('blog'));
     }
 
-    public function update(Request $request,$id) {
+    public function update(Request $request, $id)
+    {
         $request->validate([
-        'title' => 'required|string|max:255',
-        'text' => 'required|string',
-        'image' => 'image|mimes:jpeg,png,jpg,webp,svg|max:2048',
-    ]);
+            'title' => 'required|string|max:255',
+            'text' => 'required|string',
+            'image' => 'image|mimes:jpeg,png,jpg,webp,svg|max:2048',
+        ]);
 
-   
-    $post = BlogArticle::findOrFail($id);
 
-    DB::beginTransaction();
-    $uploadedImage1Path = null; 
+        $post = BlogArticle::findOrFail($id);
 
-    try {
-        $data = $request->only(['title', 'text']);
-        // 'tanggal' diupdate untuk mencerminkan waktu modifikasi terakhir
-        $data['tanggal'] = date('Y-m-d H:i:s');
-        // 'uuid_writer' tidak perlu diubah karena penulisnya tetap sama
+        DB::beginTransaction();
+        $uploadedImage1Path = null;
 
-        // 2. Cek apakah ada file gambar baru yang diunggah
-        if ($request->hasFile('image')) {
-            // Hapus gambar lama dari storage jika ada
-            if ($post->image && Storage::disk('public')->exists($post->image)) {
-                Storage::disk('public')->delete($post->image);
+        try {
+            $data = $request->only(['title', 'text']);
+            // 'tanggal' diupdate untuk mencerminkan waktu modifikasi terakhir
+            $data['tanggal'] = date('Y-m-d H:i:s');
+            // 'uuid_writer' tidak perlu diubah karena penulisnya tetap sama
+
+            // 2. Cek apakah ada file gambar baru yang diunggah
+            if ($request->hasFile('image')) {
+                // Hapus gambar lama dari storage jika ada
+                if ($post->image && Storage::disk('public')->exists($post->image)) {
+                    Storage::disk('public')->delete($post->image);
+                }
+
+                // Proses dan simpan gambar baru
+                $image1 = $request->file('image');
+                // Menggunakan Str::slug dari title untuk nama file yang konsisten
+                $image1Name = Str::slug($request->title) . '-' . time() . '.' . $image1->getClientOriginalExtension();
+
+                // Simpan file baru dan catat path-nya untuk kemungkinan rollback
+                $uploadedImage1Path = $image1->storeAs('blog-images', $image1Name, 'public');
+                $data['image'] = $uploadedImage1Path;
             }
 
-            // Proses dan simpan gambar baru
-            $image1 = $request->file('image');
-            // Menggunakan Str::slug dari title untuk nama file yang konsisten
-            $image1Name = Str::slug($request->title) . '-' . time() . '.' . $image1->getClientOriginalExtension();
-            
-            // Simpan file baru dan catat path-nya untuk kemungkinan rollback
-            $uploadedImage1Path = $image1->storeAs('blog-images', $image1Name, 'public');
-            $data['image'] = $uploadedImage1Path;
+            // 3. Update data post di database
+            $post->update($data);
+            UserActivity::create([
+                'user_id' => auth()->user()->id,
+                'modul' => 'Blog',
+                'aksi' => 'Ubah',
+                'deskripsi' => 'Mengubah Post Blog : ' . $request->title,
+                'ip_address' => request()->ip()
+            ]);
+            DB::commit();
+            return redirect('admin/web-preferences/blog')->with('success', 'Data berhasil diperbarui.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            // Jika terjadi error SETELAH gambar baru diunggah, hapus gambar baru tersebut
+            if ($uploadedImage1Path) {
+                Storage::disk('public')->delete($uploadedImage1Path);
+            }
+
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage())->withInput();
         }
-
-        // 3. Update data post di database
-        $post->update($data);
-
-        DB::commit();
-        return redirect('admin/web-preferences/blog')->with('success', 'Data berhasil diperbarui.');
-
-    } catch (\Exception $e) {
-        DB::rollBack();
-
-        // Jika terjadi error SETELAH gambar baru diunggah, hapus gambar baru tersebut
-        if ($uploadedImage1Path) {
-            Storage::disk('public')->delete($uploadedImage1Path);
-        }
-
-        return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage())->withInput();
     }
 
-    }
-
-    public function destroy($id) {
-       $blog = BlogArticle::find($id);
+    public function destroy($id)
+    {
+        $blog = BlogArticle::find($id);
         DB::beginTransaction();
         try {
             $path1 = $blog->image;
 
             // Hapus record dari database terlebih dahulu
+            UserActivity::create([
+                'user_id' => auth()->user()->id,
+                'modul' => 'Blog',
+                'aksi' => 'Hapus',
+                'deskripsi' => 'Menghapus Post Blog : ' . $blog->title,
+                'ip_address' => request()->ip()
+            ]);
+
             $blog->delete();
 
             // Hapus file dari storage setelah record DB berhasil dihapus

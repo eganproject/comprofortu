@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\WebPreferences;
 
 use App\Http\Controllers\Controller;
 use App\Models\HeroImages;
+use App\Models\UserActivity;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -72,6 +73,14 @@ class HeroImagesController extends Controller
             // Membuat record di database
             HeroImages::create($data); // Menggunakan model HeroImage
 
+            UserActivity::create([
+                'user_id' => auth()->user()->id,
+                'modul' => 'Hero Image',
+                'aksi' => 'Tambah',
+                'deskripsi' => 'Menambahkan Hero Image: ' . $request->modul,
+                'ip_address' => request()->ip()
+            ]);
+
             // Jika semua berhasil, commit transaksi
             DB::commit();
 
@@ -79,7 +88,6 @@ class HeroImagesController extends Controller
         } catch (\Exception $e) {
             // Jika terjadi error, batalkan semua perubahan
             DB::rollBack();
-
             // Hapus file yang sudah terlanjur di-upload untuk mencegah file sampah
             if ($uploadedImage1Path) {
                 Storage::disk('public')->delete($uploadedImage1Path);
@@ -92,7 +100,7 @@ class HeroImagesController extends Controller
             Log::error('Gagal menyimpan Hero Image: ' . $e->getMessage());
 
             // Redirect kembali ke form dengan pesan error
-            return redirect()->back()->withInput()->with('error', 'Terjadi kesalahan. Gagal menambahkan Hero Image.');
+            return redirect('admin/web-preferences/hero')->withInput()->with('error', 'Terjadi kesalahan. Gagal menambahkan Hero Image.');
         }
     }
 
@@ -128,32 +136,62 @@ class HeroImagesController extends Controller
             'image_1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'image_2' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
+        DB::beginTransaction();
+        $uploadedImage1Path = null;
+        $uploadedImage2Path = null;
 
-        $data = $request->only(['title','modul', 'text']);
+        try {
+            $data = $request->only(['title', 'modul', 'text']);
 
-        if ($request->hasFile('image_1')) {
-            if ($heroImage->image_1) {
-                Storage::disk('public')->delete($heroImage->image_1);
+            if ($request->hasFile('image_1')) {
+                if ($heroImage->image_1) {
+                    Storage::disk('public')->delete($heroImage->image_1);
+                }
+                $image1 = $request->file('image_1');
+                $image1Name = Str::slug($request->modul) . '-1-' . time() . '.' . $image1->getClientOriginalExtension();
+                $uploadedImage1Path =  $image1->storeAs('hero-images', $image1Name, 'public');
+                $data['image_1'] = 'hero-images/' . $image1Name;
             }
-            $image1 = $request->file('image_1');
-            $image1Name = Str::slug($request->modul) . '-1-' . time() . '.' . $image1->getClientOriginalExtension();
-            $image1->storeAs('hero-images', $image1Name, 'public');
-            $data['image_1'] = 'hero-images/' . $image1Name;
-        }
 
-        if ($request->hasFile('image_2')) {
-            if ($heroImage->image_2) {
-                Storage::disk('public')->delete($heroImage->image_2);
+            if ($request->hasFile('image_2')) {
+                if ($heroImage->image_2) {
+                    Storage::disk('public')->delete($heroImage->image_2);
+                }
+                $image2 = $request->file('image_2');
+                $image2Name = Str::slug($request->modul) . '-2-' . time() . '.' . $image2->getClientOriginalExtension();
+                $uploadedImage2Path = $image2->storeAs('hero-images', $image2Name, 'public');
+                $data['image_2'] = 'hero-images/' . $image2Name;
             }
-            $image2 = $request->file('image_2');
-            $image2Name = Str::slug($request->modul) . '-2-' . time() . '.' . $image2->getClientOriginalExtension();
-            $image2->storeAs('hero-images', $image2Name, 'public');
-            $data['image_2'] = 'hero-images/' . $image2Name;
+
+            $heroImage->update($data);
+            UserActivity::create([
+                'user_id' => auth()->user()->id,
+                'modul' => 'Hero Image',
+                'aksi' => 'Ubah',
+                'deskripsi' => 'Mengubah Hero Image: ' . $request->modul,
+                'ip_address' => request()->ip()
+            ]);
+
+            // Jika semua berhasil, commit transaksi
+            DB::commit();
+            return redirect('/admin/web-preferences/hero')->with('success', 'Hero Image berhasil diperbarui.');
+        } catch (\Exception $e) {
+            // Jika terjadi error, batalkan semua perubahan
+            DB::rollBack();
+            // Hapus file yang sudah terlanjur di-upload untuk mencegah file sampah
+            if ($uploadedImage1Path) {
+                Storage::disk('public')->delete($uploadedImage1Path);
+            }
+            if ($uploadedImage2Path) {
+                Storage::disk('public')->delete($uploadedImage2Path);
+            }
+
+            // Catat error untuk debugging
+            Log::error('Gagal menyimpan Hero Image: ' . $e->getMessage());
+
+            // Redirect kembali ke form dengan pesan error
+            return redirect('admin/web-preferences/hero')->withInput()->with('error', 'Terjadi kesalahan. Gagal menambahkan Hero Image.');
         }
-
-        $heroImage->update($data);
-
-        return redirect('/admin/web-preferences/hero')->with('success', 'Hero Image berhasil diperbarui.');
     }
 
     /**
@@ -169,6 +207,13 @@ class HeroImagesController extends Controller
             $path2 = $heroImage->image_2;
 
             // Hapus record dari database terlebih dahulu
+            UserActivity::create([
+                'user_id' => auth()->user()->id,
+                'modul' => 'Hero Image',
+                'aksi' => 'Hapus',
+                'deskripsi' => 'Hapus Hero Image: ' . $heroImage->modul,
+                'ip_address' => request()->ip()
+            ]);
             $heroImage->delete();
 
             // Hapus file dari storage setelah record DB berhasil dihapus

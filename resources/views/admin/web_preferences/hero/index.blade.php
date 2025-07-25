@@ -7,6 +7,7 @@
     <div x-data="{
         showSuccessModal: {{ session('success') ? 'true' : 'false' }},
         showDeleteModal: false,
+         showErrorModal: {{ session('error') ? 'true' : 'false' }},
         deleteFormAction: ''
     }" x-init="setTimeout(() => showSuccessModal = false, 5000)">
 
@@ -134,6 +135,26 @@
                         Batal
                     </button>
                 </div>
+            </div>
+        </div>
+
+         <div x-show="showErrorModal" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100"
+            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100"
+            x-transition:leave-end="opacity-0 transform scale-95"
+            class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
+            style="display: none;">
+            <div @click.away="showErrorModal = false"
+                class="bg-white rounded-xl shadow-xl w-full max-w-md mx-4 p-6 text-center">
+                <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-4">
+                    <i data-lucide="alert-triangle" class="w-8 h-8 text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-800 mb-2">Gagal!</h3>
+                <p class="text-slate-600">{{ session('error') }}</p>
+                <button @click="showErrorModal = false"
+                    class="mt-6 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 w-full">
+                    Tutup
+                </button>
             </div>
         </div>
 

@@ -5,7 +5,7 @@
             <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
         <div>
-            <h1 class="text-xl font-bold text-slate-800">Selamat Datang, Admin!</h1>
+            <h1 class="text-xl font-bold text-slate-800">Selamat Datang, {{ auth()->user()->name}}!</h1>
             <nav class="text-xs text-slate-500 mt-1" aria-label="Breadcrumb">
                 <ol class="list-none p-0 inline-flex">
                     <li class="flex items-center">
@@ -27,10 +27,10 @@
 
         <div x-data="{ open: false }" @click.away="open = false" class="relative">
             <button @click="open = !open" class="flex items-center space-x-3 p-1 rounded-full hover:bg-slate-100">
-                <img src="https://placehold.co/40x40/E2E8F0/475569?text=A" alt="Avatar Pengguna"
+                <img src="https://placehold.co/40x40/E2E8F0/475569?text={{ substr(auth()->user()->name, 0, 1) }}" alt="Avatar Pengguna"
                     class="w-10 h-10 rounded-full">
                 <div class="hidden md:block text-left">
-                    <div class="font-semibold text-slate-800 text-sm">Budi Santoso</div>
+                    <div class="font-semibold text-slate-800 text-sm"> {{ auth()->user()->name}}</div>
                     <div class="text-xs text-slate-500">Super Admin</div>
                 </div>
                 <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 hidden md:block"></i>

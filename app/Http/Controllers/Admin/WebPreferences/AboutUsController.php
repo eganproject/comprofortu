@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\WebPreferences;
 
 use App\Http\Controllers\Controller;
 use App\Models\AboutUs;
+use App\Models\UserActivity;
 use Illuminate\Http\Request;
 
 class AboutUsController extends Controller
@@ -27,8 +28,22 @@ class AboutUsController extends Controller
 
             if ($aboutUs) {
                 // Update the existing record
+                UserActivity::create([
+                    'user_id' => auth()->user()->id,
+                    'modul' => 'About Us',
+                    'aksi' => 'Ubah',
+                    'deskripsi' => 'Ubah About Us: ' . $request->text,
+                    'ip_address' => request()->ip()
+                ]);
                 $aboutUs->update($data);
             } else {
+                UserActivity::create([
+                    'user_id' => auth()->user()->id,
+                    'modul' => 'About Us',
+                    'aksi' => 'Tambah',
+                    'deskripsi' => 'Tambah About Us: ' . $request->text,
+                    'ip_address' => request()->ip()
+                ]);
                 // Create a new record if not found
                 AboutUs::create($data);
             }
