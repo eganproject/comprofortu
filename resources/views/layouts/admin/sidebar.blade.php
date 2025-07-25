@@ -4,7 +4,7 @@
     <div class="flex items-center justify-between p-6 border-b border-slate-200/80 h-20">
         <div class="flex items-center">
             <i data-lucide="gem" class="w-8 h-8 text-blue-600"></i>
-            <span class="ml-3 text-xl font-bold text-slate-800">Zenith</span>
+            <span class="ml-3 text-xl font-bold text-slate-800">FORTU</span>
         </div>
         <button @click="desktopSidebarOpen = false" class="hidden md:block text-slate-500 hover:text-slate-800">
             <i data-lucide="panel-left-close"></i>
