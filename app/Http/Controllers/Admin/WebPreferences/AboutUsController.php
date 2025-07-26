@@ -32,7 +32,7 @@ class AboutUsController extends Controller
                     'user_id' => auth()->user()->id,
                     'modul' => 'About Us',
                     'aksi' => 'Ubah',
-                    'deskripsi' => 'Ubah About Us: ' . $request->text,
+                    'deskripsi' => 'Ubah About Us: ',
                     'ip_address' => request()->ip()
                 ]);
                 $aboutUs->update($data);
@@ -41,7 +41,7 @@ class AboutUsController extends Controller
                     'user_id' => auth()->user()->id,
                     'modul' => 'About Us',
                     'aksi' => 'Tambah',
-                    'deskripsi' => 'Tambah About Us: ' . $request->text,
+                    'deskripsi' => 'Tambah About Us: ',
                     'ip_address' => request()->ip()
                 ]);
                 // Create a new record if not found

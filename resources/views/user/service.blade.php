@@ -6,136 +6,55 @@
             <!-- Hero Section -->
             <style>
                 .hero-bg {
-                    background-image: url('/image/fortu.png');
+                    background-image: url('{{ $hero ? asset('storage/' . $hero->image_1) : 'https://placehold.co/1200x600/C7C7C7/080808?text=Hero' }}');
                     background-size: cover;
                     background-position: center;
                 }
             </style>
             <section class="relative hero-bg text-white">
-                <div class="absolute inset-0 bg-purple-800 bg-opacity-80"></div>
+                <div class="absolute inset-0 bg-gray-800 bg-opacity-80"></div>
                 <div class="relative container mx-auto px-4 py-24 lg:py-32 flex flex-col md:flex-row items-center">
                     <div class="md:w-1/2 text-center md:text-left">
-                        <h1 class="text-4xl lg:text-5xl font-bold mb-4">Sistem Manajemen Untuk Berbagai Perangkat</h1>
-                        <p class="text-lg text-purple-200 max-w-lg">
-                            Dashboard sentral untuk perangkat lunak dikelola oleh sistem manajemen konten yang dapat diakses
-                            secara fleksibel kapan pun dan di mana saja melalui koneksi Internet.
+                        <h1 class="text-4xl lg:text-5xl font-bold mb-4">{{ $hero ? $hero->title : '' }}</h1>
+                        <p class="text-lg text-white max-w-lg">
+                            {!! $hero ? $hero->text : '' !!}
                         </p>
                     </div>
                     <div class="md:w-1/2 flex justify-center mt-10 md:mt-0">
-                        <img src="https://placehold.co/450x300/FFFFFF/A78BFA?text=Grafik+Isometric" alt="Isometric Graphic"
-                            class="w-full max-w-md opacity-80">
+                        <img src="{{ $hero ? asset('storage/' . $hero->image_2) : 'https://placehold.co/450x300/C7C7C7/080808?text=Grafik+Isometric' }}"
+                            alt="Isometric Graphic" class="w-full max-w-md opacity-80">
                     </div>
                 </div>
             </section>
 
             <!-- After Sales Service Section -->
             <section class="py-16 lg:py-24">
-                <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
-                    <div class="grid grid-cols-2 gap-6 w-full md:w-1/3">
-                        <div class="bg-purple-700 text-white p-6 rounded-lg text-center">
-                            <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
-                                </path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
-                            <p class="font-semibold">Maintenance</p>
-                        </div>
-                        <div class="bg-purple-700 text-white p-6 rounded-lg text-center">
-                            <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
-                            <p class="font-semibold">Integration</p>
-                        </div>
-                        <div class="bg-purple-700 text-white p-6 rounded-lg text-center">
-                            <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7.014A8.003 8.003 0 0112 3c2.39 0 4.56.942 6.181 2.486C20.5 7.5 21 10 21 12c0 2.02-.387 3.931-1.087 5.657zM12 12a3 3 0 100-6 3 3 0 000 6z">
-                                </path>
-                            </svg>
-                            <p class="font-semibold">IoT Solution</p>
-                        </div>
-                        <div class="bg-purple-700 text-white p-6 rounded-lg text-center">
-                            <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
-                                </path>
-                            </svg>
-                            <p class="font-semibold">Man Power</p>
-                        </div>
-                    </div>
-                    <div class="w-full md:w-2/3">
-                        <p class="text-purple-600 font-semibold">Our Focus</p>
-                        <h2 class="text-3xl font-bold mb-4">After Sales Service</h2>
-                        <p class="text-gray-600 leading-relaxed">
-                            Fokus kami adalah kepuasan pelanggan dengan memberikan layanan purna jual yang cepat, responsif,
-                            dan yang paling penting.
-                        </p>
-                        <p class="text-gray-600 leading-relaxed mt-2">
-                            Dengan layanan purna jual, pengunjung seperti di Customer Service Center, kami siap membantu
-                            Anda dengan solusi untuk mendukung berbagai kebutuhan Anda.
-                        </p>
-                    </div>
-                </div>
-            </section>
+                @foreach ($services as $item)
+                    {{-- Container utama dengan logika pengecekan ganjil/genap --}}
+                    {{-- Kelas 'md:flex-row-reverse' akan ditambahkan hanya pada urutan genap --}}
+                    <div
+                        class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12 py-16 {{ $loop->even ? 'md:flex-row-reverse' : '' }}">
 
-            <!-- Quality Control Section -->
-            <section class="py-16 lg:py-24 bg-white overflow-hidden">
-                <div class="container mx-auto px-4">
-                    <div class="flex flex-col md:flex-row items-center gap-8">
-                        <!-- Left Side: Image with Text Overlay -->
-                        <div class="md:w-1/2 relative text-white rounded-lg overflow-hidden">
-                            <img src="https://placehold.co/600x450/3B0764/FFFFFF?text=Latar+Belakang"
-                                alt="Quality Control Background" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-purple-900 bg-opacity-75 p-8 flex flex-col justify-center">
-                                <h2 class="text-3xl font-bold">Quality Control</h2>
-                                <p class="text-purple-300 font-semibold mb-4">Pemenuhan Persyaratan Kualitas</p>
-                                <div class="space-y-3 text-sm text-purple-200 leading-relaxed">
-                                    <p>
-                                        Fortu berkomitmen untuk memastikan bahwa kualitas produk atau layanan yang
-                                        diberikan telah memenuhi persyaratan & standar yang ditetapkan dengan ketat.
-                                    </p>
-                                    <p>
-                                        Kami percaya hal tersebut merupakan sarana untuk membangun kepercayaan baik dengan
-                                        pelanggan maupun mitra bisnis.
-                                    </p>
-                                </div>
-                            </div>
+                        {{-- Kontainer Gambar --}}
+                        <div class="w-48 h-48 flex-shrink-0">
+                            <img src="{{ asset('storage/' . $item->image_2) }}" alt="Fokus layanan purna jual perusahaan"
+                                class="w-full h-full">
                         </div>
-                        <!-- Right Side: Isometric Illustration -->
-                        <div class="md:w-1/2 flex justify-center">
-                            <img src="https://placehold.co/500x400/FFFFFF/A78BFA?text=Ilustrasi+QC"
-                                alt="Quality Control Illustration" class="w-full max-w-md">
-                        </div>
-                    </div>
-                </div>
-            </section>
 
-            <!-- One Stop Solution Section -->
-            <section class="py-16 lg:py-24">
-                <div class="container mx-auto px-4 text-center">
-                    <h2 class="text-3xl font-bold">One Stop Solution</h2>
-                    <p class="text-gray-500 mb-12">Professional Interactive Digital Information Display</p>
-                    <div class="relative flex justify-center items-center">
-                        <img src="https://placehold.co/800x500/F3E8FF/A78BFA?text=Ilustrasi+Solusi"
-                            alt="One Stop Solution Illustration" class="w-full max-w-4xl">
-                        <div
-                            class="absolute bottom-10 right-0 md:right-20 bg-purple-800 text-white p-8 rounded-lg max-w-sm text-left shadow-lg">
-                            <h3 class="text-2xl font-bold mb-2">Commitment to Serve</h3>
-                            <p class="text-purple-200 text-sm">
-                                Untuk akan mendorong kami dengan memberikan solusi terbaik yang didukung dengan teknologi
-                                dan dukungan pelanggan yang profesional.
+                        {{-- Kontainer Teks --}}
+                        <div class="max-w-2xl">
+                            <p class="text-gray-800 font-semibold">{{ $item->title }}</p>
+                            <h2 class="text-3xl font-bold mb-4">{{ $item->subtitle }}</h2>
+                            <p class="text-gray-600 leading-relaxed">
+                                {{ $item->description }}
                             </p>
                         </div>
+
                     </div>
-                </div>
+                @endforeach
             </section>
+
+
 
             <!-- Valuable Solution Section -->
             <section class="bg-gray-50 py-16 lg:py-24">

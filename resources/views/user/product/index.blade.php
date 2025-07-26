@@ -56,7 +56,7 @@
             <section class="w-full py-8">
                 <div class="container mx-auto px-4">
                     <div class="relative w-full h-[300px] md:h-[500px] bg-gray-200 rounded-2xl overflow-hidden">
-                        <img src="https://placehold.co/1200x500/DBAFE9/FFFFFF?text=Hero+Banner" alt="Hero Banner"
+                        <img src="https://placehold.co/1200x500/C7C7C7/080808?text=Hero+Banner" alt="Hero Banner"
                             class="w-full h-full object-cover">
                         <div class="absolute inset-0 flex items-center justify-center">
                             <button

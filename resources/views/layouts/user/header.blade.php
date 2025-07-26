@@ -3,7 +3,7 @@
     <nav class="container mx-auto px-8 py-4 flex justify-between items-center">
         <div class="flex-shrink-0">
             <a href="/" class="flex items-center">
-                <img src="{{ asset('/image/fortu.png') }}" alt="Fortu Logo" class="h-8 w-auto">
+                <img src="{{ get_logo_url() }}" alt="Fortu Logo" class="h-8 w-auto">
             </a>
         </div>
         <div class="hidden md:flex items-center space-x-12 text-base">

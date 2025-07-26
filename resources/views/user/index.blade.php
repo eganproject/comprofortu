@@ -23,7 +23,8 @@
 @section('content')
 
     <section class="h-[60vh] md:h-[90vh] bg-gray-200">
-        <img src="{{ asset('storage/' . $hero?->image_1) }}" alt="Main Hero" class="w-full h-full object-cover">
+        <img src="{{ $hero ? asset('storage/' . $hero->image_1) : 'https://placehold.co/1200x600/C7C7C7/080808?text=Hero+Image' }}"
+            alt="Main Hero" class="w-full h-full object-cover">
     </section>
 
     <section class="py-16 lg:py-24 px-4">
@@ -40,7 +41,7 @@
             <div id="interactive-carousel" class="carousel-container">
                 <div class="carousel-slide active">
                     <div class="relative">
-                        <img src="https://placehold.co/1200x600/DDD6FE/4C1D95?text=Fortu+Video+Wall" alt="Fortu Video Wall"
+                        <img src="https://placehold.co/1200x600/C7C7C7/4C1D95?text=Fortu+Video+Wall" alt="Fortu Video Wall"
                             class="w-full rounded-lg">
                         <div class="absolute top-8 left-8 bg-black bg-opacity-50 text-white p-6 rounded-lg max-w-xs">
                             <h3 class="text-2xl font-bold">Fortu Video Wall</h3>
@@ -154,8 +155,8 @@
         </div>
     </section>
 
-    <section class="py-16 lg:py-24 bg-gray-50 px-4">
-        <div class="container mx-auto px-4">
+    <section style="background-image: url('{{ asset('storage/background/bg_1_1.png') }}')" class="py-16 lg:py-24 bg-no-repeat bg-cover bg-center px-4">
+            <div class="container mx-auto px-4">
             <div class="flex items-center mb-8">
                 <div class="flex items-center mr-3">
                     <div class="w-5 h-5 rounded-full bg-gray-400"></div>
@@ -165,90 +166,29 @@
                 <h2 class="text-2xl font-bold">Client Experience</h2>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-                    <img src="https://placehold.co/400x250/F3F4F6/4B5563?text=Klien+1" alt="Client 1"
-                        class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <img src="https://placehold.co/100x40/E5E7EB/6B7280?text=Logo+Klien" alt="Logo Klien"
-                            class="h-8 mb-2">
-                        <p class="font-semibold text-sm">Smart Board</p>
-                        <p class="text-xs text-gray-500">Lorem ipsum dolor sit amet consectetur.</p>
+                @foreach ($clientExperience as $item)
+                    <div class="relative bg-white rounded-2xl shadow-lg overflow-hidden">
+
+                        <div class="py-4 flex justify-center">
+                            <img src="{{ asset('storage/' . $item->logo) }}" alt="Logo Klien" class="h-10 w-auto">
+                        </div>
+
+                        <div class="h-56 w-full">
+                            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}"
+                                class="w-full h-full object-cover">
+                        </div>
+
+                        <div class="p-6 text-center">
+                            <p class="font-bold text-xl">{{ $item->title }}</p>
+                            <p class="text-sm text-gray-500 mt-1">{{ $item->description }}</p>
+                        </div>
+
                     </div>
-                </div>
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-                    <img src="https://placehold.co/400x250/F3F4F6/4B5563?text=Klien+2" alt="Client 2"
-                        class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <img src="https://placehold.co/100x40/E5E7EB/6B7280?text=Logo+Klien" alt="Logo Klien"
-                            class="h-8 mb-2">
-                        <p class="font-semibold text-sm">Peresmian Startup</p>
-                        <p class="text-xs text-gray-500">Lorem ipsum dolor sit amet consectetur.</p>
-                    </div>
-                </div>
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-                    <img src="https://placehold.co/400x250/F3F4F6/4B5563?text=Klien+3" alt="Client 3"
-                        class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <img src="https://placehold.co/100x40/E5E7EB/6B7280?text=Logo+Klien" alt="Logo Klien"
-                            class="h-8 mb-2">
-                        <p class="font-semibold text-sm">Double Sided Signage</p>
-                        <p class="text-xs text-gray-500">Lorem ipsum dolor sit amet consectetur.</p>
-                    </div>
-                </div>
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-                    <img src="https://placehold.co/400x250/F3F4F6/4B5563?text=Klien+4" alt="Client 4"
-                        class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <img src="https://placehold.co/100x40/E5E7EB/6B7280?text=Logo+Klien" alt="Logo Klien"
-                            class="h-8 mb-2">
-                        <p class="font-semibold text-sm">Fortu Digital Signage</p>
-                        <p class="text-xs text-gray-500">Lorem ipsum dolor sit amet consectetur.</p>
-                    </div>
-                </div>
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-                    <img src="https://placehold.co/400x250/F3F4F6/4B5563?text=Klien+5" alt="Client 5"
-                        class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <img src="https://placehold.co/100x40/E5E7EB/6B7280?text=Logo+Klien" alt="Logo Klien"
-                            class="h-8 mb-2">
-                        <p class="font-semibold text-sm">Fortu Smart Board</p>
-                        <p class="text-xs text-gray-500">Lorem ipsum dolor sit amet consectetur.</p>
-                    </div>
-                </div>
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-                    <img src="https://placehold.co/400x250/F3F4F6/4B5563?text=Klien+6" alt="Client 6"
-                        class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <img src="https://placehold.co/100x40/E5E7EB/6B7280?text=Logo+Klien" alt="Logo Klien"
-                            class="h-8 mb-2">
-                        <p class="font-semibold text-sm">WRS Version 2.0</p>
-                        <p class="text-xs text-gray-500">Lorem ipsum dolor sit amet consectetur.</p>
-                    </div>
-                </div>
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-                    <img src="https://placehold.co/400x250/F3F4F6/4B5563?text=Klien+7" alt="Client 7"
-                        class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <img src="https://placehold.co/100x40/E5E7EB/6B7280?text=Logo+Klien" alt="Logo Klien"
-                            class="h-8 mb-2">
-                        <p class="font-semibold text-sm">Fortu Digital Signage</p>
-                        <p class="text-xs text-gray-500">Lorem ipsum dolor sit amet consectetur.</p>
-                    </div>
-                </div>
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-                    <img src="https://placehold.co/400x250/F3F4F6/4B5563?text=Klien+8" alt="Client 8"
-                        class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <img src="https://placehold.co/100x40/E5E7EB/6B7280?text=Logo+Klien" alt="Logo Klien"
-                            class="h-8 mb-2">
-                        <p class="font-semibold text-sm">Fortu Smart Board</p>
-                        <p class="text-xs text-gray-500">Lorem ipsum dolor sit amet consectetur.</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="text-center mt-12">
                 <a href="#"
-                    class="inline-block bg-black text-white font-bold py-3 px-8 rounded-lg hover:bg-gray-800 transition-colors duration-300">
+                    class="inline-block bg-black text-white font-bold py-3 px-8 rounded-full hover:bg-gray-800 transition-colors duration-300">
                     See More
                 </a>
             </div>
