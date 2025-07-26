@@ -29,7 +29,7 @@
                   
                   <div class="md:w-1/2 mb-10 md:mb-0 text-center md:text-left">
                       <h1 class="text-4xl lg:text-5xl font-bold mb-4">{{ $hero?->title }}</h1>
-                      <div class="text-lg text-purple-200 max-w-lg">
+                      <div class="text-lg text-white max-w-lg">
                           {!! $hero?->text !!}
                       </div>
                   </div>
