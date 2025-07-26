@@ -31,6 +31,7 @@
                         <tr>
                             <th scope="col" class="px-6 py-3">No</th>
                             <th scope="col" class="px-6 py-3">Title</th>
+                            <th scope="col" class="px-6 py-3">Sub Title</th>
                             <th scope="col" class="px-6 py-3">Deskripsi</th>
                             <th scope="col" class="px-6 py-3">Image 1</th>
                             <th scope="col" class="px-6 py-3">Image 2</th>
@@ -81,15 +82,29 @@
                         "className": "px-6 py-4 font-medium text-slate-900"
                     }, // Kolom nomor
                     {
-                        "data": "nama_services",
+                        "data": "title",
                         "className": "px-6 py-4 font-medium text-slate-900"
                     },
                     {
-                        "data": "deskripsi",
+                        "data": "subtitle",
                         "className": "px-6 py-4 font-medium text-slate-900"
                     },
                     {
-                        "data": "layout",
+                        "data": "description",
+                        "className": "px-6 py-4 font-medium text-slate-900"
+                    },
+                    {
+                        "data": "image_1",
+                        "render": function(data, type, row) {
+                            return data ? `<img src="/storage/${data}" class="w-20 h-20 object-cover rounded-lg">` : '';
+                        },
+                        "className": "px-6 py-4 font-medium text-slate-900"
+                    },
+                    {
+                        "data": "image_2",
+                        "render": function(data, type, row) {
+                            return data ? `<img src="/storage/${data}" class="w-20 h-20 object-cover rounded-lg">` : '';
+                        },
                         "className": "px-6 py-4 font-medium text-slate-900"
                     },
                     {

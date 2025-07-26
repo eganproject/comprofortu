@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('title');
+            $table->string('subtitle');
             $table->text('description')->nullable();
             $table->string('image_1')->nullable();
             $table->string('image_2')->nullable();

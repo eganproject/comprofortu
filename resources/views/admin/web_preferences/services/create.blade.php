@@ -1,6 +1,6 @@
 @extends('layouts.admin.main') {{-- Pastikan ini menunjuk ke layout utama yang benar --}}
 
-@section('title', 'Tambah Hero Image - AdminPanel')
+@section('title', 'Tambah Service - AdminPanel')
 
 @push('cssOnPage')
     {{-- CSS untuk Quill Editor --}}
@@ -41,18 +41,18 @@
 
 
     <div x-data="{
-        logo: null,
-        image: null,
+        image_1: null,
+        image_2: null,
         showSuccessModal: {{ session('success') ? 'true' : 'false' }},
         showDeleteModal: false,
         showErrorModal: {{ session('error') ? 'true' : 'false' }},
         deleteFormAction: ''
     }" x-init="setTimeout(() => showSuccessModal = false, 5000)"
         class="bg-white/70 backdrop-blur-lg rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.1)] overflow-hidden min-h-[500px]">
-        <h2 class="text-2xl font-bold text-slate-800 p-6">Tambah Hero Image Baru</h2>
+        <h2 class="text-2xl font-bold text-slate-800 p-6">Tambah Service</h2>
         <div class="md:px-8">
-            <form action="/admin/web-preferences/client-experience" method="POST" enctype="multipart/form-data"
-                class="space-y-6" id="article-form">
+            <form action="/admin/web-preferences/services" method="POST" enctype="multipart/form-data"
+                class="space-y-6" id="service-form">
                 @csrf
 
                 <div>
@@ -66,59 +66,69 @@
                     @enderror
                 </div>
                 <div>
+                    <label for="subtitle" class="block mb-2 text-sm font-medium text-slate-700">Sub Title</label>
+                    <input
+                        class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        type="text" name="subtitle" id="subtitle" placeholder="Masukkan subtitle"
+                        value="{{ old('subtitle') }}" />
+                    @error('subtitle')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
                     <label for="description" class="block mb-2 text-sm font-medium text-slate-700">Deskripsi</label>
                     <textarea
                         class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         type="text" name="description" id="description" placeholder="Masukkan Deskripsi"
-                        value="{{ old('description') }}"></textarea>
+                        required>{{ old('description') }}</textarea>
                     @error('description')
                         <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div>
-                    <label for="logo" class="block mb-2 text-sm font-medium text-slate-700">Logo</label>
+                    <label for="image_1" class="block mb-2 text-sm font-medium text-slate-700">Gambar Latar</label>
                     <div
                         class="mt-2 w-full max-w-sm h-40 rounded-lg border-2 border-dashed border-slate-300 flex items-center justify-center bg-slate-50 overflow-hidden">
-                        <template x-if="!logo">
+                        <template x-if="!image_1">
                             <div class="text-center text-slate-500">
                                 <i data-lucide="image" class="w-10 h-10 mx-auto mb-2 opacity-50"></i>
-                                <p>Pratinjau Logo</p>
+                                <p>Pratinjau image_1</p>
                             </div>
                         </template>
-                        <template x-if="logo">
-                            <img :src="logo" alt="Pratinjau Gambar" class="w-full h-full object-cover">
+                        <template x-if="image_1">
+                            <img :src="image_1" alt="Pratinjau Gambar Latar" class="w-full h-full object-cover">
                         </template>
                     </div>
-                    <input type="file" id="logo" name="logo"
+                    <input type="file" id="image_1" name="image_1"
                         class="mt-4 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200"
-                        required @change="logo = URL.createObjectURL($event.target.files[0])">
+                        required @change="image_1 = URL.createObjectURL($event.target.files[0])">
                     <p class="mt-1 text-xs text-slate-500">PNG, JPG, WEBP, SVG (MAX. 2MB). Rekomendasi rasio 16:9.</p>
-                    @error('logo')
+                    @error('image_1')
                         <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div>
-                    <label for="image" class="block mb-2 text-sm font-medium text-slate-700">Gambar</label>
+                    <label for="image_2" class="block mb-2 text-sm font-medium text-slate-700">Gambar Samping</label>
                     <div
                         class="mt-2 w-full max-w-sm h-40 rounded-lg border-2 border-dashed border-slate-300 flex items-center justify-center bg-slate-50 overflow-hidden">
-                        <template x-if="!image">
+                        <template x-if="!image_2">
                             <div class="text-center text-slate-500">
-                                <i data-lucide="image" class="w-10 h-10 mx-auto mb-2 opacity-50"></i>
+                                <i data-lucide="image_2" class="w-10 h-10 mx-auto mb-2 opacity-50"></i>
                                 <p>Pratinjau Gambar</p>
                             </div>
                         </template>
-                        <template x-if="image">
-                            <img :src="image" alt="Pratinjau Gambar" class="w-full h-full object-cover">
+                        <template x-if="image_2">
+                            <img :src="image_2" alt="Pratinjau Gambar" class="w-full h-full object-cover">
                         </template>
                     </div>
-                    <input type="file" id="image" name="image"
+                    <input type="file" id="image_2" name="image_2"
                         class="mt-4 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200"
-                        required @change="image = URL.createObjectURL($event.target.files[0])">
+                        required @change="image_2 = URL.createObjectURL($event.target.files[0])">
                     <p class="mt-1 text-xs text-slate-500">PNG, JPG, WEBP, SVG (MAX. 2MB). Rekomendasi rasio 4:3 atau 1:1.
                     </p>
-                    @error('image')
+                    @error('image_2')
                         <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
@@ -128,7 +138,7 @@
                         class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-lg transition-all duration-300">
                         Simpan
                     </button>
-                    <a href="/admin/web-preferences/client-experience"
+                    <a href="/admin/web-preferences/services"
                         class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium py-2 px-5 rounded-lg transition-all duration-300">
                         Batal
                     </a>
@@ -141,8 +151,5 @@
 @endsection
 
 @push('jsOnPage')
-    {{-- JS untuk Quill --}}
-    <script>
-        // Inisialisasi Quill Editor
-    </script>
+
 @endpush

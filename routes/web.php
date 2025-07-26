@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\WebPreferences\HeroImagesController;
 use App\Http\Controllers\Admin\WebPreferences\KategoriProdukController;
 use App\Http\Controllers\Admin\WebPreferences\ProdukController;
 use App\Http\Controllers\Admin\UserManagement\UserManagementController;
+use App\Http\Controllers\Admin\WebPreferences\ServiceController;
 use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -93,6 +94,17 @@ Route::middleware('auth')->controller(ClientExperienceController::class)->group(
     Route::get('admin/web-preferences/client-experience/{id}', 'edit')->name('admin.web_preferences.client-experience');
     Route::put('admin/web-preferences/client-experience/{id}', 'update');
     Route::delete('admin/web-preferences/client-experience/{id}', 'destroy');
+});
+
+// Start Services
+Route::middleware('auth')->controller(ServiceController::class)->group(function () {
+    Route::get('admin/web-preferences/services', 'index')->name('admin.web_preferences.services');
+    Route::post('admin/web-preferences/services', 'store');
+    Route::post('admin/web-preferences/services/lists', 'lists');
+    Route::get('admin/web-preferences/services/create', 'create')->name('admin.web_preferences.services');
+    Route::get('admin/web-preferences/services/{id}', 'edit')->name('admin.web_preferences.services');
+    Route::put('admin/web-preferences/services/{id}', 'update');
+    Route::delete('admin/web-preferences/services/{id}', 'destroy');
 });
 
 // Start Produk
