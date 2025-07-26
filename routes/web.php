@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\UserManagement\RoleController;
 use App\Http\Controllers\Admin\WebPreferences\AboutUsController;
 use App\Http\Controllers\Admin\WebPreferences\BlogArticleController;
 use App\Http\Controllers\Admin\WebPreferences\ClientExperienceController;
+use App\Http\Controllers\Admin\WebPreferences\CompanyInformationController;
 use App\Http\Controllers\Admin\WebPreferences\HeroImagesController;
 use App\Http\Controllers\Admin\WebPreferences\KategoriProdukController;
 use App\Http\Controllers\Admin\WebPreferences\ProdukController;
@@ -61,6 +62,10 @@ Route::middleware('auth')->controller(HeroImagesController::class)->group(functi
 Route::middleware('auth')->controller(AboutUsController::class)->group(function () {
     Route::get('admin/web-preferences/about', 'index')->name('admin.web_preferences.about');
     Route::post('admin/web-preferences/about', 'store');
+});
+Route::middleware('auth')->controller(CompanyInformationController::class)->group(function () {
+    Route::get('admin/web-preferences/informasi', 'index')->name('admin.web_preferences.informasi');
+    Route::post('admin/web-preferences/informasi', 'store');
 });
 
 
