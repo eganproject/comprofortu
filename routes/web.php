@@ -146,4 +146,8 @@ Route::middleware('auth')->controller(RoleController::class)->group(function () 
     Route::put('admin/user-management/role/{id}', 'update');
     Route::delete('admin/user-management/role/{id}', 'destroy');
 });
-Auth::routes();
+
+
+// Authentication
+// Auth::routes();
+Auth::routes(['register' => false]);
