@@ -29,6 +29,16 @@
         </div>
 
         <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-menu-icon lucide-menu">
+                <path d="M4 12h16" />
+                <path d="M4 18h16" />
+                <path d="M4 6h16" />
+            </svg>
+        </button>
+
+        <button id="mobile-menu-close-button" class="hidden md:hidden text-gray-700 focus:outline-none">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
@@ -42,39 +52,38 @@
             us</a>
         <a href="/service"
             class="block py-2 px-4 {{ request()->is('service') ? 'text-sm text-purple-600' : 'text-xs text-gray-700' }} hover:bg-gray-200">Service</a>
-        <a href="/smartos"
+        {{-- <a href="/smartos"
             class="block py-2 px-4 {{ request()->is('smartos') ? 'text-sm text-purple-600' : 'text-xs text-gray-700' }} hover:bg-gray-200">Smart
-            Office Solution</a>
+            Office Solution</a> --}}
         <a href="/product"
             class="block py-2 px-4 {{ request()->is('product') ? 'text-sm text-purple-600' : 'text-xs text-gray-700' }} hover:bg-gray-200">Product</a>
         <a href="/blog"
             class="block py-2 px-4 {{ request()->is('blog') ? 'text-sm text-purple-600' : 'text-xs text-gray-700' }} hover:bg-gray-200">Blog</a>
         <a href="/contact"
             class="block py-2 px-4 {{ request()->is('contact') ? 'text-sm text-purple-600' : 'text-xs text-gray-700' }} hover:bg-gray-200">Contact</a>
-        <a href="/bcap"
+        {{-- <a href="/bcap"
             class="block py-2 px-4 {{ request()->is('bcap') ? 'text-sm text-purple-600' : 'text-xs text-gray-700' }} hover:bg-gray-200">Become
             a Partner</a>
         <a href="/career"
-            class="block py-2 px-4 {{ request()->is('career') ? 'text-sm text-purple-600' : 'text-xs text-gray-700' }} hover:bg-gray-200">Career</a>
+            class="block py-2 px-4 {{ request()->is('career') ? 'text-sm text-purple-600' : 'text-xs text-gray-700' }} hover:bg-gray-200">Career</a> --}}
     </div>
 </header>
 
 @push('jsOnPage')
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const header = document.getElementById('site-header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 0) {
-                    // saat discroll: 30% opacity, kurangi shadow sedikit
-                    header.classList.add('bg-opacity-70');
-                    header.classList.remove('bg-opacity-100');
-                    header.classList.replace('shadow-sm', 'shadow-md');
-                } else {
-                    // kembali ke kondisi awal
-                    header.classList.add('bg-opacity-100');
-                    header.classList.remove('bg-opacity-70');
-                    header.classList.replace('shadow-md', 'shadow-sm');
-                }
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenuCloseButton = document.getElementById('mobile-menu-close-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.remove('hidden');
+                mobileMenuButton.classList.add('hidden');
+                mobileMenuCloseButton.classList.remove('hidden');
+            });
+            mobileMenuCloseButton.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.classList.remove('hidden');
+                mobileMenuCloseButton.classList.add('hidden');
             });
         });
     </script>
