@@ -42,14 +42,15 @@ if (!function_exists('get_logo_url')) {
     function getYoutubeUrl()
     {
         // Gunakan static variable agar kueri tidak berulang dalam satu request
-        static $faviconUrl = null;
+        static $youtubeLink = null;
 
-        if ($faviconUrl === null) {
+        if ($youtubeLink === null) {
             $companyInfo = CompanyInformation::select('youtube_link_index')->first();
 
+            $youtubeLink = $companyInfo ? $companyInfo->youtube_link_index : null;
         }
 
-        return $companyInfo->youtube_link_index;
+        return $youtubeLink;
     }
 }
 
