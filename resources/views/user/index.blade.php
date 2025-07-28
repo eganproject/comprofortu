@@ -23,7 +23,7 @@
 @section('content')
 
     <section class="h-[60vh] md:h-[90vh] bg-gray-200">
-        <img src="{{ $hero ? asset('storage/' . $hero->image_1) : 'https://placehold.co/1200x600/C7C7C7/080808?text=Hero+Image' }}"
+        <img src="{{ $hero ? asset('storage/' . $hero->image_1) : 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image' }}"
             alt="Main Hero" class="w-full h-full object-cover">
     </section>
 
@@ -41,7 +41,7 @@
             <div id="interactive-carousel" class="carousel-container">
                 <div class="carousel-slide active">
                     <div class="relative">
-                        <img src="https://placehold.co/1200x600/C7C7C7/4C1D95?text=Fortu+Video+Wall" alt="Fortu Video Wall"
+                        <img src="https://placehold.co/1200x600/94a3b8/4C1D95?text=Fortu+Video+Wall" alt="Fortu Video Wall"
                             class="w-full rounded-lg">
                         <div class="absolute top-8 left-8 bg-black bg-opacity-50 text-white p-6 rounded-lg max-w-xs">
                             <h3 class="text-2xl font-bold">Fortu Video Wall</h3>
@@ -126,27 +126,27 @@
     <section class="py-20 px-4">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
-                <div class="bg-gradient-to-t from-gray-300 to-white p-6 rounded-lg shadow-lg">
+                <div class="bg-gradient-to-t from-slate-400 to-slate-100 p-6 rounded-lg shadow-lg">
                     <p class="text-gray-500 text-sm">Found & Started</p>
                     <p class="text-5xl font-bold text-gray-800 my-2">2017</p>
                     <img src="https://placehold.co/80x80/C7C7C7/000000?text=Robot" alt="Robot icon" class="mx-auto">
                 </div>
-                <div class="bg-gradient-to-t from-gray-300 to-white p-6 rounded-lg shadow-lg">
+                <div class="bg-gradient-to-t from-slate-400 to-slate-100 p-6 rounded-lg shadow-lg">
                     <p class="text-gray-500 text-sm">Products Hardware & Software</p>
                     <p class="text-5xl font-bold text-gray-800 my-2">30</p>
                     <img src="https://placehold.co/120x80/C7C7C7/000000?text=Produk" alt="Products icon" class="mx-auto">
                 </div>
-                <div class="bg-gradient-to-t from-gray-300 to-white p-6 rounded-lg shadow-lg">
+                <div class="bg-gradient-to-t from-slate-400 to-slate-100 p-6 rounded-lg shadow-lg">
                     <p class="text-gray-500 text-sm">Vertical Market Solution</p>
                     <p class="text-5xl font-bold text-gray-800 my-2">+10</p>
                     <img src="https://placehold.co/80x80/C7C7C7/000000?text=Toko" alt="Market icon" class="mx-auto">
                 </div>
-                <div class="bg-gradient-to-t from-gray-300 to-white p-6 rounded-lg shadow-lg">
+                <div class="bg-gradient-to-t from-slate-400 to-slate-100 p-6 rounded-lg shadow-lg">
                     <p class="text-gray-500 text-sm">Clients From Any Sector</p>
                     <p class="text-5xl font-bold text-gray-800 my-2">+300</p>
                     <img src="https://placehold.co/80x80/C7C7C7/000000?text=Klien" alt="Clients icon" class="mx-auto">
                 </div>
-                <div class="bg-gradient-to-t from-gray-300 to-white p-6 rounded-lg shadow-lg">
+                <div class="bg-gradient-to-t from-slate-400 to-slate-100 p-6 rounded-lg shadow-lg">
                     <p class="text-gray-500 text-sm">Solds & Used in any Business Sector</p>
                     <p class="text-5xl font-bold text-gray-800 my-2">+1000</p>
                     <img src="https://placehold.co/80x80/C7C7C7/000000?text=Terjual" alt="Solds icon" class="mx-auto">
