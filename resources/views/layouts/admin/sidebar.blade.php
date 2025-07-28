@@ -2,12 +2,14 @@
     class="w-64 bg-white/80 backdrop-blur-lg shadow-xl fixed inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition-all duration-300 ease-in-out z-30 overflow-hidden"
     :class="desktopSidebarOpen ? 'md:w-64' : 'md:w-0'">
     <div class="flex items-center justify-between p-6 border-b border-slate-200/80 h-20">
-        <div class="flex items-center">
+        <div class="flex items-center space-x-3">
             <i data-lucide="gem" class="w-8 h-8 text-blue-600"></i>
-            <span class="ml-3 text-xl font-bold text-slate-800">FORTU</span>
+            <span class="text-sm font-bold text-slate-800">Cahaya Optima</span>
         </div>
-        <button @click="desktopSidebarOpen = false" class="hidden md:block text-slate-500 hover:text-slate-800">
-            <i data-lucide="panel-left-close"></i>
+        <button @click="desktopSidebarOpen = false"
+            class="hidden md:block text-slate-500 hover:text-slate-800">
+            <i data-lucide="panel-left-close" :class="{ 'hidden': desktopSidebarOpen }"></i>
+            <i data-lucide="panel-right" :class="{ 'hidden': !desktopSidebarOpen }"></i>
         </button>
     </div>
 
