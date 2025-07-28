@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel Elegan</title>
+    <title>@yield('title', 'Fortu - Admin Panel')</title>
     <link rel="icon" href="{{ get_logo_header_url() }}" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
 

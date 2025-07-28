@@ -1,6 +1,6 @@
 @extends('layouts.admin.main') {{-- Pastikan ini menunjuk ke layout utama yang benar --}}
 
-@section('title', 'Manajemen Produk - AdminPanel')
+@section('title', 'Manajemen User - AdminPanel')
 @push('cssOnPage')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @endpush

@@ -1,6 +1,6 @@
 @extends('layouts.admin.main') {{-- Pastikan ini menunjuk ke layout utama yang benar --}}
 
-@section('title', 'Tambah Hero Image - AdminPanel')
+@section('title', 'Informasi Web')
 
 @push('cssOnPage')
     {{-- CSS untuk Quill Editor --}}
