@@ -129,27 +129,27 @@
                 <div class="bg-gradient-to-t from-gray-300 to-white p-6 rounded-lg shadow-lg">
                     <p class="text-gray-500 text-sm">Found & Started</p>
                     <p class="text-5xl font-bold text-gray-800 my-2">2017</p>
-                    <img src="https://placehold.co/80x80/E9D5FF/3B0764?text=Robot" alt="Robot icon" class="mx-auto">
+                    <img src="https://placehold.co/80x80/C7C7C7/000000?text=Robot" alt="Robot icon" class="mx-auto">
                 </div>
                 <div class="bg-gradient-to-t from-gray-300 to-white p-6 rounded-lg shadow-lg">
                     <p class="text-gray-500 text-sm">Products Hardware & Software</p>
                     <p class="text-5xl font-bold text-gray-800 my-2">30</p>
-                    <img src="https://placehold.co/120x80/E9D5FF/3B0764?text=Produk" alt="Products icon" class="mx-auto">
+                    <img src="https://placehold.co/120x80/C7C7C7/000000?text=Produk" alt="Products icon" class="mx-auto">
                 </div>
                 <div class="bg-gradient-to-t from-gray-300 to-white p-6 rounded-lg shadow-lg">
                     <p class="text-gray-500 text-sm">Vertical Market Solution</p>
                     <p class="text-5xl font-bold text-gray-800 my-2">+10</p>
-                    <img src="https://placehold.co/80x80/E9D5FF/3B0764?text=Toko" alt="Market icon" class="mx-auto">
+                    <img src="https://placehold.co/80x80/C7C7C7/000000?text=Toko" alt="Market icon" class="mx-auto">
                 </div>
                 <div class="bg-gradient-to-t from-gray-300 to-white p-6 rounded-lg shadow-lg">
                     <p class="text-gray-500 text-sm">Clients From Any Sector</p>
                     <p class="text-5xl font-bold text-gray-800 my-2">+300</p>
-                    <img src="https://placehold.co/80x80/E9D5FF/3B0764?text=Klien" alt="Clients icon" class="mx-auto">
+                    <img src="https://placehold.co/80x80/C7C7C7/000000?text=Klien" alt="Clients icon" class="mx-auto">
                 </div>
                 <div class="bg-gradient-to-t from-gray-300 to-white p-6 rounded-lg shadow-lg">
                     <p class="text-gray-500 text-sm">Solds & Used in any Business Sector</p>
                     <p class="text-5xl font-bold text-gray-800 my-2">+1000</p>
-                    <img src="https://placehold.co/80x80/E9D5FF/3B0764?text=Terjual" alt="Solds icon" class="mx-auto">
+                    <img src="https://placehold.co/80x80/C7C7C7/000000?text=Terjual" alt="Solds icon" class="mx-auto">
                 </div>
             </div>
         </div>

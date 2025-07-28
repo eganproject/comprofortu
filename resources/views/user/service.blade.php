@@ -28,30 +28,57 @@
             </section>
 
             <!-- After Sales Service Section -->
-            <section class="py-16 lg:py-24">
-                @foreach ($services as $item)
-                    {{-- Container utama dengan logika pengecekan ganjil/genap --}}
-                    {{-- Kelas 'md:flex-row-reverse' akan ditambahkan hanya pada urutan genap --}}
-                    <div
-                        class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12 py-16 {{ $loop->even ? 'md:flex-row-reverse' : '' }}">
+            <section class="py-8 lg:py-16">
+                <h2 class="text-3xl font-bold text-center">Our Services</h2>
+                <p class="text-gray-500 mb-12 text-center">Solusi Berbagai Cara</p>
 
-                        {{-- Kontainer Gambar --}}
-                        <div class="w-48 h-48 flex-shrink-0">
-                            <img src="{{ asset('storage/' . $item->image_2) }}" alt="Fokus layanan purna jual perusahaan"
-                                class="w-full h-full">
+                <div class="container mx-auto px-4">
+                    @foreach ($services as $item)
+                        {{-- Kontainer utama dibuat relatif untuk pemosisian absolut anak-anaknya --}}
+                        <div class="relative flex items-center min-h-[450px] my-12">
+
+                            {{-- Kontainer Teks dengan Gambar Latar Belakang (Lapisan Bawah) --}}
+                            <div
+                                class="w-full md:w-2/3 relative rounded-xl overflow-hidden shadow-2xl z-10 
+                            {{-- Mendorong panel teks ke kanan jika loop genap, atau ke kiri jika ganjil --}}
+                            {{ $loop->even ? 'ml-auto' : 'mr-auto' }}">
+
+                                {{-- Gambar Latar Belakang --}}
+                                <img src="{{ asset('storage/' . $item->image_1) }}"
+                                    alt="Latar belakang untuk {{ $item->title }}"
+                                    class="absolute inset-0 w-full h-full object-cover">
+
+                                {{-- Lapisan Gelap (Overlay) --}}
+                                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+
+                                {{-- Kontainer untuk memposisikan blok teks --}}
+                                <div class="relative p-8 md:p-12 flex h-full items-center">
+                                    {{-- Blok teks yang sebenarnya, selalu rata kiri --}}
+                                    <div class="w-full {{ $loop->even ? 'md:w-1/2 md:ml-auto' : 'md:w-1/2' }}">
+                                        <h2 class="text-3xl lg:text-4xl text-white font-bold mb-2">{{ $item->title }}</h2>
+                                        <p class="font-semibold text-gray-200 mb-4">{{ $item->subtitle }}</p>
+                                        <p class="text-gray-300 leading-relaxed">
+                                            {{ $item->description }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- Kontainer Gambar Isometrik (Lapisan Atas/Floating) --}}
+                            <div
+                                class="hidden md:block absolute inset-y-0 z-20
+                            {{-- Posisikan wadah di tepi panel teks (yang dimulai dari 1/3 lebar) --}}
+                            {{ $loop->even ? 'left-1/3' : 'right-1/3' }}">
+                                <img src="{{ asset('storage/' . $item->image_2) }}"
+                                    alt="Ilustrasi untuk {{ $item->title }}"
+                                    class="max-w-sm lg:max-w-md xl:max-w-lg transform transition-transform duration-500 hover:scale-105
+                                {{-- Geser gambar sebesar setengah lebarnya sendiri untuk menengahkan & menumpuknya di tepi --}}
+                                {{ $loop->even ? '-translate-x-1/2' : 'translate-x-1/2' }}">
+                            </div>
+
                         </div>
-
-                        {{-- Kontainer Teks --}}
-                        <div class="max-w-2xl">
-                            <p class="text-gray-800 font-semibold">{{ $item->title }}</p>
-                            <h2 class="text-3xl font-bold mb-4">{{ $item->subtitle }}</h2>
-                            <p class="text-gray-600 leading-relaxed">
-                                {{ $item->description }}
-                            </p>
-                        </div>
-
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </section>
 
 
@@ -60,94 +87,114 @@
             <section class="bg-gray-50 py-16 lg:py-24">
                 <div class="container mx-auto px-4 text-center">
                     <h2 class="text-3xl font-bold">Our Valuable Solution</h2>
-                    <p class="text-gray-500 mb-12">Solusi Berbagai Cara</p>
+                    <p class="text-gray-500 mb-12">Solusi Bernilai Kami</p>
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 max-w-5xl mx-auto">
                         <!-- Icon Box Template -->
-                        <div class="bg-purple-100 p-6 rounded-lg">
-                            <svg class="w-12 h-12 mx-auto mb-3 text-purple-700" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        <div class="bg-black p-6 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-handshake-icon lucide-handshake w-12 h-12 mx-auto mb-3 text-white">
+                                <path d="m11 17 2 2a1 1 0 1 0 3-3" />
+                                <path
+                                    d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
+                                <path d="m21 3 1 11h-2" />
+                                <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
+                                <path d="M3 4h8" />
                             </svg>
-                            <p class="font-semibold text-sm text-purple-900">Konsultasi</p>
+                            <p class=" text-sm text-white">Product Services</p>
                         </div>
-                        <div class="bg-purple-100 p-6 rounded-lg">
-                            <svg class="w-12 h-12 mx-auto mb-3 text-purple-700" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M12 6V3m0 18v-3M5.636 5.636l-1.414-1.414M19.778 19.778l-1.414-1.414M18.364 5.636l-1.414 1.414M4.222 19.778l1.414-1.414M12 12a2 2 0 100-4 2 2 0 000 4z">
-                                </path>
+                        <div class="bg-black p-6 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-cpu-icon lucide-cpu w-12 h-12 mx-auto mb-3 text-white">
+                                <path d="M12 20v2" />
+                                <path d="M12 2v2" />
+                                <path d="M17 20v2" />
+                                <path d="M17 2v2" />
+                                <path d="M2 12h2" />
+                                <path d="M2 17h2" />
+                                <path d="M2 7h2" />
+                                <path d="M20 12h2" />
+                                <path d="M20 17h2" />
+                                <path d="M20 7h2" />
+                                <path d="M7 20v2" />
+                                <path d="M7 2v2" />
+                                <rect x="4" y="4" width="16" height="16" rx="2" />
+                                <rect x="8" y="8" width="8" height="8" rx="1" />
                             </svg>
-                            <p class="font-semibold text-sm text-purple-900">Hardware & Software Solution</p>
+                            <p class=" text-sm text-white">Own Software & Hardware Developement</p>
                         </div>
-                        <div class="bg-purple-100 p-6 rounded-lg">
-                            <svg class="w-12 h-12 mx-auto mb-3 text-purple-700" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 4v5h5V4H4zm0 9h5v5H4v-5zm9-9h5v5h-5V4zm0 9h5v5h-5v-5z"></path>
+                        <div class="bg-black p-6 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-infinity-icon lucide-infinity w-12 h-12 mx-auto mb-3 text-white">
+                                <path d="M6 16c5 0 7-8 12-8a4 4 0 0 1 0 8c-5 0-7-8-12-8a4 4 0 1 0 0 8" />
                             </svg>
-                            <p class="font-semibold text-sm text-purple-900">Instalasi & Konfigurasi</p>
+                            <p class=" text-sm text-white">Flexible Developement</p>
                         </div>
-                        <div class="bg-purple-100 p-6 rounded-lg">
-                            <svg class="w-12 h-12 mx-auto mb-3 text-purple-700" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                                </path>
+                        <div class="bg-black p-6 rounded-lg">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-tv-minimal-play-icon lucide-tv-minimal-play w-12 h-12 mx-auto mb-3 text-white">
+                                <path
+                                    d="M10 7.75a.75.75 0 0 1 1.142-.638l3.664 2.249a.75.75 0 0 1 0 1.278l-3.664 2.25a.75.75 0 0 1-1.142-.64z" />
+                                <path d="M7 21h10" />
+                                <rect width="20" height="14" x="2" y="3" rx="2" />
                             </svg>
-                            <p class="font-semibold text-sm text-purple-900">Digital Signage Solution</p>
+                            <p class=" text-sm text-white">Display Technology Solution Indonesian Information</p>
                         </div>
-                        <div class="bg-purple-100 p-6 rounded-lg">
-                            <svg class="w-12 h-12 mx-auto mb-3 text-purple-700" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        <div class="bg-black p-6 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-circle-check-big-icon lucide-circle-check-big w-12 h-12 mx-auto mb-3 text-white">
+                                <path d="M21.801 10A10 10 0 1 1 17 3.335" />
+                                <path d="m9 11 3 3L22 4" />
                             </svg>
-                            <p class="font-semibold text-sm text-purple-900">Quality Check</p>
+                            <p class=" text-sm text-white">Quality Check</p>
                         </div>
-                        <div class="bg-purple-100 p-6 rounded-lg">
-                            <svg class="w-12 h-12 mx-auto mb-3 text-purple-700" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l2 2h8a1 1 0 001-1z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 17h.01">
-                                </path>
+                        <div class="bg-black p-6 rounded-lg">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-git-graph-icon lucide-git-graph w-12 h-12 mx-auto mb-3 text-white">
+                                <circle cx="5" cy="6" r="3" />
+                                <path d="M5 9v6" />
+                                <circle cx="5" cy="18" r="3" />
+                                <path d="M12 3v18" />
+                                <circle cx="19" cy="6" r="3" />
+                                <path d="M16 15.7A9 9 0 0 0 19 9" />
                             </svg>
-                            <p class="font-semibold text-sm text-purple-900">Pengiriman Tepat Waktu</p>
+                            <p class=" text-sm text-white">Commitment to Trends Technology & The Upcoming</p>
                         </div>
-                        <div class="bg-purple-100 p-6 rounded-lg">
-                            <svg class="w-12 h-12 mx-auto mb-3 text-purple-700" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        <div class="bg-black p-6 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-workflow-icon lucide-workflow w-12 h-12 mx-auto mb-3 text-white">
+                                <rect width="8" height="8" x="3" y="3" rx="2" />
+                                <path d="M7 11v4a2 2 0 0 0 2 2h4" />
+                                <rect width="8" height="8" x="13" y="13" rx="2" />
                             </svg>
-                            <p class="font-semibold text-sm text-purple-900">Garansi Terjamin</p>
+                            <p class=" text-sm text-white">System Integration</p>
                         </div>
-                        <div class="bg-purple-100 p-6 rounded-lg">
-                            <svg class="w-12 h-12 mx-auto mb-3 text-purple-700" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                                </path>
-                            </svg>
-                            <p class="font-semibold text-sm text-purple-900">Pelatihan Produk</p>
+                        <div class="bg-black p-6 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-plus-icon lucide-shield-plus w-12 h-12 mx-auto mb-3 text-white"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M9 12h6"/><path d="M12 9v6"/></svg>
+                            <p class=" text-sm text-white">Professional Based Product</p>
                         </div>
-                        <div class="bg-purple-100 p-6 rounded-lg">
-                            <svg class="w-12 h-12 mx-auto mb-3 text-purple-700" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <p class="font-semibold text-sm text-purple-900">Pusat Bantuan</p>
+                        <div class="bg-black p-6 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round-check-icon lucide-user-round-check w-12 h-12 mx-auto mb-3 text-white"><path d="M2 21a8 8 0 0 1 13.292-6"/><circle cx="10" cy="8" r="5"/><path d="m16 19 2 2 4-4"/></svg>
+                            <p class=" text-sm text-white">User Friendly</p>
                         </div>
-                        <div class="bg-purple-100 p-6 rounded-lg">
-                            <svg class="w-12 h-12 mx-auto mb-3 text-purple-700" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path>
-                            </svg>
-                            <p class="font-semibold text-sm text-purple-900">After Sales Service</p>
+                        <div class="bg-black p-6 rounded-lg">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check-icon lucide-shield-check w-12 h-12 mx-auto mb-3 text-white"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+                            <p class=" text-sm text-white">After Sales Service</p>
                         </div>
                     </div>
                 </div>

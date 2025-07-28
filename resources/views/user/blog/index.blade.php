@@ -2,14 +2,14 @@
     @section('title', 'Blog - Fortu Digital Teknologi')
     @section('content')
         <!-- Featured Post Section -->
-        <section class="bg-purple-900 text-white">
+        <section class="bg-gray-900 text-white">
             <div class="container mx-auto px-4 py-8 md:py-12 text-center">
-                <p class="text-sm text-purple-300 mb-2">Fortu Blog</p>
+                <p class="text-sm text-gray-300 mb-2">Fortu Blog</p>
                 <!-- Ukuran font berbeda untuk mobile (text-2xl) dan desktop (md:text-4xl) -->
                 <h1 class="text-2xl md:text-4xl font-bold max-w-2xl mb-6 mx-auto">Perkuat Brand Teknologi Lokal Fortu
                     berpartisipasi dalam Event Business Matching II p3dn</h1>
                 <div class="relative rounded-lg overflow-hidden">
-                    <img src="https://placehold.co/1200x500/3B0764/FFFFFF?text=IMG+Post" alt="Featured Blog Post"
+                    <img src="https://placehold.co/1200x500/C7C7C7/FFFFFF?text=IMG+Post" alt="Featured Blog Post"
                         class="w-full h-auto">
                     <!-- Padding dan posisi disesuaikan untuk mobile dan desktop -->
                     <div class="absolute bottom-0 left-0 w-full p-2 md:p-8 text-left">
@@ -20,7 +20,7 @@
                                 Conference & Expo 2023</h2>
 
                             <a href="/blog/show"
-                                class="text-purple-300 hover:text-white font-semibold text-xs md:text-sm">Read More
+                                class="text-gray-300 hover:text-white font-semibold text-xs md:text-sm">Read More
                                 &rarr;</a>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                                 </button>
                             </div>
                             <h3 class="font-bold text-lg mb-4 flex-grow">
-                                <a href="/blog/show" class="hover:text-purple-700">PT Fortu Digital Teknologi
+                                <a href="/blog/show" class="hover:text-gray-700">PT Fortu Digital Teknologi
                                     Berkontribusi dalam Event Pengenalan...</a>
                             </h3>
                             <div
@@ -117,7 +117,7 @@
                                 </button>
                             </div>
                             <h3 class="font-bold text-lg mb-4 flex-grow">
-                                <a href="/blog/show" class="hover:text-purple-700">Dukung Transformasi Digital, SDT
+                                <a href="/blog/show" class="hover:text-gray-700">Dukung Transformasi Digital, SDT
                                     berpartisipasi sebagai...</a>
                             </h3>
                             <div
@@ -175,7 +175,7 @@
                                 </button>
                             </div>
                             <h3 class="font-bold text-lg mb-4 flex-grow">
-                                <a href="/blog/show" class="hover:text-purple-700">Perkuat Brand Teknologi Lokal,
+                                <a href="/blog/show" class="hover:text-gray-700">Perkuat Brand Teknologi Lokal,
                                     Fortu berpartisipasi dalam...</a>
                             </h3>
                             <div
@@ -233,7 +233,7 @@
                                 </button>
                             </div>
                             <h3 class="font-bold text-lg mb-4 flex-grow">
-                                <a href="#" class="hover:text-purple-700">New Era of Digital Education Tools</a>
+                                <a href="#" class="hover:text-gray-700">New Era of Digital Education Tools</a>
                             </h3>
                             <div
                                 class="border-t border-gray-200 pt-3 flex justify-between items-center text-xs text-gray-500">
@@ -290,7 +290,7 @@
                                 </button>
                             </div>
                             <h3 class="font-bold text-lg mb-4 flex-grow">
-                                <a href="#" class="hover:text-purple-700">Buat Layanan Perbankanmu Semakin...</a>
+                                <a href="#" class="hover:text-gray-700">Buat Layanan Perbankanmu Semakin...</a>
                             </h3>
                             <div
                                 class="border-t border-gray-200 pt-3 flex justify-between items-center text-xs text-gray-500">
@@ -347,7 +347,7 @@
                                 </button>
                             </div>
                             <h3 class="font-bold text-lg mb-4 flex-grow">
-                                <a href="#" class="hover:text-purple-700">Fitur Receipt Printer Smart Kiosk
+                                <a href="#" class="hover:text-gray-700">Fitur Receipt Printer Smart Kiosk
                                     Bantu...</a>
                             </h3>
                             <div
@@ -405,7 +405,7 @@
                                 </button>
                             </div>
                             <h3 class="font-bold text-lg mb-4 flex-grow">
-                                <a href="#" class="hover:text-purple-700">Another Great Blog Post Title Goes
+                                <a href="#" class="hover:text-gray-700">Another Great Blog Post Title Goes
                                     Here</a>
                             </h3>
                             <div
@@ -463,7 +463,7 @@
                                 </button>
                             </div>
                             <h3 class="font-bold text-lg mb-4 flex-grow">
-                                <a href="#" class="hover:text-purple-700">Exploring the Future of Interactive
+                                <a href="#" class="hover:text-gray-700">Exploring the Future of Interactive
                                     Technology</a>
                             </h3>
                             <div
@@ -521,7 +521,7 @@
                                 </button>
                             </div>
                             <h3 class="font-bold text-lg mb-4 flex-grow">
-                                <a href="#" class="hover:text-purple-700">How Digital Signage is Changing Retail</a>
+                                <a href="#" class="hover:text-gray-700">How Digital Signage is Changing Retail</a>
                             </h3>
                             <div
                                 class="border-t border-gray-200 pt-3 flex justify-between items-center text-xs text-gray-500">
