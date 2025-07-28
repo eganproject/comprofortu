@@ -65,6 +65,7 @@
                     <option value="service" {{ old('modul', $heroImage->modul) == 'service' ? 'selected' : '' }}>Service
                     </option>
                     <option value="blog" {{ old('modul', $heroImage->modul) == 'blog' ? 'selected' : '' }}>Blog</option>
+                    <option value="product" {{ old('modul', $heroImage->modul) == 'product' ? 'selected' : '' }}>Product</option>
                 </select>
                 @error('modul')
                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>

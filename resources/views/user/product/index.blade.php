@@ -1,71 +1,65 @@
         @extends('layouts.user.main')
         @section('title', 'Product - Fortu Digital Teknologi')
-        
+
         @push('cssOnPage')
             <style>
-            .card-glow {
-            position: relative;
-            overflow: hidden;
-        }
-        .card-glow::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-            transform: rotate(15deg);
-            transition: transform 0.5s;
-        }
-        .card-glow:hover::before {
-            transform: rotate(30deg) scale(1.1);
-        }
+                .card-glow {
+                    position: relative;
+                    overflow: hidden;
+                }
 
-        /* CSS untuk Animasi Scroll pada Ikon */
-        .scroll-animate-icon .icon-circle {
-            opacity: 0;
-            /* Atur transisi untuk semua properti transform dan opacity */
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease-out;
-        }
+                .card-glow::before {
+                    content: '';
+                    position: absolute;
+                    top: -50%;
+                    left: -50%;
+                    width: 200%;
+                    height: 200%;
+                    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+                    transform: rotate(15deg);
+                    transition: transform 0.5s;
+                }
 
-        /* Posisi Awal Lingkaran (sebelum terlihat) */
-        .scroll-animate-icon .icon-circle-1 {
-            transform: translateX(-25px) scale(0.5);
-            transition-delay: 0s;
-        }
-        .scroll-animate-icon .icon-circle-2 {
-            transform: translateX(-25px) scale(0.5);
-            transition-delay: 0.1s;
-        }
-        .scroll-animate-icon .icon-circle-3 {
-            transform: translateX(-25px) scale(0.5);
-            transition-delay: 0.2s;
-        }
+                .card-glow:hover::before {
+                    transform: rotate(30deg) scale(1.1);
+                }
 
-        /* Posisi Akhir Lingkaran (setelah terlihat) */
-        .scroll-animate-icon.is-visible .icon-circle {
-            opacity: 1;
-            transform: translateX(0) scale(1);
-        }
+                /* CSS untuk Animasi Scroll pada Ikon */
+                .scroll-animate-icon .icon-circle {
+                    opacity: 0;
+                    /* Atur transisi untuk semua properti transform dan opacity */
+                    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease-out;
+                }
+
+                /* Posisi Awal Lingkaran (sebelum terlihat) */
+                .scroll-animate-icon .icon-circle-1 {
+                    transform: translateX(-25px) scale(0.5);
+                    transition-delay: 0s;
+                }
+
+                .scroll-animate-icon .icon-circle-2 {
+                    transform: translateX(-25px) scale(0.5);
+                    transition-delay: 0.1s;
+                }
+
+                .scroll-animate-icon .icon-circle-3 {
+                    transform: translateX(-25px) scale(0.5);
+                    transition-delay: 0.2s;
+                }
+
+                /* Posisi Akhir Lingkaran (setelah terlihat) */
+                .scroll-animate-icon.is-visible .icon-circle {
+                    opacity: 1;
+                    transform: translateX(0) scale(1);
+                }
             </style>
         @endpush
-        
+
         @section('content')
             <!-- Hero Section -->
-            <section class="w-full py-8">
-                <div class="container mx-auto px-4">
-                    <div class="relative w-full h-[300px] md:h-[500px] bg-gray-200 rounded-2xl overflow-hidden">
-                        <img src="https://placehold.co/1200x500/C7C7C7/080808?text=Hero+Banner" alt="Hero Banner"
-                            class="w-full h-full object-cover">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <button
-                                class="bg-white/30 backdrop-blur-sm text-white font-semibold py-2 px-5 rounded-lg border border-white/50 hover:bg-white/50 transition-all">
-                                Lihat Aplikasi
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <section class="h-[60vh] md:h-[90vh] bg-gray-200">
+                <img src="{{ $hero ? asset('storage/' . $hero->image_1) : 'https://placehold.co/1200x600/C7C7C7/080808?text=Hero+Image' }}"
+                    alt="Main Hero" class="w-full h-full object-cover">
             </section>
 
             <!-- Fortu Smart Board Section -->
@@ -74,9 +68,9 @@
                     <!-- Tambahkan class 'scroll-animate-icon' untuk target JS -->
                     <div class="flex items-center mb-8 scroll-animate-icon">
                         <div class="flex items-center mr-3">
-                            <div class="w-5 h-5 rounded-full bg-purple-600 icon-circle icon-circle-1"></div>
-                            <div class="w-5 h-5 rounded-full bg-purple-500 -ml-2 icon-circle icon-circle-2"></div>
-                            <div class="w-5 h-5 rounded-full bg-purple-400 -ml-2 icon-circle icon-circle-3"></div>
+                            <div class="w-5 h-5 rounded-full bg-gray-400 icon-circle icon-circle-1"></div>
+                            <div class="w-5 h-5 rounded-full bg-gray-500 -ml-2 icon-circle icon-circle-2"></div>
+                            <div class="w-5 h-5 rounded-full bg-gray-600 -ml-2 icon-circle icon-circle-3"></div>
                         </div>
                         <h2 class="text-2xl font-bold">Fortu Smart Board</h2>
                     </div>
@@ -96,8 +90,7 @@
                             <p class="text-sm text-green-600 font-semibold mb-1">Touchscreen</p>
                             <p class="text-sm text-gray-500 mb-4">TKDN (%): <span
                                     class="font-bold text-gray-700">41,17</span></p>
-                            <a href="/product/show"
-                                class="text-purple-600 font-semibold hover:underline">Selengkapnya </a>
+                            <a href="/product/show" class="text-purple-600 font-semibold hover:underline">Selengkapnya </a>
                         </div>
                         <!-- Product Card 2 -->
                         <div class="bg-slate-50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -126,9 +119,9 @@
                     <!-- Tambahkan class 'scroll-animate-icon' untuk target JS -->
                     <div class="flex items-center mb-8 scroll-animate-icon">
                         <div class="flex items-center mr-3">
-                            <div class="w-5 h-5 rounded-full bg-purple-600 icon-circle icon-circle-1"></div>
-                            <div class="w-5 h-5 rounded-full bg-purple-500 -ml-2 icon-circle icon-circle-2"></div>
-                            <div class="w-5 h-5 rounded-full bg-purple-400 -ml-2 icon-circle icon-circle-3"></div>
+                            <div class="w-5 h-5 rounded-full bg-gray-400 icon-circle icon-circle-1"></div>
+                            <div class="w-5 h-5 rounded-full bg-gray-500 -ml-2 icon-circle icon-circle-2"></div>
+                            <div class="w-5 h-5 rounded-full bg-gray-600 -ml-2 icon-circle icon-circle-3"></div>
                         </div>
                         <h2 class="text-2xl font-bold">Digital Signage</h2>
                     </div>
@@ -259,7 +252,6 @@
 
         @push('jsOnPage')
             <script>
-   
                 const animatedElements = document.querySelectorAll('.scroll-animate-icon');
 
                 if (animatedElements.length > 0) {

@@ -39,6 +39,7 @@
 
 @section('content')
     <div x-data="{
+        company_header: '{{ $comIn ? asset('storage/' . $comIn->company_header) : null }}',
         company_logo: '{{ $comIn ? asset('storage/' . $comIn->company_logo) : null }}',
         showSuccessModal: {{ session('success') ? 'true' : 'false' }},
         showErrorModal: {{ session('error') ? 'true' : 'false' }},
@@ -52,7 +53,29 @@
                 <form action="/admin/web-preferences/informasi" method="POST" enctype="multipart/form-data" class="space-y-6"
                     id="article-form">
                     @csrf
-
+                    <div>
+                        <label for="company_header" class="block mb-2 text-sm font-medium text-slate-700">Logo</label>
+                        <div
+                            class="mt-2 w-full max-w-sm h-40 rounded-lg border-2 border-dashed border-slate-300 flex items-center justify-center bg-slate-50 overflow-hidden">
+                            <template x-if="!company_header">
+                                <div class="text-center text-slate-500">
+                                    <i data-lucide="image" class="w-10 h-10 mx-auto mb-2 opacity-50"></i>
+                                    <p>Pratinjau Logo</p>
+                                </div>
+                            </template>
+                            <template x-if="company_header">
+                                <img :src="company_header" alt="Pratinjau Gambar" class="w-full h-full object-cover">
+                            </template>
+                        </div>
+                        <input type="file" id="company_header" name="company_header"
+                            class="mt-4 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200"
+                            @change="company_header = URL.createObjectURL($event.target.files[0])">
+                        <p class="mt-1 text-xs text-slate-500">PNG, JPG, WEBP, SVG (MAX. 2MB). Rekomendasi rasio 16:9.
+                        </p>
+                        @error('company_header')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="company_logo" class="block mb-2 text-sm font-medium text-slate-700">Logo</label>
@@ -70,8 +93,9 @@
                             </div>
                             <input type="file" id="company_logo" name="company_logo"
                                 class="mt-4 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200"
-                                required @change="company_logo = URL.createObjectURL($event.target.files[0])">
-                            <p class="mt-1 text-xs text-slate-500">PNG, JPG, WEBP, SVG (MAX. 2MB). Rekomendasi rasio 16:9.</p>
+                                @change="company_logo = URL.createObjectURL($event.target.files[0])">
+                            <p class="mt-1 text-xs text-slate-500">PNG, JPG, WEBP, SVG (MAX. 2MB). Rekomendasi rasio 16:9.
+                            </p>
                             @error('company_logo')
                                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                             @enderror
@@ -82,7 +106,7 @@
                                 <input
                                     class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     type="text" name="company_name" id="company_name" placeholder="Masukkan nama usaha"
-                                    value="{{ old('company_name', $comIn?->company_name) }}" required/>
+                                    value="{{ old('company_name', $comIn?->company_name) }}" required />
                                 @error('company_name')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
@@ -92,7 +116,7 @@
                                 <input
                                     class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     type="email" name="email" id="email" placeholder="Masukkan email"
-                                    value="{{ old('email', $comIn?->email) }}" required/>
+                                    value="{{ old('email', $comIn?->email) }}" required />
                                 @error('email')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
@@ -102,13 +126,26 @@
                                     Telepon</label>
                                 <input
                                     class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    type="text" name="contact_number" id="contact_number" placeholder="Masukkan nomor telepon"
-                                    value="{{ old('contact_number', $comIn?->contact_number) }}" required/>
+                                    type="text" name="contact_number" id="contact_number"
+                                    placeholder="Masukkan nomor telepon"
+                                    value="{{ old('contact_number', $comIn?->contact_number) }}" required />
                                 @error('contact_number')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
+                    </div>
+                    <div>
+                        <label for="youtube" class="block mb-2 text-sm font-medium text-slate-700">YouTube Link on Index
+                            Page</label>
+                        <input
+                            class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            type="text" name="youtube_link_index" id="youtube_link_index"
+                            placeholder="Masukkan Link Youtube"
+                            value="{{ old('youtube_link_index', $comIn?->youtube_link_index) }}" />
+                        @error('youtube_link_index')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div>
                         <label for="address_1" class="block mb-2 text-sm font-medium text-slate-700">Alamat 1</label>
@@ -144,7 +181,7 @@
                             <input
                                 class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 type="text" name="whatsapp" id="whatsapp" placeholder="Masukkan WhatsApp"
-                                value="{{ old('whatsapp', $comIn?->whatsapp) }}" required/>
+                                value="{{ old('whatsapp', $comIn?->whatsapp) }}" required />
                             @error('whatsapp')
                                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                             @enderror
@@ -171,37 +208,38 @@
                                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
-                    {{-- Menampilkan Informasi pengubah dan terakhir diubah --}}
-                    <div class="flex items-center gap-4">
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="user" class="w-5 h-5 text-slate-500"></i>
-                            <span class="text-xs text-slate-500">
-                               
-                            </span>
+                        {{-- Menampilkan Informasi pengubah dan terakhir diubah --}}
+                        <div class="flex items-center gap-4">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="user" class="w-5 h-5 text-slate-500"></i>
+                                <span class="text-xs text-slate-500">
+
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="clock" class="w-5 h-5 text-slate-500"></i>
+                                <span class="text-xs text-slate-500">
+                                    {{ $comIn?->updated_at->diffForHumans() }}
+                                </span>
+                            </div>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="clock" class="w-5 h-5 text-slate-500"></i>
-                            <span class="text-xs text-slate-500">
-                                {{ $comIn?->updated_at->diffForHumans() }}
-                            </span>
+                        <div class="flex items-center gap-4 pt-4 pb-8">
+                            <button type="submit"
+                                class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-lg transition-all duration-300">
+                                Simpan
+                            </button>
+                            <a href="/admin/web-preferences/hero"
+                                class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium py-2 px-5 rounded-lg transition-all duration-300">
+                                Batal
+                            </a>
                         </div>
-                    </div>
-                    <div class="flex items-center gap-4 pt-4 pb-8">
-                        <button type="submit"
-                            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-lg transition-all duration-300">
-                            Simpan
-                        </button>
-                        <a href="/admin/web-preferences/hero"
-                            class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium py-2 px-5 rounded-lg transition-all duration-300">
-                            Batal
-                        </a>
-                    </div>
                 </form>
             </div>
         </div>
         <div x-show="showSuccessModal" x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100"
-            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100"
+            x-transition:enter-start="opacity-0 transform scale-95"
+            x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 transform scale-100"
             x-transition:leave-end="opacity-0 transform scale-95"
             class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
             style="display: none;">
@@ -245,48 +283,4 @@
 @endsection
 
 @push('jsOnPage')
-    {{-- JS untuk Quill --}}
-    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
-    <script>
-        // Inisialisasi Quill Editor
-        const quill = new Quill('#editor-container', {
-            theme: 'snow',
-            placeholder: 'Tulis deskripsi atau konten di sini...',
-            modules: {
-                toolbar: [
-                    [{
-                        'header': [1, 2, 3, false]
-                    }],
-                    [{
-                        'font': []
-                    }],
-                    ['bold', 'italic', 'underline'],
-                    [{
-                        'list': 'ordered'
-                    }, {
-                        'list': 'bullet'
-                    }],
-                    [{
-                        'align': []
-                    }],
-                ]
-            }
-        });
-
-        // Menghubungkan Quill dengan Form
-        const form = document.querySelector('#article-form');
-        const textInput = document.querySelector('#text-input');
-
-        form.addEventListener('submit', function(e) {
-            // Saat form disubmit, ambil konten HTML dari Quill...
-            const htmlContent = quill.root.innerHTML;
-
-            // Periksa jika kontennya default (kosong), maka set nilainya jadi string kosong
-            if (htmlContent === '<p><br></p>') {
-                textInput.value = '';
-            } else {
-                textInput.value = htmlContent;
-            }
-        });
-    </script>
 @endpush

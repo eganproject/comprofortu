@@ -63,6 +63,8 @@
                             Service</option>
                         <option value="blog" {{ old('modul') == 'blog' ? 'selected' : '' }}>
                             Blog</option>
+                        <option value="product" {{ old('modul') == 'product' ? 'selected' : '' }}>
+                            Product</option>
                     </select>
                     @error('modul')
                         <p class="mt-2 text-sm text-red-600">{{ $message }}</p>

@@ -26,4 +26,9 @@ class LandingPageController extends Controller
         $services = Service::all();
         return view('user.service', compact(['hero', 'services']));
     }
+
+    public function product(){
+        $hero = HeroImages::where('modul', 'product')->first();
+        return view('user.product.index', compact(['hero']));
+    }
 }

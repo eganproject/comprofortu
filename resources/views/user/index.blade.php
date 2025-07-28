@@ -206,22 +206,7 @@
                 <h2 class="text-2xl font-bold">Smart Device for Smart Collaboration</h2>
             </div>
             <div class="relative rounded-lg overflow-hidden shadow-2xl">
-                <img src="https://placehold.co/1200x600/374151/FFFFFF?text=Video+Thumbnail" alt="Video Thumbnail"
-                    class="w-full">
-                <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                    <button
-                        class="w-20 h-20 bg-white bg-opacity-30 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/50 hover:bg-opacity-50 transition-all">
-                        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white text-lg font-semibold">
-                    Fortu Presentation Board
-                </div>
+                <iframe width="100%" height="600" src="https://www.youtube.com/embed/{{ getYoutubeUrl() ?? 'dQw4w9WgXcQ' }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     </section>

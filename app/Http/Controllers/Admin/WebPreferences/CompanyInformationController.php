@@ -43,6 +43,17 @@ class CompanyInformationController extends Controller
                     $uploadedcompany_logoPath = $company_logo->storeAs('company_logothumb', $company_logoName, 'public');
                     $data['company_logo'] = 'company_logothumb/' . $company_logoName;
                 }
+
+                  if ($comIn->company_header && $request->hasFile('company_header')) {
+                    // Delete the old company_header first
+                    Storage::disk('public')->delete($comIn->company_header);
+
+                    $company_header = $request->file('company_header');
+                    $company_headerName = Str::slug($request->modul) . '-1-' . time() . '.' . $company_header->getClientOriginalExtension();
+                    // Simpan file dan catat path-nya untuk kemungkinan rollback
+                    $uploadedcompany_headerPath = $company_header->storeAs('company_headerthumb', $company_headerName, 'public');
+                    $data['company_header'] = 'company_headerthumb/' . $company_headerName;
+                }
                 // Update the existing record
                 UserActivity::create([
                     'user_id' => auth()->user()->id,
@@ -60,6 +71,13 @@ class CompanyInformationController extends Controller
                     $uploadedcompany_logoPath = $company_logo->storeAs('company_logothumb', $company_logoName, 'public');
                     $data['company_logo'] = 'company_logothumb/' . $company_logoName;
                 }
+                if ($request->hasFile('company_header')) {
+                    $company_header = $request->file('company_header');
+                    $company_headerName = Str::slug($request->modul) . '-1-' . time() . '.' . $company_header->getClientOriginalExtension();
+                    // Simpan file dan catat path-nya untuk kemungkinan rollback
+                    $uploadedcompany_headerPath = $company_header->storeAs('company_headerthumb', $company_headerName, 'public');
+                    $data['company_header'] = 'company_headerthumb/' . $company_headerName;
+                }
                 UserActivity::create([
                     'user_id' => auth()->user()->id,
                     'modul' => 'Company Information',
@@ -76,6 +94,9 @@ class CompanyInformationController extends Controller
             DB::rollBack();
             if ($uploadedcompany_logoPath) {
                 Storage::disk('public')->delete($uploadedcompany_logoPath);
+            }
+            if ($uploadedcompany_headerPath) {
+                Storage::disk('public')->delete($uploadedcompany_headerPath);
             }
             return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }

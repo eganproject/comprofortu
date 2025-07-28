@@ -26,12 +26,13 @@ Route::controller(LandingPageController::class)->group(function () {
     Route::get('/', 'index')->name('home');
     Route::get('/about', 'about')->name('about');
     Route::get('/service', 'service')->name('service');
+    Route::prefix('product')->name('product.')->group(function () {
+    Route::get('/', 'product')->name('product.index');
+    Route::get('/show', 'showProduct')->name('product.show');
+});
 });
 
-Route::prefix('product')->name('product.')->group(function () {
-    Route::view('/', 'user.product.index')->name('index');
-    Route::view('/show', 'user.product.show')->name('show');
-});
+
 
 Route::prefix('blog')->name('blog.')->group(function () {
     Route::view('/', 'user.blog.index')->name('index');
