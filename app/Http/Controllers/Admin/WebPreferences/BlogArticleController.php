@@ -20,7 +20,7 @@ class BlogArticleController extends Controller
 
     public function lists(Request $request)
     {
-        $query = BlogArticle::with('user')->select('blog_articles.*');
+        $query = BlogArticle::with('user')->select('blog_articles.*')->orderByDesc('blog_articles.tanggal');
 
 
         // --- PENCARIAN (SEARCHING) ---
@@ -91,7 +91,14 @@ class BlogArticleController extends Controller
                 // Ambil nama penulis dari relasi, beri fallback jika tidak ada
                 'penulis' => $article->user->name ?? 'N/A',
                 // Contoh logika status berdasarkan jumlah views
-                'status' => $article->views > 100 ? '<span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Populer</span>' : '<span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Biasa</span>',
+                'status' => '<div class="flex items-center space-x-2">
+                    <i data-lucide="eye" class="w-4 h-4 text-gray-500" title="Views"></i>
+                    <span class="text-gray-500">' . $article->views . '</span>
+                    <i data-lucide="message-circle" class="w-4 h-4 text-gray-500" title="Komentar"></i>
+                    <span class="text-gray-500">' . $article->comments . '</span>
+                    <i data-lucide="thumbs-up" class="w-4 h-4 text-gray-500" title="Suka"></i>
+                    <span class="text-gray-500">' . $article->likes . '</span>
+                </div>',
                 // Tombol aksi (edit, delete, dll)
                 'aksi' => $article->id
             ];

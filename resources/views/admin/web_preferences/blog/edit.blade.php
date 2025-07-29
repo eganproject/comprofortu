@@ -81,7 +81,7 @@
                     {{-- Isi 'value' dengan data dari database. Fungsi old() tetap ada untuk menangani error validasi --}}
                     <input
                         class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        type="text" name="title" id="title" placeholder="Masukkan Judul"
+                        type="text" name="title" id="title" placeholder="Masukkan Judul" maxlength="150"
                         value="{{ old('title', $blog->title) }}" />
                     @error('title')
                         <p class="mt-2 text-sm text-red-600">{{ $message }}</p>

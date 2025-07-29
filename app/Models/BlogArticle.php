@@ -14,7 +14,7 @@ class BlogArticle extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'uuid_writer');
+        return $this->hasOne(User::class, 'id', 'uuid_writer');
     }
 
      public function getSlugOptions() : SlugOptions

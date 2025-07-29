@@ -28,17 +28,16 @@ Route::controller(LandingPageController::class)->group(function () {
     Route::get('/about', 'about')->name('about');
     Route::get('/service', 'service')->name('service');
     Route::prefix('product')->name('product.')->group(function () {
-    Route::get('/', 'product')->name('product.index');
-    Route::get('/show', 'showProduct')->name('product.show');
-});
+        Route::get('/', 'product')->name('product.index');
+        Route::get('/show', 'showProduct')->name('product.show');
+    });
+    Route::prefix('blog')->name('blog.')->group(function () {
+        Route::get('/', 'blog')->name('blog.index');
+        Route::get('/load-more', 'loadMorePosts');
+        Route::get('/{slug}', 'showBlog')->name('blog.show');
+    });
 });
 
-
-
-Route::prefix('blog')->name('blog.')->group(function () {
-    Route::view('/', 'user.blog.index')->name('index');
-    Route::view('/show', 'user.blog.show')->name('show');
-});
 
 Route::get('/admin', function () {
     return view('/admin/dashboard/index');

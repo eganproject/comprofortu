@@ -1,9 +1,9 @@
 <footer class="bg-gray-100 text-gray-700 pt-16 pb-8 text-sm px-4">
     <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             <div class="lg:col-span-1">
                 {{-- Ganti dengan path logo yang benar via asset() helper --}}
-                <img src="/image/fortu.png" alt="Fortu Logo" class="h-8 w-auto mb-4">
+                <img src="{{ get_logo_url() }}" alt="Logo" class="h-8 w-auto mb-4">
                 <ul class="space-y-2">
                     <li><a href="#" class="hover:text-purple-600 font-medium">Become a Partner</a></li>
                     <li><a href="#" class="hover:text-purple-600 font-medium">Career</a></li>
@@ -25,33 +25,11 @@
                 <p>Fax : +62 21 520 9845</p>
             </div>
 
-            <div class="lg:col-span-1">
-                <h3 class="font-bold mb-3 text-gray-800">OFFICE II</h3>
-                <p class="leading-relaxed">
-                    PT. Fortu Media Kreasi<br>
-                    Grand Slipi Tower, 48th-floor<br>
-                    Jl. Letjend S Parman Kav. 22-24<br>
-                    Jakarta Barat - 11410<br>
-                    Indonesia
-                </p>
-            </div>
-
-            <div class="lg:col-span-1">
-                <h3 class="font-bold mb-3 text-gray-800">MANUFACTURE</h3>
-                    <p class="leading-relaxed">
-                    PT. Fortu Media Kreasi<br>
-                    BSD<br>
-                    Jl. Lengkong Gudang Timur IV No. 51<br>
-                    Lengkong Gudang Timur, Kec. Serpong<br>
-                    Kota Tangerang Selatan, Banten - 15310<br>
-                    Indonesia
-                </p>
-            </div>
-
+           
             <div class="lg:col-span-1">
                     <h3 class="font-bold mb-3 text-gray-800">Partnership / Reseller | E-katalog</h3>
                     <p>Mobile : +62 813 2208 5215</p>
-                    <p>Email : sales@sentuh.id</p>
+                    <p>Email : sales@fortu.id</p>
             </div>
         </div>
 

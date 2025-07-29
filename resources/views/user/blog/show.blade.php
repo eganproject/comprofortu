@@ -2,16 +2,11 @@
 @section('title', 'Blog - Fortu Digital Teknologi')
 @section('content')
 
-    <div class="container mx-auto px-4 max-w-4xl">
+    <div class="container mx-auto px-4 max-w-4xl py-4">
         <!-- Top Bar -->
         <div class="flex justify-between items-center mb-8">
-            <a href="./blog.html" class="text-sm font-semibold text-gray-600 hover:text-purple-700">&larr; All Posts</a>
-            <button class="text-gray-500 hover:text-gray-800">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-            </button>
+            <a href="/blog" class="text-sm font-semibold text-gray-600 hover:text-purple-700">&larr; All Posts</a>
+
         </div>
 
         <!-- Article Header -->
@@ -21,8 +16,14 @@
                     <img class="w-10 h-10 rounded-full" src="https://placehold.co/40x40/CFD8DC/78909C?text=A"
                         alt="Author avatar">
                     <div class="text-sm">
-                        <p class="font-semibold text-gray-800">marketing05372</p>
-                        <p class="text-gray-500">Sep 13, 2024 &middot; 2 min read</p>
+                        <p class="font-semibold text-gray-800">{{ $blog->user->name }}</p>
+                        <p class="text-gray-500">
+                            @if (Carbon\Carbon::parse($blog->tanggal)->isToday())
+                                {{ Carbon\Carbon::parse($blog->tanggal)->locale('id_ID')->diffForHumans() }}
+                            @else
+                                {{ \Carbon\Carbon::parse($blog->tanggal)->locale('id_ID')->format('d F Y') }}
+                            @endif
+                        </p>
                     </div>
                 </div>
                 <button class="text-gray-400 hover:text-gray-700">
@@ -33,46 +34,30 @@
                 </button>
             </div>
             <h1 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
-                PT Fortu Digital Teknologi Berkontribusi dalam Event Pengenalan Toko Daring Bela Pengadaan dan
-                E-Katalog V6 untuk Memajukan Pengadaan Barang dan Jasa di Pemerintahan
+                {{ $blog->title }}
             </h1>
         </div>
 
         <!-- Featured Image -->
-        <div class="mb-8">
-            <img src="https://placehold.co/800x500/FCA5A5/7F1D1D?text=Event+Image" alt="Event Pengenalan Toko Daring"
-                class="w-full rounded-lg">
+        <div class="mb-8 flex justify-center">
+            <img src="{{ $blog->image ? asset('storage/' . $blog->image) : 'https://placehold.co/800x500/FCA5A5/7F1D1D?text=Event+Image' }}"
+                alt="Image Event Blog" class="w-full rounded-lg max-h-[600px] object-contain">
         </div>
 
         <!-- Article Body -->
         <article class="prose max-w-none text-gray-700 leading-relaxed">
-            <div class="flex items-center space-x-4 mb-6 border-y py-3">
+            {{-- <div class="flex items-center space-x-4 mb-6 border-y py-3">
                 <img src="https://placehold.co/80x30/CCCCCC/FFFFFF?text=Logo1" alt="Partner Logo 1">
                 <img src="https://placehold.co/80x30/CCCCCC/FFFFFF?text=Logo2" alt="Partner Logo 2">
                 <img src="https://placehold.co/80x30/CCCCCC/FFFFFF?text=Logo3" alt="Partner Logo 3">
-            </div>
-            <p>
-                Dalam upaya mendukung digitalisasi dan efisiensi dalam pengadaan barang dan jasa di pemerintahan, PT
-                Fortu Digital Teknologi dengan bangga turut berpartisipasi dalam event Pengenalan Toko Daring Bela
-                Pengadaan dan E-Katalog V6, yang diselenggarakan pada 10 September 2024 di Hotel Yuan Pasar Baru. Acara
-                ini diorganisir oleh Bappenas (Badan Perencanaan Pembangunan Nasional) dan Indotrading, serta melibatkan
-                berbagai instansi penting dalam pengadaan barang dan jasa di Indonesia, termasuk PPK (Panitia Pembuat
-                Komitmen), PPBJ (Pengelola Pengadaan Barang dan Jasa), Biro Umum, serta LKPP (Lembaga Kebijakan
-                Pengadaan Barang dan Jasa).
-            </p>
-            <p>
-                Event tersebut dihadiri lebih dari 100 peserta yang berasal dari berbagai instansi pemerintahan, baik
-                dari tingkat pusat maupun daerah, seperti Pemda, Pemprov, dan Pemkot. Peserta terdiri dari para
-                profesional di bidang pengadaan barang dan jasa, yang bertanggung jawab atas berbagai proyek pemerintah.
-                Melalui event ini, pemerintah berupaya mempercepat adopsi platform daring dan memperkenalkan E-Katalog
-                V6.
-            </p>
+            </div> --}}
+            {!! $blog->text !!}
         </article>
 
         <!-- Post Footer -->
         <div class="mt-8">
             <div class="flex items-center text-blue-800 font-semibold mb-4">
-                <span>🤗</span>
+
                 <span class="ml-2">#BanggaBuatanIndonesia #UdahGakZamannyaManual</span>
             </div>
             <div class="border-t border-b py-3 flex justify-between items-center">
@@ -104,9 +89,9 @@
                 </div>
             </div>
             <div class="flex justify-between items-center mt-3 text-sm text-gray-500">
-                <span>29 views &nbsp;&nbsp; 3 comments</span>
+                <span>{{ $blog->views }} views &nbsp;&nbsp; {{ $blog->comments }} comments</span>
                 <button class="flex items-center text-red-500 hover:text-red-600">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path
                             d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z">
                         </path>
@@ -123,127 +108,50 @@
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Recent Post Card 1 -->
-                <div class="bg-white rounded-lg overflow-hidden">
-                    <a href="#" class="block">
-                        <img src="https://placehold.co/400x250/C4B5FD/3B0764?text=Blog+Post" alt="Blog post image"
-                            class="w-full h-40 object-cover">
-                    </a>
-                    <div class="py-4">
-                        <h3 class="font-bold text-md mb-3 h-16">
-                            <a href="#" class="hover:text-purple-700">Dukung Transformasi Digital, SDT
-                                berpartisipasi sebagai...</a>
-                        </h3>
-                        <div class="flex justify-between items-center text-xs text-gray-500">
-                            <div class="flex space-x-4">
-                                <span class="flex items-center"><svg class="w-4 h-4 mr-1" fill="none"
-                                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                @foreach ($recentPost as $item)
+                    <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                        <a href="#" class="block">
+                            <img src="{{ asset('storage/' . $item->image) }}" alt="Blog post image"
+                                class="w-full h-40 object-cover">
+                        </a>
+                        <div class="py-4 px-4">
+                            <h3 class="font-bold text-md mb-3 h-16">
+                                <a href="#" class="hover:text-purple-700">{{ Str::limit($item->title, 50) }}</a>
+                            </h3>
+                            <div class="flex justify-between items-center text-xs text-gray-500">
+                                <div class="flex space-x-4">
+                                    <span class="flex items-center"><svg class="w-4 h-4 mr-1" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                            </path>
+                                        </svg> {{ $item->views }}</span>
+                                    <span class="flex items-center"><svg class="w-4 h-4 mr-1" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+                                            </path>
+                                        </svg> {{ $item->comments }}</span>
+                                </div>
+                                <button class="flex items-center hover:text-red-500">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
                                         </path>
-                                    </svg> 58</span>
-                                <span class="flex items-center"><svg class="w-4 h-4 mr-1" fill="none"
-                                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
-                                        </path>
-                                    </svg> 1</span>
+                                    </svg>
+                                </button>
                             </div>
-                            <button class="flex items-center hover:text-red-500">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                                    </path>
-                                </svg>
-                            </button>
                         </div>
                     </div>
-                </div>
-                <!-- Recent Post Card 2 -->
-                <div class="bg-white rounded-lg overflow-hidden">
-                    <a href="#" class="block">
-                        <img src="https://placehold.co/400x250/A5B4FC/3B0764?text=Blog+Post" alt="Blog post image"
-                            class="w-full h-40 object-cover">
-                    </a>
-                    <div class="py-4">
-                        <h3 class="font-bold text-md mb-3 h-16">
-                            <a href="#" class="hover:text-purple-700">Perkuat Brand Teknologi Lokal, Fortu
-                                berpartisipasi dalam...</a>
-                        </h3>
-                        <div class="flex justify-between items-center text-xs text-gray-500">
-                            <div class="flex space-x-4">
-                                <span class="flex items-center"><svg class="w-4 h-4 mr-1" fill="none"
-                                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
-                                        </path>
-                                    </svg> 94</span>
-                                <span class="flex items-center"><svg class="w-4 h-4 mr-1" fill="none"
-                                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
-                                        </path>
-                                    </svg> 1</span>
-                            </div>
-                            <button class="flex items-center text-red-500">
-                                <svg class="w-4 h-4" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                                    </path>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Recent Post Card 3 -->
-                <div class="bg-white rounded-lg overflow-hidden">
-                    <a href="#" class="block">
-                        <img src="https://placehold.co/400x250/FBCFE8/831843?text=Blog+Post" alt="Blog post image"
-                            class="w-full h-40 object-cover">
-                    </a>
-                    <div class="py-4">
-                        <h3 class="font-bold text-md mb-3 h-16">
-                            <a href="#" class="hover:text-purple-700">New Era of Digital Education Tools
-                                Presented by PT Sentu...</a>
-                        </h3>
-                        <div class="flex justify-between items-center text-xs text-gray-500">
-                            <div class="flex space-x-4">
-                                <span class="flex items-center"><svg class="w-4 h-4 mr-1" fill="none"
-                                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
-                                        </path>
-                                    </svg> 67</span>
-                                <span class="flex items-center"><svg class="w-4 h-4 mr-1" fill="none"
-                                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
-                                        </path>
-                                    </svg> 2</span>
-                            </div>
-                            <button class="flex items-center hover:text-red-500">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                                    </path>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </section>
 
         <!-- Comments Section -->
-        <section class="mt-16 pt-8 border-t">
+        <section class="mt-16 pt-8 border-t mb-16">
             <h2 class="text-xl font-bold text-gray-800 mb-4">3 Comments</h2>
             <div class="mb-6">
                 <textarea class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" rows="3"
@@ -260,43 +168,7 @@
             <!-- Comments List -->
             <div class="space-y-8">
                 <!-- Comment 1 -->
-                <div class="flex items-start space-x-4">
-                    <img class="w-10 h-10 rounded-full" src="https://placehold.co/40x40/F472B6/FFFFFF?text=GA"
-                        alt="Gabrielle Ann avatar">
-                    <div class="flex-1">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <p class="font-semibold text-gray-900">Gabrielle Ann</p>
-                                <p class="text-xs text-gray-500">Jul 07</p>
-                            </div>
-                            <button class="text-gray-400 hover:text-gray-700">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor"
-                                    viewBox="0 0 16 16">
-                                    <path
-                                        d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-                                </svg>
-                            </button>
-                        </div>
-                        <ol class="list-decimal list-inside mt-2 text-sm text-gray-700 space-y-1">
-                            <li><a href="#" class="text-purple-600 hover:underline">bahagia777</a></li>
-                            <li><a href="#" class="text-purple-600 hover:underline">bebasbet</a></li>
-                            <li><a href="#" class="text-purple-600 hover:underline">mari777</a></li>
-                            <li><a href="#" class="text-purple-600 hover:underline">rahasia slot</a></li>
-                            <li><a href="#" class="text-purple-600 hover:underline">rahasia slot</a></li>
-                            <li><a href="#" class="text-purple-600 hover:underline">bahagia77</a></li>
-                        </ol>
-                        <div class="mt-3 flex items-center space-x-4 text-xs text-gray-500 font-semibold">
-                            <button class="flex items-center hover:text-gray-800"><svg class="w-4 h-4 mr-1"
-                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                                    </path>
-                                </svg> Like</button>
-                            <button class="hover:text-gray-800">Reply</button>
-                        </div>
-                    </div>
-                </div>
+                
                 <!-- Comment 2 -->
                 <div class="flex items-start space-x-4">
                     <div class="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold">
@@ -316,8 +188,7 @@
                             </button>
                         </div>
                         <p class="mt-2 text-sm text-gray-700">
-                            Rekomendasi dari temen buat RTP tinggi worth it banget! <a href="#"
-                                class="text-purple-600 hover:underline">ash88</a>
+                            Rekomendasi dari temen buat XAS tinggi x it banget!
                         </p>
                         <div class="mt-3 flex items-center space-x-4 text-xs text-gray-500 font-semibold">
                             <button class="flex items-center hover:text-gray-800"><svg class="w-4 h-4 mr-1"
