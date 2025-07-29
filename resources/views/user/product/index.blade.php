@@ -57,7 +57,7 @@
 
         @section('content')
             <!-- Hero Section -->
-            <section class="h-[60vh] md:h-[90vh] bg-slate-200">
+            <section class="h-[60vh] md:h-[90vh] bg-stone-200">
                 <img src="{{ $hero ? asset('storage/' . $hero->image_1) : 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image' }}"
                     alt="Main Hero" class="w-full h-full object-cover">
             </section>
@@ -76,7 +76,7 @@
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <!-- Product Card 1 -->
-                        <div class="bg-gradient-to-t from-slate-400 to-slate-100 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="bg-gradient-to-r from-stone-200 to-stone-400 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
                             <img src="https://placehold.co/400x250/FFFFFF/000000?text=Produk+Smart+Board"
                                 alt="Fortu Smart Board" class="w-full h-auto object-contain mb-4 rounded-lg">
                             <h3 class="font-bold text-lg mb-2">Fortu Smart Board</h3>
@@ -93,7 +93,7 @@
                             <a href="/product/show" class="text-purple-600 font-semibold hover:underline">Selengkapnya </a>
                         </div>
                         <!-- Product Card 2 -->
-                       <div class="bg-gradient-to-t from-slate-400 to-slate-100 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                       <div class="bg-gradient-to-r from-stone-200 to-stone-400 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
                             <img src="https://placehold.co/400x250/FFFFFF/000000?text=Produk+Smart+Board"
                                 alt="Fortu Smart Board" class="w-full h-auto object-contain mb-4 rounded-lg">
                             <h3 class="font-bold text-lg mb-2">Fortu Smart Board</h3>
@@ -128,7 +128,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         <!-- Card Template -->
                         <div
-                            class="bg-gradient-to-t from-slate-400 to-slate-100 rounded-2xl p-4 text-center shadow-lg hover:shadow-xl transition-shadow duration-300 ">
+                            class="bg-gradient-to-r from-stone-200 to-stone-400 rounded-2xl p-4 text-center shadow-lg hover:shadow-xl transition-shadow duration-300 ">
                             <img src="https://placehold.co/300x300/FFFFFF/000000?text=Digital+Signage"
                                 alt="Digital Signage Non Touch" class="w-full h-48 object-contain mb-4">
                             <h3 class="font-bold text-md mb-2">Digital Signage Non Touch</h3>
@@ -142,7 +142,7 @@
                                 class="inline-block border border-purple-500 text-purple-500 text-sm font-semibold px-6 py-2 rounded-full hover:bg-purple-500 hover:text-white transition-colors">Selengkapnya</a>
                         </div>
                         <div
-                            class="bg-gradient-to-t from-slate-400 to-slate-100  rounded-2xl p-4 text-center shadow-lg hover:shadow-xl transition-shadow duration-300 ">
+                            class="bg-gradient-to-r from-stone-200 to-stone-400  rounded-2xl p-4 text-center shadow-lg hover:shadow-xl transition-shadow duration-300 ">
                             <img src="https://placehold.co/300x300/FFFFFF/000000?text=Digital+Signage"
                                 alt="Digital Signage Touch" class="w-full h-48 object-contain mb-4">
                             <h3 class="font-bold text-md mb-2">Digital Signage Touch</h3>
@@ -157,7 +157,7 @@
                                 class="inline-block border border-purple-500 text-purple-500 text-sm font-semibold px-6 py-2 rounded-full hover:bg-purple-500 hover:text-white transition-colors">Selengkapnya</a>
                         </div>
                         <div
-                            class="bg-gradient-to-t from-slate-400 to-slate-100  rounded-2xl p-4 text-center shadow-lg hover:shadow-xl transition-shadow duration-300 ">
+                            class="bg-gradient-to-r from-stone-200 to-stone-400  rounded-2xl p-4 text-center shadow-lg hover:shadow-xl transition-shadow duration-300 ">
                             <img src="https://placehold.co/300x300/FFFFFF/000000?text=Digital+Signage"
                                 alt="Digital Signage Premium Double Sided" class="w-full h-48 object-contain mb-4">
                             <h3 class="font-bold text-md mb-2">Digital Signage Premium Double Sided</h3>
@@ -174,7 +174,7 @@
                                 class="inline-block border border-purple-500 text-purple-500 text-sm font-semibold px-6 py-2 rounded-full hover:bg-purple-500 hover:text-white transition-colors">Selengkapnya</a>
                         </div>
                         <div
-                            class="bg-gradient-to-t from-slate-400 to-slate-100  rounded-2xl p-4 text-center shadow-lg hover:shadow-xl transition-shadow duration-300 ">
+                            class="bg-gradient-to-r from-stone-200 to-stone-400  rounded-2xl p-4 text-center shadow-lg hover:shadow-xl transition-shadow duration-300 ">
                             <img src="https://placehold.co/300x300/FFFFFF/000000?text=Digital+Signage"
                                 alt="Digital Signage Wall Mount Non Touch" class="w-full h-48 object-contain mb-4">
                             <h3 class="font-bold text-md mb-2">Digital Signage Wall Mount Non Touch</h3>
@@ -189,7 +189,7 @@
                                 class="inline-block border border-purple-500 text-purple-500 text-sm font-semibold px-6 py-2 rounded-full hover:bg-purple-500 hover:text-white transition-colors">Selengkapnya</a>
                         </div>
                         <div
-                            class="bg-gradient-to-t from-slate-400 to-slate-100  rounded-2xl p-4 text-center shadow-lg hover:shadow-xl transition-shadow duration-300 ">
+                            class="bg-gradient-to-r from-stone-200 to-stone-400  rounded-2xl p-4 text-center shadow-lg hover:shadow-xl transition-shadow duration-300 ">
                             <img src="https://placehold.co/300x300/FFFFFF/000000?text=Digital+Signage"
                                 alt="Digital Signage Wall Mount Touch" class="w-full h-48 object-contain mb-4">
                             <h3 class="font-bold text-md mb-2">Digital Signage Wall Mount Touch</h3>
@@ -204,7 +204,7 @@
                                 class="inline-block border border-purple-500 text-purple-500 text-sm font-semibold px-6 py-2 rounded-full hover:bg-purple-500 hover:text-white transition-colors">Selengkapnya</a>
                         </div>
                         <div
-                            class="bg-gradient-to-t from-slate-400 to-slate-100  rounded-2xl p-4 text-center shadow-lg hover:shadow-xl transition-shadow duration-300 ">
+                            class="bg-gradient-to-r from-stone-200 to-stone-400  rounded-2xl p-4 text-center shadow-lg hover:shadow-xl transition-shadow duration-300 ">
                             <img src="https://placehold.co/300x300/FFFFFF/000000?text=OLED+Transparent"
                                 alt="OLED Transparent" class="w-full h-48 object-contain mb-4">
                             <h3 class="font-bold text-md mb-2">OLED Transparent</h3>
@@ -217,7 +217,7 @@
                                 class="inline-block border border-purple-500 text-purple-500 text-sm font-semibold px-6 py-2 rounded-full hover:bg-purple-500 hover:text-white transition-colors">Selengkapnya</a>
                         </div>
                         <div
-                            class="bg-gradient-to-t from-slate-400 to-slate-100  rounded-2xl p-4 text-center shadow-lg hover:shadow-xl transition-shadow duration-300 ">
+                            class="bg-gradient-to-r from-stone-200 to-stone-400  rounded-2xl p-4 text-center shadow-lg hover:shadow-xl transition-shadow duration-300 ">
                             <img src="https://placehold.co/300x300/FFFFFF/000000?text=Digital+Signage"
                                 alt="Digital Signage Outdoor Single Side" class="w-full h-48 object-contain mb-4">
                             <h3 class="font-bold text-md mb-2">Digital Signage Outdoor Single Side</h3>
@@ -231,7 +231,7 @@
                                 class="inline-block border border-purple-500 text-purple-500 text-sm font-semibold px-6 py-2 rounded-full hover:bg-purple-500 hover:text-white transition-colors">Selengkapnya</a>
                         </div>
                         <div
-                            class="bg-gradient-to-t from-slate-400 to-slate-100  rounded-2xl p-4 text-center shadow-lg hover:shadow-xl transition-shadow duration-300 ">
+                            class="bg-gradient-to-r from-stone-200 to-stone-400  rounded-2xl p-4 text-center shadow-lg hover:shadow-xl transition-shadow duration-300 ">
                             <img src="https://placehold.co/300x300/FFFFFF/000000?text=Digital+Signage"
                                 alt="Digital Signage Outdoor Double Side" class="w-full h-48 object-contain mb-4">
                             <h3 class="font-bold text-md mb-2">Digital Signage Outdoor Double Side</h3>

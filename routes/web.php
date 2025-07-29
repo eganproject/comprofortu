@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 
 // Route::view('/about', 'user.about')->name('about');
 Route::view('/smartos', 'user.smartos')->name('smartos');
-Route::view('/contact', 'user.contact')->name('contact');
 Route::view('/bcap', 'user.bcap')->name('bcap');
 Route::view('/career', 'user.career')->name('career');
 
@@ -36,6 +35,8 @@ Route::controller(LandingPageController::class)->group(function () {
         Route::get('/load-more', 'loadMorePosts');
         Route::get('/{slug}', 'showBlog')->name('blog.show');
     });
+    Route::get('/contact', 'contact')->name('contact');
+    Route::post('/contact', 'sendContact')->name('contact.send');
 });
 
 

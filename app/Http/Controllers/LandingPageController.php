@@ -7,7 +7,9 @@ use App\Models\ClientExperience;
 use App\Models\HeroImages;
 use App\Models\AboutUs;
 use App\Models\Service;
+use App\Models\ContactUs;
 use Illuminate\Http\Request;
+
 
 class LandingPageController extends Controller
 {
@@ -73,5 +75,26 @@ class LandingPageController extends Controller
         $blog = BlogArticle::where('slug', $slug)->with(['user'])->first();
         $recentPost = BlogArticle::with(['user'])->whereNot('slug', $slug)->latest()->limit(3)->get();
         return view('user.blog.show', compact('blog', 'recentPost'));
+    }
+
+    public function contact()
+    {
+        return view('user.contact');
+    }
+
+    public function sendContact(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'messages' => 'required|string|max:1000',
+        ]);
+
+        // Logic to handle the contact form submission, e.g., sending an email or saving to the database
+
+        return response()->json([
+            'success' => 'success',
+            'message' => 'Terima kasih sudah menghubungi kami, tunggu pesan balasan dari kami ya !'
+        ]);
     }
 }

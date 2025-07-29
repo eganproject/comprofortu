@@ -4,7 +4,7 @@
         <!-- Featured Post Section -->
         <section class="bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800 text-white">
             <div class="container mx-auto px-4 py-8 md:py-12 text-center">
-                <p class="text-sm text-gray-300 mb-2">Fortu Blog</p>
+                <p class="text-sm text-gray-300 mb-2">Artikel Post</p>
                 <!-- Ukuran font berbeda untuk mobile (text-2xl) dan desktop (md:text-4xl) -->
                 <h1 class="text-2xl md:text-4xl font-bold max-w-2xl mb-6 mx-auto">
                     {{ $hero ? $hero->title : 'Belum ada title' }}</h1>
@@ -19,7 +19,7 @@
                             <h2 class="text-sm md:text-xl font-bold mb-1 md:mb-2">
                                 {{ Str::limit($blog[0] ? $blog[0]->title : 'Belum ada title', 50) }}</h2>
 
-                            <a href="/blog/{{ $blog[0]->slug }}"
+                            <a href="/blog/{{ $blog[0]?->slug }}"
                                 class="text-gray-300 hover:text-white font-semibold text-xs md:text-sm">Read More
                                 &rarr;</a>
                         </div>
@@ -66,7 +66,7 @@
                                     </button>
                                 </div>
                                 <h3 class="font-bold text-lg mb-4 flex-grow">
-                                    <a href="/blog/{{ $item->slug }}" class="hover:text-gray-600">
+                                    <a href="/blog/{{ $item?->slug }}" class="hover:text-gray-600">
                                         {{ Str::limit($item->title, 75) }}
                                     </a>
                                 </h3>
