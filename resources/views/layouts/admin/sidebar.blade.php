@@ -3,8 +3,8 @@
     :class="desktopSidebarOpen ? 'md:w-64' : 'md:w-0'">
     <div class="flex items-center justify-between p-6 border-b border-slate-200/80 h-20">
         <div class="flex items-center space-x-3">
-            <i data-lucide="gem" class="w-8 h-8 text-blue-600"></i>
-            <span class="text-sm font-bold text-slate-800">Cahaya Optima</span>
+            <i data-lucide="club" class="w-8 h-8 text-yellow-300"></i>
+            <span class="text-sm font-bold text-slate-800 bg-gradient-to-r from-yellow-300 to-orange-500 bg-clip-text text-transparent">Cahaya Optima</span>
         </div>
         <button @click="desktopSidebarOpen = false"
             class="hidden md:block text-slate-500 hover:text-slate-800">
@@ -102,7 +102,7 @@
                 </a>
                 <a href="/admin/user-management/users-activity"
                     class="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg transition-colors text-xs {{ Route::is('admin.user-management.users_activity') ? 'bg-slate-200/60 text-slate-900 font-semibold' : 'text-slate-500 hover:text-slate-800' }}">
-                    <i data-lucide="users" class="w-5 h-5"></i>
+                    <i data-lucide="user-round-search" class="w-5 h-5"></i>
                     <span>Users Activity</span>
                 </a>
             </div>
