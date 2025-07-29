@@ -100,6 +100,11 @@
                     <i data-lucide="users" class="w-5 h-5"></i>
                     <span>Users</span>
                 </a>
+                <a href="/admin/user-management/users-activity"
+                    class="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg transition-colors text-xs {{ Route::is('admin.user-management.users_activity') ? 'bg-slate-200/60 text-slate-900 font-semibold' : 'text-slate-500 hover:text-slate-800' }}">
+                    <i data-lucide="users" class="w-5 h-5"></i>
+                    <span>Users Activity</span>
+                </a>
             </div>
         </div>
         {{-- Analytic --}}

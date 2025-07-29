@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserManagement\RoleController;
+use App\Http\Controllers\Admin\UserManagement\UserActivityController;
 use App\Http\Controllers\Admin\WebPreferences\AboutUsController;
 use App\Http\Controllers\Admin\WebPreferences\BlogArticleController;
 use App\Http\Controllers\Admin\WebPreferences\ClientExperienceController;
@@ -145,6 +146,10 @@ Route::middleware('auth')->controller(RoleController::class)->group(function () 
     Route::get('admin/user-management/role/{id}', 'edit')->name('admin.user-management.role');
     Route::put('admin/user-management/role/{id}', 'update');
     Route::delete('admin/user-management/role/{id}', 'destroy');
+});
+Route::middleware('auth')->controller(UserActivityController::class)->group(function () {
+    Route::get('/admin/user-management/users-activity', 'index')->name('admin.user-management.users_activity');
+    Route::post('/admin/user-management/users-activity/lists', 'lists');
 });
 
 
