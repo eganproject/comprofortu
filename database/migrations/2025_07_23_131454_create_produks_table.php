@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('nama');
             $table->string('slug')->unique();
             $table->mediumText('deskripsi')->nullable();
-            $table->integer('status');
+            $table->mediumText('thumbnail');
+            $table->integer('status')->default(1)->comment('1 aktif, 0 nonaktif');
             $table->timestamps();
         });
     }

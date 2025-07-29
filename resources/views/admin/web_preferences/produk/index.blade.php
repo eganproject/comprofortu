@@ -9,6 +9,7 @@
     <div x-data="{
         showSuccessModal: {{ session('success') ? 'true' : 'false' }},
         showDeleteModal: false,
+        showErrorModal: {{ session('error') ? 'true' : 'false' }},
         deleteFormAction: ''
     }" x-init="setTimeout(() => showSuccessModal = false, 5000)">
 
@@ -32,9 +33,10 @@
                     <thead class="text-xs text-slate-700 uppercase bg-slate-50/50">
                         <tr>
                             <th scope="col" class="px-6 py-3">No</th>
+                            <th scope="col" class="px-6 py-3">Thumbnail</th>
                             <th scope="col" class="px-6 py-3">Nama Produk</th>
                             <th scope="col" class="px-6 py-3">Kategori</th>
-                            <th scope="col" class="px-6 py-3">Deskripsi</th>
+                            <th scope="col" class="px-6 py-3">Jumlah Spesifikasi</th>
                             <th scope="col" class="px-6 py-3 text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -44,52 +46,8 @@
             </div>
         </div>
 
-        <div x-show="showSuccessModal" x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100"
-            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100"
-            x-transition:leave-end="opacity-0 transform scale-95"
-            class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
-            style="display: none;">
-            <div @click.away="showSuccessModal = false"
-                class="bg-white rounded-xl shadow-xl w-full max-w-md mx-4 p-6 text-center">
-                <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
-                    <i data-lucide="check" class="w-8 h-8 text-green-600"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-slate-800 mb-2">Berhasil!</h3>
-                <p class="text-slate-600">{{ session('success') }}</p>
-                <button @click="showSuccessModal = false"
-                    class="mt-6 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 w-full">
-                    Tutup
-                </button>
-            </div>
-        </div>
+        @include('admin.modalNotif')
 
-        <div x-show="showDeleteModal" x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100"
-            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100"
-            x-transition:leave-end="opacity-0 transform scale-95"
-            class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
-            style="display: none;">
-            <div @click.away="showDeleteModal = false"
-                class="bg-white rounded-xl shadow-xl w-full max-w-md mx-4 p-6 text-center">
-                <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-4">
-                    <i data-lucide="alert-triangle" class="w-8 h-8 text-red-600"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-slate-800 mb-2">Anda Yakin?</h3>
-                <p class="text-slate-600">Data yang telah dihapus tidak dapat dikembalikan lagi. Lanjutkan untuk menghapus
-                    data ini secara permanen.</p>
-                <div class="mt-6 flex justify-center gap-4">
-                    <button @click="document.querySelector(`form[action='${deleteFormAction}']`).submit()"
-                        class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 w-1/2">
-                        Ya, Hapus
-                    </button>
-                    <button @click="showDeleteModal = false"
-                        class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium py-2 px-6 rounded-lg transition-all duration-300 w-1/2">
-                        Batal
-                    </button>
-                </div>
-            </div>
-        </div>
 
     </div>
 @endsection
@@ -124,49 +82,60 @@
                         "data": "no",
                         "orderable": false,
                         "searchable": false,
-                        "className": "px-6 py-4 font-medium text-slate-900"
-                    }, // Kolom nomor
+                        "className": "px-6 py-4 text-center"
+                    },
                     {
-                        "data": "nama_produk",
+                        "data": "thumbnail",
+                        "orderable": false,
+                        "searchable": false,
+                        "render": function(data, type, row) {
+                            // Jika ada thumbnail, tampilkan. Jika tidak, tampilkan placeholder.
+                            const imageUrl = data ? `{{ asset('storage/') }}/${data}` :
+                                'https://placehold.co/100x100/e2e8f0/64748b?text=No+Image';
+                            return `<img src="${imageUrl}" alt="Thumbnail" class="w-16 h-16 object-cover rounded-md shadow-md">`;
+                        },
+                        "className": "px-6 py-4"
+                    },
+                    {
+                        "data": "nama",
                         "className": "px-6 py-4 font-medium text-slate-900"
                     },
                     {
                         "data": "kategori",
-                        "className": "px-6 py-4 font-medium text-slate-900"
+                        "className": "px-6 py-4"
                     },
                     {
-                        "data": "deskripsi",
-                        "render": function(data) {
-                            return data.substring(0, 50) + '...'; // Pangkas artikel
-                        },
-                        "className": "px-6 py-4 font-medium text-slate-900"
+                        "data": "spesifikasi_count",
+                        "className": "px-6 py-4 text-center"
                     },
                     {
-                        "data": "aksi",
+                        "data": "id", // Menggunakan ID untuk membuat link aksi
                         "orderable": false,
                         "searchable": false,
-                        "render": function(data) {
+                        "render": function(data, type, row) {
+                            const editUrl = `/admin/web-preferences/produk/${data}`;
+                            const deleteAction = `/admin/web-preferences/produk/${data}`;
                             return `
                                 <div class="flex justify-center items-center gap-4">
-                                    <a href="/admin/web-preferences/kategori/${data}" 
+                                    <a href="${editUrl}" 
                                         class="font-medium text-blue-600 hover:text-blue-800 transition-colors" title="Edit">
                                         <i data-lucide="edit" class="w-5 h-5"></i>
                                     </a>
                                     <button type="button"
-                                        @click.prevent="deleteFormAction = '/admin/web-preferences/kategori/${data}'; showDeleteModal = true"
+                                        @click.prevent="deleteFormAction = '${deleteAction}'; showDeleteModal = true"
                                         class="font-medium text-red-500 hover:text-red-700 transition-colors" title="Hapus">
                                         <i data-lucide="trash-2" class="w-5 h-5"></i>
                                     </button>
                                     <form id="delete-form-${data}"
-                                        action="/admin/web-preferences/kategori/${data}" method="POST" class="hidden">
+                                        action="${deleteAction}" method="POST" class="hidden">
                                         @csrf
                                         @method('DELETE')
                                     </form>
                                 </div>
                             `;
                         },
-                        "className": "px-6 py-4 font-medium text-slate-900"
-                    } // Kolom aksi
+                        "className": "px-6 py-4 text-center"
+                    }
                 ],
 
                 // FUNGSI UNTUK MENAMBAHKAN CLASS TAILWIND SETELAH TABEL DI-RENDER

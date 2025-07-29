@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('spesifikasi_produks', function (Blueprint $table) {
            $table->uuid('id')->primary();
            $table->string('produk_id');
-           $table->string('spesifikasi');
-           $table->string('slug')->unique();
+           $table->string('kategori_spesifikasi_id');
+           $table->mediumText('spesifikasi');
            $table->mediumText('deskripsi')->nullable();
            $table->string('image')->nullable();
             $table->timestamps();

@@ -92,7 +92,7 @@
         </div>
     </section>
 
-    <section class="bg-gray-700 text-white py-16 px-4">
+    <section class="bg-slate-500 text-white py-16 px-4">
         <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="md:w-1/2 flex items-start gap-4">
                 <div class="bg-white p-2 rounded-md">
@@ -104,7 +104,7 @@
                     </svg>
                 </div>
                 <div>
-                    <h2 class="text-2xl font-bold">TKDN</h2>
+                    <h2 class="text-2xl font-bold">-</h2>
                     <p class="text-gray-300">Tingkat Komponen Dalam Negeri</p>
                     <p class="mt-4 text-sm max-w-md">
                         PT. Fortu Digital Teknologi adalah perusahaan yang sudah besertifikasi TKDN >40% untuk

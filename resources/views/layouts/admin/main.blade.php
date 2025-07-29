@@ -80,7 +80,7 @@
 
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js" defer></script>
     <script>
         // Render Lucide Icons
         lucide.createIcons();

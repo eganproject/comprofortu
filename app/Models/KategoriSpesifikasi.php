@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 class KategoriSpesifikasi extends Model
 {
     use HasUuids;
+    protected $guarded = ['id'];
 }

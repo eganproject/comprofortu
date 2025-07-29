@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('kategori_spesifikasis', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('kode')->unique();
             $table->string('nama_kategori');
             $table->mediumText('deskripsi')->nullable();
-            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

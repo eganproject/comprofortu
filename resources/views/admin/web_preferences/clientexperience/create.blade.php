@@ -2,41 +2,6 @@
 
 @section('title', 'Tambah Client Experience - AdminPanel')
 
-@push('cssOnPage')
-    {{-- CSS untuk Quill Editor --}}
-    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
-    <style>
-        /* Menyesuaikan Quill Editor dengan tema terang */
-        .ql-toolbar {
-            border-top-left-radius: 0.5rem;
-            border-top-right-radius: 0.5rem;
-            border-color: #cbd5e1 !important;
-            /* slate-300 */
-        }
-
-        .ql-container {
-            border-bottom-left-radius: 0.5rem;
-            border-bottom-right-radius: 0.5rem;
-            border-color: #cbd5e1 !important;
-            /* slate-300 */
-            background-color: #ffffff;
-            color: #1e293b;
-            /* slate-800 */
-            min-height: 250px;
-        }
-
-        .ql-editor {
-            font-family: 'Inter', sans-serif;
-        }
-
-        .ql-editor.ql-blank::before {
-            color: #94a3b8;
-            /* slate-400 */
-            font-style: normal;
-        }
-    </style>
-@endpush
-
 @section('content')
 
 
@@ -49,7 +14,7 @@
         deleteFormAction: ''
     }" x-init="setTimeout(() => showSuccessModal = false, 5000)"
         class="bg-white/70 backdrop-blur-lg rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.1)] overflow-hidden min-h-[500px]">
-        <h2 class="text-2xl font-bold text-slate-800 p-6">Tambah Hero Image Baru</h2>
+        <h2 class="text-2xl font-bold text-slate-800 p-6">Tambah Client Experience Baru</h2>
         <div class="md:px-8">
             <form action="/admin/web-preferences/client-experience" method="POST" enctype="multipart/form-data"
                 class="space-y-6" id="article-form">
