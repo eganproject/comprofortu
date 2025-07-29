@@ -127,9 +127,11 @@
                                             required>
                                             <option value="" disabled selected>-- Pilih Kategori --</option>
                                             {{-- Assuming $kategoriSpesifikasi is passed from controller --}}
-                                            @foreach ($kategoriSpesifikasi ?? [] as $item)
+                                            @forelse ($kategoriSpesifikasi as $item)
                                                 <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
-                                            @endforeach
+                                            @empty
+                                                <option value="" disabled>No categories available</option>
+                                            @endforelse
                                         </select>
                                     </div>
 
