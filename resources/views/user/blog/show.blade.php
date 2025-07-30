@@ -170,7 +170,7 @@
                 <!-- Comment 1 -->
                 
                 <!-- Comment 2 -->
-                <div class="flex items-start space-x-4">
+                {{-- <div class="flex items-start space-x-4">
                     <div class="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold">
                         a</div>
                     <div class="flex-1">
@@ -201,7 +201,7 @@
                             <button class="hover:text-gray-800">Reply</button>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </section>
     </div>

@@ -41,31 +41,21 @@
             <div id="interactive-carousel" class="carousel-container">
                 <div class="carousel-slide active">
                     <div class="relative">
-                        <img src="https://placehold.co/1200x600/94a3b8/4C1D95?text=Fortu+Video+Wall" alt="Fortu Video Wall"
-                            class="w-full rounded-lg">
-                        <div class="absolute top-8 left-8 bg-black bg-opacity-50 text-white p-6 rounded-lg max-w-xs">
-                            <h3 class="text-2xl font-bold">Fortu Video Wall</h3>
-                            <a href="#" class="inline-block mt-4 font-semibold text-gray-300 hover:text-white">Read
-                                More &gt;</a>
-                        </div>
+                        <img src="{{ asset('storage/carousel/1.png' ?? 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image') }}"
+                            alt="Fortu Video Wall" class="w-full rounded-lg">
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="relative">
+                        <img src="{{ asset('storage/carousel/2.png' ?? 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image') }}"
+                            alt="Smart Board" class="w-full rounded-lg">
 
                     </div>
                 </div>
                 <div class="carousel-slide">
                     <div class="relative">
-                        <img src="https://placehold.co/1200x600/C4B5FD/5B21B6?text=Smart+Board" alt="Smart Board"
-                            class="w-full rounded-lg">
-                        <div class="absolute top-8 left-8 bg-black bg-opacity-50 text-white p-6 rounded-lg max-w-xs">
-                            <h3 class="text-2xl font-bold">Smart Board</h3>
-                            <a href="#" class="inline-block mt-4 font-semibold text-purple-300 hover:text-white">Read
-                                More &gt;</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="relative">
-                        <img src="https://placehold.co/1200x600/A5B4FC/6D28D9?text=Digital+Signage" alt="Digital Signage"
-                            class="w-full rounded-lg">
+                        <img src="{{ asset('storage/carousel/3.png' ?? 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image') }}"
+                            alt="Digital Signage" class="w-full rounded-lg">
                         <div class="absolute top-8 left-8 bg-black bg-opacity-50 text-white p-6 rounded-lg max-w-xs">
                             <h3 class="text-2xl font-bold">Digital Signage</h3>
                             <a href="#" class="inline-block mt-4 font-semibold text-purple-300 hover:text-white">Read
@@ -94,7 +84,7 @@
 
     <section class="bg-stone-500 text-white py-16 px-4">
         <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="md:w-1/2 flex items-start gap-4">
+            <div class="md:w-1/4 flex items-start gap-4">
                 <div class="bg-white p-2 rounded-md">
                     <svg class="w-8 h-8 text-gray-700" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
@@ -105,7 +95,7 @@
                 </div>
                 <div>
                     <h2 class="text-2xl font-bold">-</h2>
-                    <p class="text-gray-300">Tingkat Komponen Dalam Negeri</p>
+                    <p class="text-gray-300">Elevate Your Vision </p>
                     <p class="mt-4 text-sm max-w-md">
                         PT. Fortu Digital Teknologi adalah perusahaan yang sudah besertifikasi TKDN >40% untuk
                         produk-produknya. Kami yakin dengan tingkat komponen dalam negeri yang ada pada produk kami
@@ -113,50 +103,38 @@
                     </p>
                 </div>
             </div>
-            <div class="md:w-1/2 flex flex-col items-center md:items-end">
-                <p class="text-7xl font-bold text-white">>40%</p>
-                <a href="#"
-                    class="mt-4 inline-block px-6 py-2 border border-white text-white font-semibold rounded-full hover:bg-white hover:text-gray-600 transition-colors">
-                    Visit P3DN Kemenperin
-                </a>
+            <div class="md:w-3/2 flex flex-col items-center justify-center md:items-end">
+                <img src="{{ asset('storage/carousel/4.png' ?? 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image') }}"
+                    alt="Smart Board" class="h-[500px] rounded-lg">
             </div>
         </div>
     </section>
 
     <section class="py-20 px-4">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 text-center">
                 <div class="bg-gradient-to-t from-stone-300 to-stone-100 p-6 rounded-2xl h-50px shadow-xl">
                     <p class="text-gray-500 text-sm">Found & Started</p>
-                    <p class="text-5xl font-bold text-gray-800 my-2">2017</p>
-                    <img src="https://placehold.co/80x80/C7C7C7/000000?text=Robot" alt="Robot icon" class="mx-auto">
+                    <p class="text-5xl font-bold text-gray-800 my-2">2022</p>
+                    <img src="{{ asset('storage/sementara/11.png' ?? 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image') }}" alt="Robot icon" class="mx-auto w-16">
                 </div>
                 <div class="bg-gradient-to-t from-stone-300 to-stone-100 p-6 rounded-2xl h-50px shadow-xl">
                     <p class="text-gray-500 text-sm">Products Hardware & Software</p>
                     <p class="text-5xl font-bold text-gray-800 my-2">30</p>
-                    <img src="https://placehold.co/120x80/C7C7C7/000000?text=Produk" alt="Products icon" class="mx-auto">
+                    <img src="{{ asset('storage/sementara/12.png' ?? 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image') }}" alt="Products icon" class="mx-auto w-16">
                 </div>
                 <div class="bg-gradient-to-t from-stone-300 to-stone-100 p-6 rounded-2xl h-50px shadow-xl">
                     <p class="text-gray-500 text-sm">Vertical Market Solution</p>
                     <p class="text-5xl font-bold text-gray-800 my-2">+10</p>
-                    <img src="https://placehold.co/80x80/C7C7C7/000000?text=Toko" alt="Market icon" class="mx-auto">
-                </div>
-                <div class="bg-gradient-to-t from-stone-300 to-stone-100 p-6 rounded-2xl h-50px shadow-xl">
-                    <p class="text-gray-500 text-sm">Clients From Any Sector</p>
-                    <p class="text-5xl font-bold text-gray-800 my-2">+300</p>
-                    <img src="https://placehold.co/80x80/C7C7C7/000000?text=Klien" alt="Clients icon" class="mx-auto">
-                </div>
-                <div class="bg-gradient-to-t from-stone-300 to-stone-100 p-6 rounded-2xl h-50px shadow-xl">
-                    <p class="text-gray-500 text-sm">Solds & Used in any Business Sector</p>
-                    <p class="text-5xl font-bold text-gray-800 my-2">+1000</p>
-                    <img src="https://placehold.co/80x80/C7C7C7/000000?text=Terjual" alt="Solds icon" class="mx-auto">
+                    <img src="{{ asset('storage/sementara/13.png' ?? 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image') }}" alt="Market icon" class="mx-auto w-16">
                 </div>
             </div>
         </div>
     </section>
 
-    <section style="background-image: url('{{ asset('storage/background/bg_1_1.png') }}')" class="py-16 lg:py-24 bg-no-repeat bg-cover bg-center px-4">
-            <div class="container mx-auto px-4">
+    <section style="background-image: url('{{ asset('storage/background/bg_1_1.png') }}')"
+        class="py-16 lg:py-24 bg-no-repeat bg-cover bg-center px-4">
+        <div class="container mx-auto px-4">
             <div class="flex items-center mb-8">
                 <div class="flex items-center mr-3">
                     <div class="w-5 h-5 rounded-full bg-gray-400"></div>
@@ -206,7 +184,10 @@
                 <h2 class="text-2xl font-bold">Smart Device for Smart Collaboration</h2>
             </div>
             <div class="relative rounded-lg overflow-hidden shadow-2xl">
-                <iframe width="100%" height="600" src="https://www.youtube.com/embed/{{ getYoutubeUrl() ?? 'dQw4w9WgXcQ' }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="100%" height="600"
+                    src="https://www.youtube.com/embed/{{ getYoutubeUrl() ?? 'dQw4w9WgXcQ' }}" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
             </div>
         </div>
     </section>

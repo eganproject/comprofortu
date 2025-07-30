@@ -73,9 +73,16 @@
 
             <div class="space-y-8 max-w-5xl mx-auto">
                 <!-- Feature 1 -->
+                @php
+                    $loopIndex = 0;
+                @endphp
                 @forelse ($product->scopeFeatures($product->id) as $item)
+                    @php
+                        $loopIndex++;
+                    @endphp
                     <div
-                        class="feature-card p-8 flex flex-col md:flex-row items-center gap-8 h-[300px] bg-gradient-to-r from-stone-50 via-stone-200 to-stone-50 p-6 rounded-xl">
+                        class="feature-card p-8 flex flex-col md:flex-row items-center gap-8 h-[300px] bg-gradient-to-r from-stone-50 via-stone-200 to-stone-50 p-6 rounded-xl"
+                        style="flex-direction: {{ $loopIndex % 2 == 0 ? 'row-reverse' : 'row' }}">
                         <div class=" md:w-1/2 md:mx-0">
                             <img src="{{ asset('storage/' . $item->image) }}" alt="Feature Image"
                                 class="rounded-xl max-h-[300px]">

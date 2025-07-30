@@ -77,7 +77,7 @@
                         <div class="grid grid-cols-1 lg:grid-cols-{{ $kat->layout }} gap-8">
                             @forelse ($kat->produk as $prod)
                                 <div
-                                    class="bg-gradient-to-r from-stone-50 to-stone-200 rounded-3xl shadow-xl p-5 flex flex-col sm:flex-row items-center space-y-5 sm:space-y-0 sm:space-x-5 h-[420px]">
+                                    class="bg-gradient-to-r from-stone-50 to-stone-200 rounded-3xl shadow-xl p-5 flex flex-col sm:flex-row items-center space-y-5 sm:space-y-0 sm:space-x-5 sm:h-[420px]">
 
                                     <div class="w-full {{ $kat->layout == 2 ? 'sm:w-8/12' : 'sm:w-7/12' }}">
                                         <img src="{{ asset('storage/' . $prod->thumbnail) }}" alt="Fortu Smart Board"
