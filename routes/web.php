@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserManagement\RoleController;
 use App\Http\Controllers\Admin\UserManagement\UserActivityController;
@@ -150,6 +151,11 @@ Route::middleware('auth')->controller(RoleController::class)->group(function () 
 Route::middleware('auth')->controller(UserActivityController::class)->group(function () {
     Route::get('/admin/user-management/users-activity', 'index')->name('admin.user-management.users_activity');
     Route::post('/admin/user-management/users-activity/lists', 'lists');
+});
+
+Route::middleware('auth')->controller(ContactController::class)->group(function () {
+    Route::get('/admin/contact', 'index')->name('admin.contact');
+    Route::post('/admin/contact/lists', 'lists');
 });
 
 

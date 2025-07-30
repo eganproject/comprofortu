@@ -45,9 +45,9 @@
                                 required>
                         </div>
                         <div>
-                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Nomor
+                            <label for="phone_number" class="block text-sm font-medium text-gray-700 mb-1">Nomor
                                 Handphone</label>
-                            <input type="number" name="phone" id="phone" placeholder="Phone"
+                            <input type="number" name="phone_number" id="phone_number" placeholder="Nomor Handphone"
                                 class="w-full px-4 py-3 bg-stone-100 border border-stone-200 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500"
                                 required>
                         </div>
@@ -59,8 +59,8 @@
                             required>
                     </div>
                     <div class="mb-8">
-                        <label for="messages" class="block text-sm font-medium text-gray-700 mb-1">Pesan</label>
-                        <textarea name="messages" id="messages" rows="6" placeholder="Type your message here"
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Pesan</label>
+                        <textarea name="message" id="message" rows="6" placeholder="Type your message here"
                             class="w-full px-4 py-3 bg-stone-100 border border-stone-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500"
                             required></textarea>
                     </div>
@@ -77,7 +77,7 @@
                 aria-hidden="true">
                 <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-sm mx-auto">
                     <p id="notification-message" class="text-gray-700"></p>
-                    <button type="button" class="mt-4 w-full bg-purple-500 text-white font-bold py-2 px-4 rounded-full"
+                    <button type="button" class="bg-stone-500 text-white font-bold mt-4 w-full rounded-full py-2 px-4 transition-colors duration-300 shadow-lg hover:shadow-xl hover:bg-stone-600"
                         onclick="document.getElementById('notification').classList.add('hidden')">Tutup</button>
                 </div>
             </div>

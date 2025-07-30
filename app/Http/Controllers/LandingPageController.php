@@ -9,6 +9,8 @@ use App\Models\AboutUs;
 use App\Models\Service;
 use App\Models\ContactUs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 
 class LandingPageController extends Controller
@@ -84,17 +86,40 @@ class LandingPageController extends Controller
 
     public function sendContact(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'messages' => 'required|string|max:1000',
-        ]);
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'phone_number' => 'required|max:255',
+                'email' => 'required|email|max:255',
+                'message' => 'required|string|max:1000',
+            ]);
+            DB::beginTransaction();
 
-        // Logic to handle the contact form submission, e.g., sending an email or saving to the database
 
-        return response()->json([
-            'success' => 'success',
-            'message' => 'Terima kasih sudah menghubungi kami, tunggu pesan balasan dari kami ya !'
-        ]);
+
+            ContactUs::create([
+                'tanggal' => date('Y-m-d H:i:s'),
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone_number' => $request->phone_number,
+                'message' => $request->message,
+                'ip_address' => $request->ip(),
+            ]);
+
+            DB::commit();
+
+            return response()->json([
+                'success' => 'success',
+                'message' => 'Terima kasih sudah menghubungi kami, tunggu pesan balasan dari kami ya !'
+            ]);
+
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            return response()->json([
+                'error' => 'Error',
+                'message' => 'Gagal mengirimkan pesan, silahkan coba lagi !'
+            ], 500);
+        }
     }
 }

@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('contact_us', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->dateTime('date');
+            $table->dateTime('tanggal');
             $table->string('name');
             $table->string('email');
             $table->string('phone_number')->nullable();
             $table->string('message');
+            $table->string('ip_address', 45)->nullable();
             $table->timestamps();
         });
     }
