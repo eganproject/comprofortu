@@ -99,7 +99,7 @@
                     },
                     {
                         "data": "message",
-                        "className": "px-6 py-4 text-center"
+                        "className": "px-6 py-4 text-start min-w-[300px]"
                     },
                    
                 ],

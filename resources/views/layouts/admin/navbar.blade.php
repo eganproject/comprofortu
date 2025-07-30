@@ -31,7 +31,7 @@
                     class="w-10 h-10 rounded-full">
                 <div class="hidden md:block text-left">
                     <div class="font-semibold text-slate-800 text-sm"> {{ auth()->user()->name}}</div>
-                    <div class="text-xs text-slate-500">Super Admin</div>
+                    <div class="text-xs text-slate-500">{{ auth()->user()->role->name }}</div>
                 </div>
                 <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 hidden md:block"></i>
             </button>
