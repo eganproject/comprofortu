@@ -9,4 +9,11 @@ class SpesifikasiProduk extends Model
 {
     use HasUuids;
     protected $guarded = ['id'];
+
+     public function kategoriSpesifikasi()
+    {
+        return $this->hasOne(KategoriSpesifikasi::class, 'id', 'kategori_spesifikasi_id');
+    }
+
+    
 }

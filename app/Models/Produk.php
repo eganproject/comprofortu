@@ -33,4 +33,27 @@ class Produk extends Model
     {
         return $this->hasMany(SpesifikasiProduk::class, 'produk_id');
     }
+
+    public function scopeDeviceInch($id)
+    {
+        $data = $this->query()
+        ->select('spesifikasi_produks.*')
+            ->where('produks.id', $id)
+            ->from('produks')
+            ->join('spesifikasi_produks', 'produks.id', 'spesifikasi_produks.produk_id')
+            ->join('kategori_spesifikasis', 'kategori_spesifikasis.id', 'spesifikasi_produks.kategori_spesifikasi_id')
+            ->where('kategori_spesifikasis.kode', 'device_inch')->get();
+        return $data;
+    }
+    public function scopeScreenType($id)
+    {
+        $data = $this->query()
+        ->select('spesifikasi_produks.*')
+            ->where('produks.id', $id)
+            ->from('produks')
+            ->join('spesifikasi_produks', 'produks.id', 'spesifikasi_produks.produk_id')
+            ->join('kategori_spesifikasis', 'kategori_spesifikasis.id', 'spesifikasi_produks.kategori_spesifikasi_id')
+            ->where('kategori_spesifikasis.kode', 'screen_type')->get();
+        return $data;
+    }
 }

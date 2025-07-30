@@ -18,4 +18,9 @@ class KategoriProduk extends Model
             ->generateSlugsFrom('nama_kategori') // Sumber slug adalah kolom 'title'
             ->saveSlugsTo('slug');      // Slug akan disimpan di kolom 'slug'
     }
+
+    public function produk()
+    {
+        return $this->hasMany(Produk::class, 'kategori_id');
+    }
 }

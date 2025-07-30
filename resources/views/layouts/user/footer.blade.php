@@ -5,10 +5,10 @@
                 {{-- Ganti dengan path logo yang benar via asset() helper --}}
                 <img src="{{ get_logo_url() }}" alt="Logo" class="h-8 w-auto mb-4">
                 <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-purple-600 font-medium">Become a Partner</a></li>
-                    <li><a href="#" class="hover:text-purple-600 font-medium">Career</a></li>
-                    <li><a href="#" class="hover:text-purple-600 font-medium">Warranty Claims</a></li>
-                    <li><a href="#" class="hover:text-purple-600 font-medium">Download Brochure Product</a></li>
+                    <li><a href="#" class="hover:text-purple-600 font-medium">About Us</a></li>
+                    <li><a href="#" class="hover:text-purple-600 font-medium">Service</a></li>
+                    <li><a href="#" class="hover:text-purple-600 font-medium">Product</a></li>
+                    <li><a href="#" class="hover:text-purple-600 font-medium">Contact</a></li>
                 </ul>
             </div>
 

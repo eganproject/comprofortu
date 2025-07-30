@@ -6,6 +6,8 @@ use App\Models\BlogArticle;
 use App\Models\ClientExperience;
 use App\Models\HeroImages;
 use App\Models\AboutUs;
+use App\Models\KategoriProduk;
+use App\Models\Produk;
 use App\Models\Service;
 use App\Models\ContactUs;
 use Illuminate\Http\Request;
@@ -38,7 +40,8 @@ class LandingPageController extends Controller
     public function product()
     {
         $hero = HeroImages::where('modul', 'product')->first();
-        return view('user.product.index', compact(['hero']));
+        $kategoriProduk = KategoriProduk::all();
+        return view('user.product.index', compact(['hero', 'kategoriProduk']));
     }
 
     public function blog()
