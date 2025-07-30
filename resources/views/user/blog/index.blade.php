@@ -2,12 +2,12 @@
     @section('title', 'Blog - Fortu Digital Teknologi')
     @section('content')
         <!-- Featured Post Section -->
-        <section class="bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800 text-white">
+        <section class="bg-gradient-to-r from-stone-500 via-stone-600 to-stone-500 text-white">
             <div class="container mx-auto px-4 py-8 md:py-12 text-center">
                 <p class="text-sm text-gray-300 mb-2">Artikel Post</p>
                 <!-- Ukuran font berbeda untuk mobile (text-2xl) dan desktop (md:text-4xl) -->
                 <h1 class="text-2xl md:text-4xl font-bold max-w-2xl mb-6 mx-auto">
-                    {{ $hero ? $hero->title : 'Belum ada title' }}</h1>
+                    {{ $hero ? $hero->title : 'Belum ada post' }}</h1>
                 <div class="relative rounded-lg overflow-hidden">
                     <img src="{{ $blog[0] ? asset('storage/' . $blog[0]->image) : 'https://placehold.co/1200x500/C7C7C7/FFFFFF?text=IMG+Post' }}"
                         alt="Featured Blog Post" class="w-full h-auto">
@@ -17,7 +17,7 @@
                         <div class="bg-black bg-opacity-50 backdrop-blur-sm p-3 md:p-4 rounded-lg max-w-full md:max-w-sm">
 
                             <h2 class="text-sm md:text-xl font-bold mb-1 md:mb-2">
-                                {{ Str::limit($blog[0] ? $blog[0]->title : 'Belum ada title', 50) }}</h2>
+                                {{ Str::limit($blog[0] ? $blog[0]->title : 'Belum ada post', 50) }}</h2>
 
                             <a href="/blog/{{ $blog[0]?->slug }}"
                                 class="text-gray-300 hover:text-white font-semibold text-xs md:text-sm">Read More

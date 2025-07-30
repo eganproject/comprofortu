@@ -52,5 +52,30 @@ if (!function_exists('get_logo_url')) {
 
         return $youtubeLink;
     }
+
+    function getFooterUser()
+    {
+        // Gunakan static variable agar kueri tidak berulang dalam satu request
+        static $logoUrl = null;
+
+        $companyInfo = null;
+        if ($logoUrl === null) {
+            $companyInfo = CompanyInformation::select('company_logo')->first();
+
+            if ($companyInfo && $companyInfo->company_logo) {
+                $logoUrl = asset('storage/' . $companyInfo->company_logo);
+            } else {
+                $logoUrl = asset('storage/company_logothumb/default-logo.png');
+            }
+        }
+
+
+        $data = [
+            'logoUrl' => $logoUrl,
+            'company' => $companyInfo
+        ];
+        return $data;
+    }
+
 }
 
