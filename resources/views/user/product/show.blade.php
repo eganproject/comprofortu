@@ -2,41 +2,38 @@
 @section('title', 'Product - Fortu Digital Teknologi')
 @section('content')
     <!-- Hero Section - Digital Signage -->
-    <section class="hero-gradient py-16 lg:py-20">
+    @push('cssOnPage')
+        <style>
+            .hero-gradient {
+                background: linear-gradient(to right, #afafaf, #f3f3f3);
+            }
+
+            .feature-card {
+                background-color: #ffffff;
+                border-radius: 1.5rem;
+                box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+                border: 1px solid #f3f4f6;
+            }
+        </style>
+    @endpush
+    <section class="hero-gradient py-16 lg:py-6">
         <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
             <div class="md:w-5/12">
-                <h1 class="text-5xl font-bold mb-4" style="font-family: cursive; color: #333;">Digital Signage</h1>
+                <h1 class="text-5xl font-bold mb-4" style="font-family: cursive; color: #333;">{{ $product->nama }}</h1>
                 <p class="text-gray-600 leading-relaxed mb-4">
-                    Solusi komunikasi visual yang menggunakan layar elektronik untuk menampilkan informasi, iklan, video,
-                    gambar, atau konten multimedia yang dinamis.
+                    {{ $product->deskripsi }}
                 </p>
-                <p class="text-gray-600 leading-relaxed mb-6">
-                    Dilengkapi dengan CMS (Content Management System) yang akan memudahkan pengguna untuk membuat,
-                    mengelola, dan mengorganisir konten Digital Signage secara terpusat.
-                </p>
-                <h2 class="text-xl font-bold text-gray-800">Display Visual Canggih Buatan Anak Bangsa</h2>
-                <div class="mt-8 flex items-center gap-4">
-                    <img src="https://placehold.co/48x48/A7F3D0/047857?text=Android" alt="Android Base" class="h-12">
-                    <p class="font-semibold">Android Base</p>
-                </div>
+                <h2 class="text-xl font-bold text-gray-800">#Interaktif display terbaik untuk masa depan.</h2>
             </div>
             <div class="md:w-7/12 relative">
-                <img src="https://placehold.co/800x500/FFFFFF/3B0764?text=Produk+Digital+Signage"
-                    alt="Digital Signage Products" class="rounded-lg w-full">
-                <div
-                    class="absolute top-4 right-4 bg-pink-500 text-white text-center rounded-full p-3 w-24 h-24 flex flex-col justify-center shadow-lg">
-                    <span class="font-semibold text-sm">TKDN</span>
-                    <span class="font-bold text-3xl">>40%</span>
-                </div>
+                <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="Digital Signage Products"
+                    class="rounded-lg w-full">
+
                 <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
-                    <span class="bg-gray-800 text-white text-sm font-semibold px-4 py-2 rounded">10</span>
-                    <span class="bg-gray-800 text-white text-sm font-semibold px-4 py-2 rounded">22</span>
-                    <span class="bg-gray-800 text-white text-sm font-semibold px-4 py-2 rounded">43</span>
-                    <span class="bg-gray-800 text-white text-sm font-semibold px-4 py-2 rounded">49</span>
-                    <span class="bg-gray-800 text-white text-sm font-semibold px-4 py-2 rounded">55</span>
-                    <span class="bg-gray-800 text-white text-sm font-semibold px-4 py-2 rounded">65</span>
-                    <span class="bg-gray-800 text-white text-sm font-semibold px-4 py-2 rounded">75</span>
-                    <span class="bg-gray-800 text-white text-sm font-semibold px-4 py-2 rounded">85</span>
+                    @foreach ($product->scopeDeviceInch($product->id) as $item)
+                        <span
+                            class="bg-gray-800 text-white text-sm font-semibold px-4 py-2 rounded">{{ $item->spesifikasi }}</span>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -47,53 +44,17 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-2 md:grid-cols-3 gap-y-12 text-center">
                 <!-- Feature Item -->
-                <div class="flex flex-col items-center">
-                    <div class="bg-gray-100 rounded-full p-4 mb-4 inline-block shadow-md">
-                        <img src="https://placehold.co/100x100/FFFFFF/000000?text=Ikon+3D" alt="Media Advertising"
-                            class="w-24 h-24">
+                @forelse ($product->scopeXFeatures($product->id) as $item)
+                    <div class="flex flex-col items-center">
+                        <div class="bg-gray-100 rounded-full p-4 mb-4 inline-block shadow-md">
+                            <img src="{{ asset('storage/' . $item->image) }}" alt="" class="w-24 h-24">
+                        </div>
+                        <h3 class="font-semibold text-gray-800">{{ $item->spesifikasi }}</h3>
                     </div>
-                    <h3 class="font-semibold text-gray-800">Media <span class="font-bold">Advertising</span></h3>
-                </div>
+                @empty
+                @endforelse
                 <!-- Feature Item -->
-                <div class="flex flex-col items-center">
-                    <div class="bg-gray-100 rounded-full p-4 mb-4 inline-block shadow-md">
-                        <img src="https://placehold.co/100x100/FFFFFF/000000?text=Ikon+3D" alt="Image & Video Collage"
-                            class="w-24 h-24">
-                    </div>
-                    <h3 class="font-semibold text-gray-800">Image & Video <span class="font-bold">Collage</span></h3>
-                </div>
-                <!-- Feature Item -->
-                <div class="flex flex-col items-center">
-                    <div class="bg-gray-100 rounded-full p-4 mb-4 inline-block shadow-md">
-                        <img src="https://placehold.co/100x100/FFFFFF/000000?text=Ikon+3D" alt="Content Scheduling"
-                            class="w-24 h-24">
-                    </div>
-                    <h3 class="font-semibold text-gray-800">Content <span class="font-bold">Scheduling</span></h3>
-                </div>
-                <!-- Feature Item -->
-                <div class="flex flex-col items-center">
-                    <div class="bg-gray-100 rounded-full p-4 mb-4 inline-block shadow-md">
-                        <img src="https://placehold.co/100x100/FFFFFF/000000?text=Ikon+3D" alt="Hardware Customization"
-                            class="w-24 h-24">
-                    </div>
-                    <h3 class="font-semibold text-gray-800">Hardware <span class="font-bold">Customization</span></h3>
-                </div>
-                <!-- Feature Item -->
-                <div class="flex flex-col items-center">
-                    <div class="bg-gray-100 rounded-full p-4 mb-4 inline-block shadow-md">
-                        <img src="https://placehold.co/100x100/FFFFFF/000000?text=Ikon+3D" alt="Real-time Update Content"
-                            class="w-24 h-24">
-                    </div>
-                    <h3 class="font-semibold text-gray-800">Real-time <br><span class="font-bold">Update Content</span></h3>
-                </div>
-                <!-- Feature Item -->
-                <div class="flex flex-col items-center">
-                    <div class="bg-gray-100 rounded-full p-4 mb-4 inline-block shadow-md">
-                        <img src="https://placehold.co/100x100/FFFFFF/000000?text=Ikon+3D" alt="User Friendly"
-                            class="w-24 h-24">
-                    </div>
-                    <h3 class="font-semibold text-gray-800">User <span class="font-bold">Friendly</span></h3>
-                </div>
+
             </div>
         </div>
     </section>
@@ -103,55 +64,30 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <div class="flex items-center justify-center mb-2">
-                    <div class="w-5 h-5 rounded-full bg-purple-600"></div>
-                    <div class="w-5 h-5 rounded-full bg-purple-500 -ml-2"></div>
-                    <div class="w-5 h-5 rounded-full bg-purple-400 -ml-2"></div>
+                    <div class="w-5 h-5 rounded-full bg-gray-400"></div>
+                    <div class="w-5 h-5 rounded-full bg-gray-500 -ml-2"></div>
+                    <div class="w-5 h-5 rounded-full bg-gray-600 -ml-2"></div>
                 </div>
                 <h2 class="text-3xl font-bold">Fitur</h2>
             </div>
 
             <div class="space-y-8 max-w-5xl mx-auto">
                 <!-- Feature 1 -->
-                <div class="feature-card p-8 flex flex-col md:flex-row items-center gap-8">
-                    <div class="md:w-1/2">
-                        <img src="https://placehold.co/400x300/FFFFFF/4C1D95?text=Feature+Image"
-                            class="rounded-xl shadow-md w-full">
+                @forelse ($product->scopeFeatures($product->id) as $item)
+                    <div
+                        class="feature-card p-8 flex flex-col md:flex-row items-center gap-8 h-[300px] bg-gradient-to-r from-stone-50 via-stone-200 to-stone-50 p-6 rounded-xl">
+                        <div class=" md:w-1/2 md:mx-0">
+                            <img src="{{ asset('storage/' . $item->image) }}" alt="Feature Image"
+                                class="rounded-xl max-h-[300px]">
+                        </div>
+                        <div class="md:w-1/2">
+                            <h3 class="text-xl font-bold mb-2 text-gray-900">{{ $item->spesifikasi }}</h3>
+                            <p class="text-gray-700 leading-relaxed">{{ $item->deskripsi }}</p>
+                        </div>
                     </div>
-                    <div class="md:w-1/2">
-                        <h3 class="text-xl font-bold mb-2 text-gray-900">Media Advertising & Information Center</h3>
-                        <p class="text-gray-700 leading-relaxed">Fortu Digital Signage dapat memberikan pengalaman visual
-                            yang kaya dengan menampilkan beragam konten, seperti gambar, video, grafis, animasi, suara, baik
-                            yang bersifat interaktif maupun non-interaktif.</p>
-                    </div>
-                </div>
-                <!-- Feature 2 -->
-                <div class="feature-card p-8 flex flex-col md:flex-row-reverse items-center gap-8">
-                    <div class="md:w-1/2">
-                        <img src="https://placehold.co/400x300/FFFFFF/4C1D95?text=Feature+Image"
-                            class="rounded-xl shadow-md w-full">
-                    </div>
-                    <div class="md:w-1/2">
-                        <h3 class="text-xl font-bold mb-2 text-gray-900">Centralized Content, Schedule & System updates</h3>
-                        <p class="text-gray-700 leading-relaxed">Fortu Digital Signage dapat dikelola secara tersentral.
-                            Jadi pengguna dapat melakukan pembaruan konten, menghidupkan/mematikan alat, penjadwalan konten,
-                            campaign area, menyetujui/menolak konten yang akan ditayangkan, serta monitoring banyaknya dan
-                            durasi konten yang ditayangkan hingga pembaruan sistem Fortu Digital Signage, secara mudah dan
-                            terpusat.</p>
-                    </div>
-                </div>
-                <!-- Feature 3 -->
-                <div class="feature-card p-8 flex flex-col md:flex-row items-center gap-8">
-                    <div class="md:w-1/2">
-                        <img src="https://placehold.co/400x300/FFFFFF/4C1D95?text=Feature+Image"
-                            class="rounded-xl shadow-md w-full">
-                    </div>
-                    <div class="md:w-1/2">
-                        <h3 class="text-xl font-bold mb-2 text-gray-900">Realtime Active Website</h3>
-                        <p class="text-gray-700 leading-relaxed">Fortu Digital Signage dapat menampilkan informasi atau
-                            konten secara realtime, website berjalan secara aktif dan dapat dinavigasi dengan teknologi
-                            touchscreen.</p>
-                    </div>
-                </div>
+
+                @empty
+                @endforelse
             </div>
         </div>
     </section>

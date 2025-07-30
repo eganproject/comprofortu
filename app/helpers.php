@@ -60,7 +60,7 @@ if (!function_exists('get_logo_url')) {
 
         $companyInfo = null;
         if ($logoUrl === null) {
-            $companyInfo = CompanyInformation::select('company_logo')->first();
+            $companyInfo = CompanyInformation::first();
 
             if ($companyInfo && $companyInfo->company_logo) {
                 $logoUrl = asset('storage/' . $companyInfo->company_logo);

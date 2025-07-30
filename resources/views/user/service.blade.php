@@ -39,7 +39,7 @@
 
                             {{-- Kontainer Teks dengan Gambar Latar Belakang (Lapisan Bawah) --}}
                             <div
-                                class="w-full md:w-2/3 relative rounded-xl overflow-hidden shadow-2xl z-10 
+                                class="w-full md:w-2/3 relative rounded-2xl overflow-hidden shadow-2xl z-10 
                             {{-- Mendorong panel teks ke kanan jika loop genap, atau ke kiri jika ganjil --}}
                             {{ $loop->even ? 'ml-auto' : 'mr-auto' }}">
 

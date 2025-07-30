@@ -125,4 +125,9 @@ class LandingPageController extends Controller
             ], 500);
         }
     }
+
+    public function showProduct(Request $request, $slug){
+        $product = Produk::where('slug', $slug)->firstOrFail();
+        return view('user.product.show', compact('product'));
+    }
 }

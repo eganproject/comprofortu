@@ -29,7 +29,7 @@ Route::controller(LandingPageController::class)->group(function () {
     Route::get('/service', 'service')->name('service');
     Route::prefix('product')->name('product.')->group(function () {
         Route::get('/', 'product')->name('product.index');
-        Route::get('/show', 'showProduct')->name('product.show');
+        Route::get('/{slug}', 'showProduct')->name('product.show');
     });
     Route::prefix('blog')->name('blog.')->group(function () {
         Route::get('/', 'blog')->name('blog.index');

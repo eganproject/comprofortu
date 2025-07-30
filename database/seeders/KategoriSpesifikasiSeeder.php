@@ -36,5 +36,11 @@ class KategoriSpesifikasiSeeder extends Seeder
             'nama_kategori' => 'Features',
             'deskripsi' => ''
         ]);
+
+        KategoriSpesifikasi::create([
+            'kode' => 'x_features',
+            'nama_kategori' => 'X Features',
+            'deskripsi' => ''
+        ]);
     }
 }

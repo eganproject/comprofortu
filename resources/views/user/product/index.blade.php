@@ -113,10 +113,10 @@
                                             </div>
                                         </div>
                                         <div class="pt-3">
-                                            <button
+                                            <a href="/product/{{ $prod->slug }}"
                                                 class="bg-transparent text-black text-sm font-semibold px-4 py-2 rounded-lg border border-black hover:bg-black hover:text-white transition-all duration-200 shadow-sm">
                                                 Selengkapnya >
-                                            </button>
+                                        </a>
                                         </div>
                                     </div>
                                 </div>

@@ -56,4 +56,28 @@ class Produk extends Model
             ->where('kategori_spesifikasis.kode', 'screen_type')->get();
         return $data;
     }
+
+    public function scopeXFeatures($id)
+    {
+        $data = $this->query()
+        ->select('spesifikasi_produks.*')
+            ->where('produks.id', $id)
+            ->from('produks')
+            ->join('spesifikasi_produks', 'produks.id', 'spesifikasi_produks.produk_id')
+            ->join('kategori_spesifikasis', 'kategori_spesifikasis.id', 'spesifikasi_produks.kategori_spesifikasi_id')
+            ->where('kategori_spesifikasis.kode', 'x_features')->get();
+        return $data;
+    }
+
+    public function scopeFeatures($id)
+    {
+        $data = $this->query()
+        ->select('spesifikasi_produks.*')
+            ->where('produks.id', $id)
+            ->from('produks')
+            ->join('spesifikasi_produks', 'produks.id', 'spesifikasi_produks.produk_id')
+            ->join('kategori_spesifikasis', 'kategori_spesifikasis.id', 'spesifikasi_produks.kategori_spesifikasi_id')
+            ->where('kategori_spesifikasis.kode', 'features')->get();
+        return $data;
+    }
 }

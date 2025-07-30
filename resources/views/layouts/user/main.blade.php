@@ -59,10 +59,6 @@
     </section>
 
 
-    {{-- JavaScript Global --}}
-    <a href="https://wa.me/6281234567890" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-        <img src="{{ asset('image/wa.png') }}" alt="WhatsApp" class="whatsapp-icon">
-    </a>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
