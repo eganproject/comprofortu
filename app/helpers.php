@@ -32,7 +32,7 @@ if (!function_exists('get_logo_url')) {
             if ($companyInfo && $companyInfo->company_header) {
                 $headerIconUrl = asset('storage/' . $companyInfo->company_header);
             } else {
-                $headerIconUrl = asset('storage/company_headerthumb/default-logo.png');
+                $headerIconUrl = asset('image/default-logo.png');
             }
         }
 
@@ -65,7 +65,7 @@ if (!function_exists('get_logo_url')) {
             if ($companyInfo && $companyInfo->company_logo) {
                 $logoUrl = asset('storage/' . $companyInfo->company_logo);
             } else {
-                $logoUrl = asset('storage/company_logothumb/default-logo.png');
+                $logoUrl = asset('image/default-logo.png');
             }
         }
 
