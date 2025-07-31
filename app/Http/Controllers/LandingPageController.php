@@ -11,6 +11,7 @@ use App\Models\KategoriProduk;
 use App\Models\Produk;
 use App\Models\Service;
 use App\Models\ContactUs;
+use App\Models\Sorotan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -26,7 +27,8 @@ class LandingPageController extends Controller
         $carousel = CarouselIndex::latest()->where('status', 'aktif')->get();
         $carouselInActive = CarouselIndex::latest()->where('status', 'nonaktif')->get();
         $carousel = $carousel->merge($carouselInActive);
-        return view('user.index', compact('hero', 'clientExperience', 'carousel'));
+        $sorotan = Sorotan::latest()->get();
+        return view('user.index', compact('hero', 'clientExperience', 'carousel', 'sorotan'));
     }
     public function about()
     {

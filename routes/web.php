@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\WebPreferences\KategoriProdukController;
 use App\Http\Controllers\Admin\WebPreferences\ProdukController;
 use App\Http\Controllers\Admin\UserManagement\UserManagementController;
 use App\Http\Controllers\Admin\WebPreferences\ServiceController;
+use App\Http\Controllers\Admin\WebPreferences\SorotanController;
 use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -125,6 +126,15 @@ Route::middleware('auth')->controller(ProdukController::class)->group(function (
     Route::put('admin/web-preferences/produk/{id}', 'update');
     Route::delete('admin/web-preferences/produk/{id}', 'destroy');
 });
+Route::middleware('auth')->controller(SorotanController::class)->group(function () {
+    Route::get('/admin/web-preferences/sorotan', 'index')->name('admin.web_preferences.sorotan');
+    Route::post('/admin/web-preferences/sorotan', 'store');
+    Route::get('/admin/web-preferences/sorotan/create', 'create')->name('admin.web_preferences.sorotan');
+    Route::get('/admin/web-preferences/sorotan/{id}', 'edit');
+    Route::put('/admin/web-preferences/sorotan/{id}', 'update');
+    Route::delete('/admin/web-preferences/sorotan/{id}', 'destroy');
+});
+
 Route::middleware('auth')->controller(CarouselIndexController::class)->group(function () {
     Route::get('/admin/web-preferences/carousel', 'index')->name('admin.web_preferences.carousel');
     Route::post('/admin/web-preferences/carousel', 'store');

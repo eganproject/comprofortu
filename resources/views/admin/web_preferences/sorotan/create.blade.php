@@ -1,6 +1,6 @@
 @extends('layouts.admin.main') {{-- Pastikan ini menunjuk ke layout utama yang benar --}}
 
-@section('title', 'Tambah Carousel - AdminPanel')
+@section('title', 'Tambah Sorotan - AdminPanel')
 
 @section('content')
 
@@ -13,12 +13,30 @@
         deleteFormAction: ''
     }" x-init="setTimeout(() => showSuccessModal = false, 5000)"
         class="bg-white/70 backdrop-blur-lg rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.1)] overflow-hidden min-h-[500px]">
-        <h2 class="text-2xl font-bold text-slate-800 p-6">Tambah Carousel Baru</h2>
+        <h2 class="text-2xl font-bold text-slate-800 p-6">Tambah Sorotan Baru</h2>
         <div class="md:px-8">
-            <form action="/admin/web-preferences/carousel" method="POST" enctype="multipart/form-data"
-                class="space-y-6">
+            <form action="/admin/web-preferences/sorotan" method="POST" enctype="multipart/form-data" class="space-y-6">
                 @csrf
-
+                <div>
+                    <label for="title" class="block mb-2 text-sm font-medium text-slate-700">Title</label>
+                    <input
+                        class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        type="text" name="title" id="title" placeholder="Masukkan Title"
+                        value="{{ old('title') }}" required/>
+                    @error('title')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <label for="subtitle" class="block mb-2 text-sm font-medium text-slate-700">Sub Title</label>
+                    <input
+                        class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        type="text" name="subtitle" id="subtitle" placeholder="Masukkan subtitle"
+                        value="{{ old('subtitle') }}" required/>
+                    @error('subtitle')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
                 <div>
                     <label for="images" class="block mb-2 text-sm font-medium text-slate-700">Gambar</label>
                     <div
@@ -47,7 +65,7 @@
                         class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-lg transition-all duration-300">
                         Simpan
                     </button>
-                    <a href="/admin/web-preferences/carousel"
+                    <a href="/admin/web-preferences/sorotan"
                         class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium py-2 px-5 rounded-lg transition-all duration-300">
                         Batal
                     </a>
@@ -58,5 +76,3 @@
         @include('admin.modalNotif')
     </div>
 @endsection
-
-
