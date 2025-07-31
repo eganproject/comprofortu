@@ -52,7 +52,7 @@
                 </a>
                 <a href="/admin/web-preferences/sorotan"
                     class="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg transition-colors text-xs {{ Route::is('admin.web_preferences.sorotan') ? 'bg-slate-200/60 text-slate-900 font-semibold' : 'text-slate-500 hover:text-slate-800' }}">
-                    <i data-lucide="gallery-thumbnails" class="w-5 h-5"></i>
+                    <i data-lucide="fullscreen" class="w-5 h-5"></i>
                     <span>Sorotan</span>
                 </a>
                 <a href="/admin/web-preferences/client-experience"
