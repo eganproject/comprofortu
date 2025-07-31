@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogArticle;
+use App\Models\CarouselIndex;
 use App\Models\ClientExperience;
 use App\Models\HeroImages;
 use App\Models\AboutUs;
@@ -22,7 +23,10 @@ class LandingPageController extends Controller
     {
         $hero = HeroImages::where('modul', 'index')->first();
         $clientExperience = ClientExperience::latest()->limit(8)->get();
-        return view('user.index', compact('hero', 'clientExperience'));
+        $carousel = CarouselIndex::latest()->where('status', 'aktif')->get();
+        $carouselInActive = CarouselIndex::latest()->where('status', 'nonaktif')->get();
+        $carousel = $carousel->merge($carouselInActive);
+        return view('user.index', compact('hero', 'clientExperience', 'carousel'));
     }
     public function about()
     {

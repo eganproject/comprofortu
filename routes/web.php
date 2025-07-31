@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\UserManagement\RoleController;
 use App\Http\Controllers\Admin\UserManagement\UserActivityController;
 use App\Http\Controllers\Admin\WebPreferences\AboutUsController;
 use App\Http\Controllers\Admin\WebPreferences\BlogArticleController;
+use App\Http\Controllers\Admin\WebPreferences\CarouselIndexController;
 use App\Http\Controllers\Admin\WebPreferences\ClientExperienceController;
 use App\Http\Controllers\Admin\WebPreferences\CompanyInformationController;
 use App\Http\Controllers\Admin\WebPreferences\HeroImagesController;
@@ -124,7 +125,13 @@ Route::middleware('auth')->controller(ProdukController::class)->group(function (
     Route::put('admin/web-preferences/produk/{id}', 'update');
     Route::delete('admin/web-preferences/produk/{id}', 'destroy');
 });
-
+Route::middleware('auth')->controller(CarouselIndexController::class)->group(function () {
+    Route::get('/admin/web-preferences/carousel', 'index')->name('admin.web_preferences.carousel');
+    Route::post('/admin/web-preferences/carousel', 'store');
+    Route::get('/admin/web-preferences/carousel/create', 'create')->name('admin.web_preferences.carousel');
+    Route::put('/admin/web-preferences/carousel/{id}', 'update');
+    Route::delete('/admin/web-preferences/carousel/{id}', 'destroy');
+});
 
 
 
@@ -157,6 +164,7 @@ Route::middleware('auth')->controller(ContactController::class)->group(function 
     Route::get('/admin/contact', 'index')->name('admin.contact');
     Route::post('/admin/contact/lists', 'lists');
 });
+
 
 
 // Authentication

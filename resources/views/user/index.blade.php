@@ -39,31 +39,14 @@
             </div>
 
             <div id="interactive-carousel" class="carousel-container">
-                <div class="carousel-slide active">
-                    <div class="relative">
-                        <img src="{{ asset('storage/carousel/1.png' ?? 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image') }}"
-                            alt="Fortu Video Wall" class="w-full rounded-lg">
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="relative">
-                        <img src="{{ asset('storage/carousel/2.png' ?? 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image') }}"
-                            alt="Smart Board" class="w-full rounded-lg">
-
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="relative">
-                        <img src="{{ asset('storage/carousel/3.png' ?? 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image') }}"
-                            alt="Digital Signage" class="w-full rounded-lg">
-                        <div class="absolute top-8 left-8 bg-black bg-opacity-50 text-white p-6 rounded-lg max-w-xs">
-                            <h3 class="text-2xl font-bold">Digital Signage</h3>
-                            <a href="#" class="inline-block mt-4 font-semibold text-purple-300 hover:text-white">Read
-                                More &gt;</a>
+                @foreach ($carousel as $item)
+                    <div class="carousel-slide {{ $loop->first ? 'active' : '' }}">
+                        <div class="relative">
+                            <img src="{{ asset('storage/'.$item->images ?? 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image') }}"
+                                alt="Fortu Video Wall" class="w-full rounded-lg">
                         </div>
                     </div>
-                </div>
-
+                @endforeach
                 <button
                     class="carousel-prev absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24"
@@ -116,17 +99,20 @@
                 <div class="bg-gradient-to-t from-stone-300 to-stone-100 p-6 rounded-2xl h-50px shadow-xl">
                     <p class="text-gray-500 text-sm">Found & Started</p>
                     <p class="text-5xl font-bold text-gray-800 my-2">2022</p>
-                    <img src="{{ asset('storage/sementara/11.png' ?? 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image') }}" alt="Robot icon" class="mx-auto w-16">
+                    <img src="{{ asset('storage/sementara/11.png' ?? 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image') }}"
+                        alt="Robot icon" class="mx-auto w-16">
                 </div>
                 <div class="bg-gradient-to-t from-stone-300 to-stone-100 p-6 rounded-2xl h-50px shadow-xl">
                     <p class="text-gray-500 text-sm">Products Hardware & Software</p>
                     <p class="text-5xl font-bold text-gray-800 my-2">30</p>
-                    <img src="{{ asset('storage/sementara/12.png' ?? 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image') }}" alt="Products icon" class="mx-auto w-16">
+                    <img src="{{ asset('storage/sementara/12.png' ?? 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image') }}"
+                        alt="Products icon" class="mx-auto w-16">
                 </div>
                 <div class="bg-gradient-to-t from-stone-300 to-stone-100 p-6 rounded-2xl h-50px shadow-xl">
                     <p class="text-gray-500 text-sm">Vertical Market Solution</p>
                     <p class="text-5xl font-bold text-gray-800 my-2">+10</p>
-                    <img src="{{ asset('storage/sementara/13.png' ?? 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image') }}" alt="Market icon" class="mx-auto w-16">
+                    <img src="{{ asset('storage/sementara/13.png' ?? 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image') }}"
+                        alt="Market icon" class="mx-auto w-16">
                 </div>
             </div>
         </div>
