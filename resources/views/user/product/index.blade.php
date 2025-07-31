@@ -65,11 +65,11 @@
             @forelse ($kategoriProduk as $kat)
                 <section class="py-12">
                     <div class="container mx-auto px-4">
-                        <div class="flex items-center mb-8">
+                        <div class="flex items-center mb-8 scroll-animate-icon">
                             <div class="flex items-center mr-3">
-                                <div class="w-5 h-5 rounded-full bg-gray-400"></div>
-                                <div class="w-5 h-5 rounded-full bg-gray-500 -ml-2"></div>
-                                <div class="w-5 h-5 rounded-full bg-gray-600 -ml-2"></div>
+                                <div class="w-7 h-7 rounded-full bg-gray-400 icon-circle icon-circle-1"></div>
+                                <div class="w-7 h-7 rounded-full bg-gray-500 -ml-2 icon-circle icon-circle-2"></div>
+                                <div class="w-7 h-7 rounded-full bg-gray-600 -ml-2 icon-circle icon-circle-3"></div>
                             </div>
                             <h2 class="text-2xl font-bold text-gray-800">{{ $kat->nama_kategori }}</h2>
                         </div>
@@ -84,7 +84,8 @@
                                             class="w-full h-full object-cover drop-shadow-lg">
                                     </div>
 
-                                    <div class="w-full {{ $kat->layout == 2 ? 'sm:w-4/12' : 'sm:w-5/12' }} flex flex-col h-full">
+                                    <div
+                                        class="w-full {{ $kat->layout == 2 ? 'sm:w-4/12' : 'sm:w-5/12' }} flex flex-col h-full">
                                         <div class="flex-grow">
                                             <h3 class="text-xl font-bold text-gray-800 mb-3">
                                                 {{ $prod->nama }}
@@ -104,7 +105,7 @@
                                                     <p class="text-sm font-medium text-gray-500 mb-1">Screen Type</p>
                                                     @forelse ($prod->scopeScreenType($prod->id) as $spek)
                                                         <span
-                                                            class="{{ $spek->spesifikasi == 'Touch Screen' ? 'bg-blue-500' : 'bg-red-500' }}  text-white text-sm font-semibold px-3 py-1.5 rounded-lg">{{$spek->spesifikasi}}</span>
+                                                            class="{{ $spek->spesifikasi == 'Touch Screen' ? 'bg-blue-500' : 'bg-red-500' }}  text-white text-sm font-semibold px-3 py-1.5 rounded-lg">{{ $spek->spesifikasi }}</span>
                                                     @empty
                                                         <span
                                                             class="bg-gray-800 text-white text-sm font-semibold px-3 py-1.5 rounded-lg">-</span>
@@ -116,7 +117,7 @@
                                             <a href="/product/{{ $prod->slug }}"
                                                 class="bg-transparent text-black text-sm font-semibold px-4 py-2 rounded-lg border border-black hover:bg-black hover:text-white transition-all duration-200 shadow-sm">
                                                 Selengkapnya >
-                                        </a>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

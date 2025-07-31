@@ -17,6 +17,34 @@
         .carousel-slide.active {
             display: block;
         }
+
+        .scroll-animate-icon .icon-circle {
+            opacity: 0;
+            /* Atur transisi untuk semua properti transform dan opacity */
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease-out;
+        }
+
+        /* Posisi Awal Lingkaran (sebelum terlihat) */
+        .scroll-animate-icon .icon-circle-1 {
+            transform: translateX(-25px) scale(0.5);
+            transition-delay: 0s;
+        }
+
+        .scroll-animate-icon .icon-circle-2 {
+            transform: translateX(-25px) scale(0.5);
+            transition-delay: 0.1s;
+        }
+
+        .scroll-animate-icon .icon-circle-3 {
+            transform: translateX(-25px) scale(0.5);
+            transition-delay: 0.2s;
+        }
+
+        /* Posisi Akhir Lingkaran (setelah terlihat) */
+        .scroll-animate-icon.is-visible .icon-circle {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
     </style>
 @endpush
 {{-- Mendefinisikan konten untuk bagian 'content' di layout utama --}}
@@ -29,11 +57,11 @@
 
     <section class="py-16 lg:py-24 px-4">
         <div class="container mx-auto px-4">
-            <div class="flex items-center mb-8">
+            <div class="flex items-center mb-8 scroll-animate-icon">
                 <div class="flex items-center mr-3">
-                    <div class="w-5 h-5 rounded-full bg-gray-400"></div>
-                    <div class="w-5 h-5 rounded-full bg-gray-500 -ml-2"></div>
-                    <div class="w-5 h-5 rounded-full bg-gray-600 -ml-2"></div>
+                    <div class="w-7 h-7 rounded-full bg-gray-400 icon-circle icon-circle-1"></div>
+                    <div class="w-7 h-7 rounded-full bg-gray-500 -ml-2 icon-circle icon-circle-2"></div>
+                    <div class="w-7 h-7 rounded-full bg-gray-600 -ml-2 icon-circle icon-circle-3"></div>
                 </div>
                 <h2 class="text-2xl font-bold">Interactive Display Canggih Buatan Anak Bangsa</h2>
             </div>
@@ -102,7 +130,7 @@
                     <div class="bg-gradient-to-t from-stone-300 to-stone-100 p-6 rounded-2xl h-50px shadow-xl">
                         <p class="text-gray-500 text-sm">{{ $item->title }}</p>
                         <p class="text-5xl font-bold text-gray-800 my-2">{{ $item->subtitle }}</p>
-                        <img src="{{ asset('storage/'.$item->images ?? 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image') }}"
+                        <img src="{{ asset('storage/' . $item->images ?? 'https://placehold.co/1200x600/94a3b8/080808?text=Hero+Image') }}"
                             alt="Robot icon" class="mx-auto w-16">
                     </div>
                 @empty
@@ -115,11 +143,11 @@
     <section style="background-image: url('{{ asset('storage/background/bg_1_1.png') }}')"
         class="py-16 lg:py-24 bg-no-repeat bg-cover bg-center px-4">
         <div class="container mx-auto px-4">
-            <div class="flex items-center mb-8">
+            <div class="flex items-center mb-8 scroll-animate-icon">
                 <div class="flex items-center mr-3">
-                    <div class="w-5 h-5 rounded-full bg-gray-400"></div>
-                    <div class="w-5 h-5 rounded-full bg-gray-500 -ml-2"></div>
-                    <div class="w-5 h-5 rounded-full bg-gray-600 -ml-2"></div>
+                   <div class="w-7 h-7 rounded-full bg-gray-400 icon-circle icon-circle-1"></div>
+                    <div class="w-7 h-7 rounded-full bg-gray-500 -ml-2 icon-circle icon-circle-2"></div>
+                    <div class="w-7 h-7 rounded-full bg-gray-600 -ml-2 icon-circle icon-circle-3"></div>
                 </div>
                 <h2 class="text-2xl font-bold">Client Experience</h2>
             </div>
@@ -155,11 +183,11 @@
 
     <section class="py-16 lg:py-24 px-4">
         <div class="container mx-auto px-4">
-            <div class="flex items-center mb-8">
+            <div class="flex items-center mb-8 scroll-animate-icon">
                 <div class="flex items-center mr-3">
-                    <div class="w-5 h-5 rounded-full bg-gray-400"></div>
-                    <div class="w-5 h-5 rounded-full bg-gray-500 -ml-2"></div>
-                    <div class="w-5 h-5 rounded-full bg-gray-600 -ml-2"></div>
+                    <div class="w-7 h-7 rounded-full bg-gray-400 icon-circle icon-circle-1"></div>
+                    <div class="w-7 h-7 rounded-full bg-gray-500 -ml-2 icon-circle icon-circle-2"></div>
+                    <div class="w-7 h-7 rounded-full bg-gray-600 -ml-2 icon-circle icon-circle-3"></div>
                 </div>
                 <h2 class="text-2xl font-bold">Smart Device for Smart Collaboration</h2>
             </div>
@@ -201,6 +229,27 @@
                     showSlide(currentIndex);
                 });
             }
+        }
+        const animatedElements = document.querySelectorAll('.scroll-animate-icon');
+
+        if (animatedElements.length > 0) {
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // Hentikan pengamatan setelah animasi berjalan sekali
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                // Atur threshold ke 0.1, artinya animasi akan berjalan
+                // saat 10% dari elemen terlihat
+                threshold: 0.1
+            });
+
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
         }
     </script>
 @endpush

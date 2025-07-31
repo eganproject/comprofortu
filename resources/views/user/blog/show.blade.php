@@ -152,18 +152,24 @@
 
         <!-- Comments Section -->
         <section class="mt-16 pt-8 border-t mb-16">
-            <h2 class="text-xl font-bold text-gray-800 mb-4">3 Comments</h2>
+            <h2 class="text-xl font-bold text-gray-800 mb-4">0 Comments</h2>
             <div class="mb-6">
                 <textarea class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" rows="3"
                     placeholder="Write a comment..."></textarea>
             </div>
-            <div class="flex justify-start items-center mb-6">
+            <div class="flex justify-end">
+                <button
+                    class="bg-stone-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-stone-600 focus:outline-none focus:ring-2 focus:ring-stone-500">
+                    Post Comment
+                </button>
+            </div>
+            {{-- <div class="flex justify-start items-center mb-6">
                 <label for="sort-by" class="text-sm text-gray-600 mr-2">Sort by:</label>
                 <select id="sort-by" class="text-sm font-semibold border-0 focus:ring-0">
                     <option>Newest</option>
                     <option>Oldest</option>
                 </select>
-            </div>
+            </div> --}}
 
             <!-- Comments List -->
             <div class="space-y-8">
