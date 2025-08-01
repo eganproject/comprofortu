@@ -96,6 +96,7 @@
     </section>
 
     <section class="min-h-screen flex items-center justify-center py-16 sm:py-20 lg:py-24 px-4 bg-gradient-to-b from-stone-300 to-stone-100">
+
         <!-- Card Container -->
         <div
             class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl shadow-slate-200 overflow-hidden grid grid-cols-1 lg:grid-cols-2">
