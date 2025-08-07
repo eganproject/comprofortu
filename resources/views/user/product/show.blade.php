@@ -50,7 +50,7 @@
     <section class="hero-gradient py-16 lg:py-6">
         <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
             <div class="md:w-5/12">
-                <h1 class="text-5xl font-bold italic mb-4" style="font-family: cursive; color: #333;">{{ $product->nama }}
+                <h1 class="text-5xl font-bold italic mb-4" style="font-family: inter; color: #333;">{{ $product->nama }}
                 </h1>
                 <p class="text-gray-600 leading-relaxed mb-4">
                     {{ $product->deskripsi }}
@@ -139,8 +139,7 @@
                 class="max-w-5xl mx-auto bg-gray-800 text-white rounded-3xl p-8 flex flex-col md:flex-row justify-between items-center">
                 <div>
                     <h2 class="text-3xl font-bold" style="font-family: cursive;">Spesifikasi</h2>
-                    <p class="text-gray-300 mt-1">Silahkan Download Brochure untuk mendapatkan spesifikasi produk Fortu
-                        Smart Teller Machine</p>
+                    <p class="text-gray-300 mt-1">Silahkan Download Brochure untuk mendapatkan spesifikasi produk {{$product->nama}}</p>
                 </div>
                 <div class="mt-6 md:mt-0">
                     <a href="#"
